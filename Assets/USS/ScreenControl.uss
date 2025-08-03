@@ -40,7 +40,7 @@
 .menupanel-ribbon {
     background-image: url("project://database/Assets/Sprites_Instances/Ribbon_Blue_3Slides.png?fileID=21300000&guid=59f54abd4705aae4da2ce9c72f1f266c&type=3#Ribbon_Blue_3Slides");
     align-self: center;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     flex-shrink: 0;
     height: 175px;
@@ -70,7 +70,7 @@
     height: 125px;
     align-self: center;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     border-top-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;
@@ -89,5 +89,37 @@
 .shrink {
     transition-duration: 0.5s;
     transition-timing-function: ease;
-    height: -1px;
+    height: 0;
+}
+
+.sample-text {
+    flex-grow: 1;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    font-size: 50px;
+    -unity-text-align: middle-center;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    transition-duration: 0.5s;
+}
+
+.sample-text--button {
+    padding-left: 15px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+}
+
+.menu-button:hover {
+    height: 175px;
+}
+
+.menu-button:active {
+    background-image: url("project://database/Assets/Sprites_Instances/Button_Blue_9Slides_Pressed.png?fileID=21300000&guid=1cc77f2add10c4a489efef87e1872ab9&type=3#Button_Blue_9Slides_Pressed");
 }

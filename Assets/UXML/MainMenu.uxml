@@ -3,9 +3,27 @@
     <ui:VisualElement class="mainscreen">
         <ui:VisualElement class="menupanel-placeholder">
             <ui:VisualElement class="menupanel-buttonpanel">
-                <ui:VisualElement class="menupanel-ribbon" />
-                <ui:Button class="menu-button" />
-                <ui:Button class="menu-button" />
+                <ui:VisualElement class="menupanel-ribbon">
+                    <ui:Label text="Label" class="sample-text" style="padding-right: 55px; padding-bottom: 55px; padding-left: 55px; padding-top: 5px;" />
+                </ui:VisualElement>
+                <ui:Button class="menu-button">
+                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                </ui:Button>
+                <ui:Button class="menu-button">
+                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                </ui:Button>
+                <ui:Button class="menu-button">
+                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                </ui:Button>
+                <ui:Button class="menu-button">
+                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                </ui:Button>
+                <ui:Button class="menu-button">
+                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                </ui:Button>
+                <ui:Button class="menu-button">
+                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
