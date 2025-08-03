@@ -4,27 +4,30 @@
         <ui:VisualElement class="menupanel-placeholder">
             <ui:VisualElement class="menupanel-buttonpanel">
                 <ui:VisualElement class="menupanel-ribbon">
-                    <ui:Label text="Label" class="sample-text" style="padding-right: 55px; padding-bottom: 55px; padding-left: 55px; padding-top: 5px;" />
+                    <ui:Label text="Kingdom Defender" class="sample-text" style="padding-right: 55px; padding-bottom: 55px; padding-left: 55px; padding-top: 5px;" />
                 </ui:VisualElement>
                 <ui:TextField placeholder-text="username" class="menu-textfield" />
                 <ui:TextField placeholder-text="password" password="true" class="menu-textfield" />
-                <ui:Button class="menu-button">
-                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                <ui:Button name="LoginButton" class="menu-button">
+                    <ui:Label text="Login" class="sample-text sample-text--button" />
                 </ui:Button>
-                <ui:Button class="menu-button">
-                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                <ui:Button name="SignUpButton" class="menu-button">
+                    <ui:Label text="Sign Up" class="sample-text sample-text--button" />
                 </ui:Button>
-                <ui:Button class="menu-button">
-                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                <ui:Button name="PlayButton" class="menu-button shrink">
+                    <ui:Label text="Play" name="Label" class="sample-text sample-text--button" />
                 </ui:Button>
-                <ui:Button class="menu-button">
-                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                <ui:Button name="ShopButton" class="menu-button shrink">
+                    <ui:Label text="Shop" class="sample-text sample-text--button" />
                 </ui:Button>
-                <ui:Button class="menu-button">
-                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                <ui:Button name="AchievementButton" class="menu-button shrink">
+                    <ui:Label text="Achievement" class="sample-text sample-text--button" />
                 </ui:Button>
-                <ui:Button class="menu-button">
-                    <ui:Label text="Label" class="sample-text sample-text--button" />
+                <ui:Button name="SettingButton" class="menu-button shrink">
+                    <ui:Label text="Setting" class="sample-text sample-text--button" />
+                </ui:Button>
+                <ui:Button name="LogoutButton" class="menu-button shrink">
+                    <ui:Label text="Log out" name="Label" class="sample-text sample-text--button" />
                 </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>

@@ -107,6 +107,7 @@
     white-space: pre-wrap;
     text-overflow: ellipsis;
     transition-duration: 0.5s;
+    -unity-font-definition: url("project://database/Assets/Font/Super%20Vanilla%20SDF.asset?fileID=11400000&guid=5cdc185812b168846b854e2ac8c53b2f&type=2#Super Vanilla SDF");
 }
 
 .sample-text--button {
@@ -150,4 +151,9 @@ TextField > Label {
     padding-right: 15px;
     padding-bottom: 15px;
     padding-left: 15px;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
 }
