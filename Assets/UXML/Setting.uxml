@@ -9,7 +9,7 @@
                 <ui:Slider label="Music" value="42" high-value="100" class="menu-slider" />
                 <ui:Slider label="Sound FX" value="42" high-value="100" class="menu-slider" />
                 <ui:Button name="ReturnButton" class="menu-button">
-                    <ui:Label text="Return" name="Label" class="sample-text sample-text--button" />
+                    <ui:Label text="Return" class="sample-text sample-text--button" />
                 </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>

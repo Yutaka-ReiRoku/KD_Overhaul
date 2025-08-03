@@ -7,7 +7,7 @@
                     <ui:Label text="Shop" name="Label" class="sample-text" style="padding-right: 55px; padding-bottom: 55px; padding-left: 55px; padding-top: 5px;" />
                 </ui:VisualElement>
                 <ui:Button name="ReturnButton" class="menu-button">
-                    <ui:Label text="Return" name="Label" class="sample-text sample-text--button" />
+                    <ui:Label text="Return" class="sample-text sample-text--button" />
                 </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>

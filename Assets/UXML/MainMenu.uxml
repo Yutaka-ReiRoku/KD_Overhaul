@@ -6,8 +6,8 @@
                 <ui:VisualElement class="menupanel-ribbon">
                     <ui:Label text="Kingdom Defender" class="sample-text" style="padding-right: 55px; padding-bottom: 55px; padding-left: 55px; padding-top: 5px;" />
                 </ui:VisualElement>
-                <ui:TextField placeholder-text="username" class="menu-textfield" />
-                <ui:TextField placeholder-text="password" password="true" class="menu-textfield" />
+                <ui:TextField placeholder-text="username" name="UsernameInput" class="menu-textfield" />
+                <ui:TextField placeholder-text="password" password="true" name="PasswordInput" class="menu-textfield" />
                 <ui:Button name="LoginButton" class="menu-button">
                     <ui:Label text="Login" class="sample-text sample-text--button" />
                 </ui:Button>
@@ -15,7 +15,7 @@
                     <ui:Label text="Sign Up" class="sample-text sample-text--button" />
                 </ui:Button>
                 <ui:Button name="PlayButton" class="menu-button shrink">
-                    <ui:Label text="Play" name="Label" class="sample-text sample-text--button" />
+                    <ui:Label text="Play" class="sample-text sample-text--button" />
                 </ui:Button>
                 <ui:Button name="ShopButton" class="menu-button shrink">
                     <ui:Label text="Shop" class="sample-text sample-text--button" />
@@ -27,7 +27,7 @@
                     <ui:Label text="Setting" class="sample-text sample-text--button" />
                 </ui:Button>
                 <ui:Button name="LogoutButton" class="menu-button shrink">
-                    <ui:Label text="Log out" name="Label" class="sample-text sample-text--button" />
+                    <ui:Label text="Log out" class="sample-text sample-text--button" />
                 </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>

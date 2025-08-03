@@ -53,7 +53,6 @@ public class UIManager : Singleton<UIManager>
 
         var newScreenAsset = _screenAssets[screenId];
         var newScreenInstance = newScreenAsset.CloneTree();
-        newScreenInstance.AddToClassList("mainscreen");
         IScreenController newController = CreateControllerForScreen(screenId);
         newController.Initialize(newScreenInstance);
         _currentScreenController = newController;
@@ -79,8 +78,14 @@ public class UIManager : Singleton<UIManager>
     {
         switch (screenId)
         {
-            case "screen1":
+            case "MainMenu":
                 return new MainMenuController();
+            case "Shop":
+                return new ShopController();
+            case "Achievement":
+                return new AchievementController();
+            case "Setting":
+                return new SettingController();
             default:
                 Debug.LogError($"No controller defined for screen ID '{screenId}'");
                 return null;
