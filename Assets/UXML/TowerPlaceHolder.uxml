@@ -1,0 +1,28 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/USS/ScreenControl.uss?fileID=7433441132597879392&amp;guid=a97e48db6587fda418499b3b98639c4e&amp;type=3#ScreenControl" />
+    <ui:VisualElement class="GamePlayScreen">
+        <ui:VisualElement class="TowerPlaceHolder">
+            <ui:Button class="TowerButton">
+                <ui:VisualElement picking-mode="Ignore" class="TowerImage" />
+            </ui:Button>
+            <ui:Button class="TowerButton">
+                <ui:VisualElement picking-mode="Ignore" class="TowerImage" />
+            </ui:Button>
+            <ui:Button class="TowerButton">
+                <ui:VisualElement picking-mode="Ignore" class="TowerImage" />
+            </ui:Button>
+            <ui:Button class="TowerButton">
+                <ui:VisualElement picking-mode="Ignore" class="TowerImage" />
+            </ui:Button>
+            <ui:Button class="TowerButton">
+                <ui:VisualElement picking-mode="Ignore" class="TowerImage" />
+            </ui:Button>
+            <ui:Button class="TowerButton">
+                <ui:VisualElement picking-mode="Ignore" class="TowerImage" />
+            </ui:Button>
+            <ui:Button class="TowerButton">
+                <ui:VisualElement picking-mode="Ignore" class="TowerImage" />
+            </ui:Button>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
