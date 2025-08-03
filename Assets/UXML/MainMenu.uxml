@@ -1,9 +1,12 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/USS/ScreenControl.uss?fileID=7433441132597879392&amp;guid=a97e48db6587fda418499b3b98639c4e&amp;type=3#ScreenControl" />
     <ui:VisualElement class="mainscreen">
-        <ui:VisualElement class="menupanel_placeholder">
-            <ui:VisualElement class="menupanel_ribbon" />
-            <ui:VisualElement class="menupanel_buttonpanel" />
+        <ui:VisualElement class="menupanel-placeholder">
+            <ui:VisualElement class="menupanel-buttonpanel">
+                <ui:VisualElement class="menupanel-ribbon" />
+                <ui:Button class="menu-button" />
+                <ui:Button class="menu-button" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

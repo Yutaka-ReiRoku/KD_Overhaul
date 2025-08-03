@@ -2,7 +2,7 @@
 }
 
 .mainscreen {
-    transition-duration: 0.3s;
+    transition-duration: 0.5s;
     top: 0%;
     left: 0%;
     position: absolute;
@@ -18,21 +18,6 @@
     top: -100%;
 }
 
-.unity-button {
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    border-top-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 0;
-    border-left-width: 0;
-}
-
 .mainscreen--under {
     top: 100%;
 }
@@ -40,7 +25,7 @@
 .none {
 }
 
-.menupanel_placeholder {
+.menupanel-placeholder {
     width: 30%;
     height: 100%;
     top: 0%;
@@ -49,22 +34,22 @@
     flex-shrink: 0;
     align-self: center;
     justify-content: center;
-    transition-duration: 0.3s;
+    transition-duration: 0.5s;
 }
 
-.menupanel_ribbon {
+.menupanel-ribbon {
     background-image: url("project://database/Assets/Sprites_Instances/Ribbon_Blue_3Slides.png?fileID=21300000&guid=59f54abd4705aae4da2ce9c72f1f266c&type=3#Ribbon_Blue_3Slides");
     align-self: center;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    height: 20%;
+    height: 175px;
     width: 125%;
-    transition-duration: 0.3s;
+    transition-duration: 0.5s;
     -unity-slice-type: tiled;
 }
 
-.menupanel_buttonpanel {
+.menupanel-buttonpanel {
     background-image: url("project://database/Assets/Sprites_Instances/Carved_9Slides.png?fileID=21300000&guid=986a975dc11a06f4d9bfff231b680fbc&type=3#Carved_9Slides");
     align-self: center;
     align-items: center;
@@ -72,6 +57,37 @@
     flex-shrink: 0;
     height: auto;
     width: 100%;
-    transition-duration: 0.3s;
+    transition-duration: 0.5s;
     -unity-slice-type: tiled;
+}
+
+.menu-button {
+    transition-duration: 0.5s;
+    -unity-slice-type: tiled;
+    background-color: rgba(188, 188, 188, 0);
+    background-image: url("project://database/Assets/Sprites_Instances/Button_Blue_9Slides.png?fileID=21300000&guid=c89a9065094d21142885fdc4b65c75ba&type=3#Button_Blue_9Slides");
+    width: 100%;
+    height: 125px;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    transition-timing-function: ease-out-elastic;
+}
+
+.shrink {
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    height: -1px;
 }
