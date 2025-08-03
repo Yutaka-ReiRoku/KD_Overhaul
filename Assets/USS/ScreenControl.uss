@@ -123,3 +123,31 @@
 .menu-button:active {
     background-image: url("project://database/Assets/Sprites_Instances/Button_Blue_9Slides_Pressed.png?fileID=21300000&guid=1cc77f2add10c4a489efef87e1872ab9&type=3#Button_Blue_9Slides_Pressed");
 }
+
+TextField > Label {
+    visibility: hidden;
+    display: none;
+}
+
+.menu-textfield {
+    height: 125px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    width: 100%;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out-elastic;
+    font-size: 50px;
+}
+
+.menu-textfield:hover {
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
