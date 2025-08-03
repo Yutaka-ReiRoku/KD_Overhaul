@@ -1,0 +1,38 @@
+:root {
+}
+
+.mainscreen {
+    transition-duration: 0.3s;
+    top: 0%;
+    left: 0%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.mainscreen--above {
+    top: -100%;
+}
+
+.unity-button {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.mainscreen--under {
+    top: 100%;
+}
+
+.none {
+}
