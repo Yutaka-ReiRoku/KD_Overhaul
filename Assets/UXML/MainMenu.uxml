@@ -30,9 +30,9 @@
                 <ui:Label text="Select Level" class="view-title" />
                 <ui:ScrollView>
                     <ui:VisualElement class="grid-container">
-                        <ui:Button text="Level 1" class="level-button" />
-                        <ui:Button text="Level 2" class="level-button" />
-                        <ui:Button text="Level 3" class="level-button" />
+                        <ui:Button text="Level 1" name="LevelButton" class="level-button" />
+                        <ui:Button text="Level 2" name="LevelButton" class="level-button" />
+                        <ui:Button text="Level 3" name="LevelButton" class="level-button" />
                     </ui:VisualElement>
                 </ui:ScrollView>
             </ui:VisualElement>

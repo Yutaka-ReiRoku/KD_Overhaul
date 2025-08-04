@@ -324,7 +324,7 @@
     border-color: rgba(100, 150, 200, 0.7);
     min-width: 400px;
     max-width: 90%;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5); */
 }
 
 .dialog-title {
