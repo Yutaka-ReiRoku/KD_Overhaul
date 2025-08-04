@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:engine="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/USS/TowerSelectionBar.uss?fileID=7433441132597879392&amp;guid=d0e46b48664ec8740a6502341d9f215f&amp;type=3#TowerSelectionBar" />
-    <ui:VisualElement name="tower-selection-bar" class="tower-selection-bar">
+    <ui:VisualElement name="tower-selection-bar" class="tower-selection-bar tower-selection-bar--hidden">
         <ui:VisualElement name="currency-display" class="currency-display">
             <ui:VisualElement name="currency-icon" class="currency-display__icon" />
             <ui:Label text="150" name="currency-amount" class="currency-display__amount" />

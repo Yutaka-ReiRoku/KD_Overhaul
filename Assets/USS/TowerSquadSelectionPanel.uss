@@ -10,6 +10,11 @@
     border-radius: 15px;
     flex-direction: column;
     transition-duration: 1s;
+    transition-delay: 2s;
+}
+
+.squad-selection-panel--hidden {
+    translate: 0 1080px;
 }
 
 .panel-header {
@@ -92,10 +97,6 @@
     flex-grow: 1;
     -unity-background-scale-mode: scale-to-fit;
     margin: 5px;
-}
-
-.squad-selection-panel--hidden {
-    translate: 0 1080px;
 }
 
 .tower-card__cost-panel {
