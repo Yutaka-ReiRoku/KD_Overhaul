@@ -2,83 +2,76 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class MainMenuController : IScreenController
+public class MainMenuController : MonoBehaviour
 {
-    public VisualElement Root { get; private set; }
+    private VisualElement root;
 
-    public void Initialize(VisualElement rootElement)
+    private VisualElement loginForm;
+    private VisualElement registerForm;
+    private VisualElement levelSelectPanel;
+    private VisualElement shopPanel;
+    private VisualElement achievementsPanel;
+    private VisualElement questsPanel;
+    private VisualElement settingsPanel;
+    private VisualElement exitConfirmationOverlay;
+
+    void OnEnable()
     {
-        Root = rootElement;
-        Root.AddToClassList("mainscreen");
+        root = GetComponent<UIDocument>().rootVisualElement;
 
-        var UsernameInput = Root.Q<TextField>("UsernameInput");
-        var PasswordInput = Root.Q<TextField>("PasswordInput");
-        var LoginButton = Root.Q<Button>("LoginButton");
-        var SignUpButton = Root.Q<Button>("SignUpButton");
-        var PlayButton = Root.Q<Button>("PlayButton");
-        var ShopButton = Root.Q<Button>("ShopButton");
-        var AchievementButton = Root.Q<Button>("AchievementButton");
-        var SettingButton = Root.Q<Button>("SettingButton");
-        var LogoutButton = Root.Q<Button>("LogoutButton");
+        loginForm = root.Q("LoginForm");
+        registerForm = root.Q("RegisterForm");
+        levelSelectPanel = root.Q("LevelSelectPanel");
+        shopPanel = root.Q("ShopPanel");
+        achievementsPanel = root.Q("AchievementsPanel");
+        questsPanel = root.Q("QuestsPanel");
+        settingsPanel = root.Q("SettingsPanel");
+        exitConfirmationOverlay = root.Q("ExitConfirmationOverlay");
 
-        if (GameManager.Instance.Loggedin == true)
-        {
-            UsernameInput.AddToClassList("hidden");
-            PasswordInput.AddToClassList("hidden");
-            LoginButton.AddToClassList("shrink");
-            SignUpButton.AddToClassList("shrink");
-            PlayButton.RemoveFromClassList("shrink");
-            ShopButton.RemoveFromClassList("shrink");
-            AchievementButton.RemoveFromClassList("shrink");
-            SettingButton.RemoveFromClassList("shrink");
-            LogoutButton.RemoveFromClassList("shrink");
-        }
 
-        LoginButton?.RegisterCallback<ClickEvent>(evt =>
+
+        var startButton = root.Q<Button>("StartButton");
+        var shopButton = root.Q<Button>("ShopButton");
+        var achievementsButton = root.Q<Button>("AchievementsButton");
+        var questsButton = root.Q<Button>("QuestsButton");
+        var settingsButton = root.Q<Button>("SettingsButton");
+        var exitButton = root.Q<Button>("ExitButton");
+        var confirmExitButton = root.Q<Button>("ConfirmExitButton");
+        var cancelExitButton = root.Q<Button>("CancelExitButton");
+
+
+        startButton.RegisterCallback<ClickEvent>(evt => ShowPanel(levelSelectPanel));
+        shopButton.RegisterCallback<ClickEvent>(evt => ShowPanel(shopPanel));
+        achievementsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(achievementsPanel));
+        questsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(questsPanel));
+        settingsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(settingsPanel));
+        exitButton.RegisterCallback<ClickEvent>(evt =>
         {
-            GameManager.Instance.Loggedin = true;
-            UsernameInput.AddToClassList("hidden");
-            PasswordInput.AddToClassList("hidden");
-            LoginButton.AddToClassList("shrink");
-            SignUpButton.AddToClassList("shrink");
-            PlayButton.RemoveFromClassList("shrink");
-            ShopButton.RemoveFromClassList("shrink");
-            AchievementButton.RemoveFromClassList("shrink");
-            SettingButton.RemoveFromClassList("shrink");
-            LogoutButton.RemoveFromClassList("shrink");
-        }
-        );
-        SignUpButton?.RegisterCallback<ClickEvent>(evt =>
+            exitConfirmationOverlay.RemoveFromClassList("panel-hidden");
+        });
+        confirmExitButton.RegisterCallback<ClickEvent>(evt =>
         {
-            GameManager.Instance.Loggedin = true;
-            UsernameInput.AddToClassList("hidden");
-            PasswordInput.AddToClassList("hidden");
-            LoginButton.AddToClassList("shrink");
-            SignUpButton.AddToClassList("shrink");
-            PlayButton.RemoveFromClassList("shrink");
-            ShopButton.RemoveFromClassList("shrink");
-            AchievementButton.RemoveFromClassList("shrink");
-            SettingButton.RemoveFromClassList("shrink");
-            LogoutButton.RemoveFromClassList("shrink");
-        }
-        );
-        PlayButton?.RegisterCallback<ClickEvent>(evt => { });
-        ShopButton?.RegisterCallback<ClickEvent>(evt => UIManager.Instance.ShowScreen("Shop", "mainscreen--right", "mainscreen--left"));
-        AchievementButton?.RegisterCallback<ClickEvent>(evt => UIManager.Instance.ShowScreen("Achievement", "mainscreen--left", "mainscreen--right"));
-        SettingButton?.RegisterCallback<ClickEvent>(evt => UIManager.Instance.ShowScreen("Setting", "mainscreen--bottom", "mainscreen--above"));
-        LogoutButton?.RegisterCallback<ClickEvent>(evt =>
+            Debug.Log("Quitting application...");
+            Application.Quit();
+        });
+        cancelExitButton.RegisterCallback<ClickEvent>(evt =>
         {
-            GameManager.Instance.Loggedin = false;
-            UsernameInput.RemoveFromClassList("hidden");
-            PasswordInput.RemoveFromClassList("hidden");
-            LoginButton.RemoveFromClassList("shrink");
-            SignUpButton.RemoveFromClassList("shrink");
-            PlayButton.AddToClassList("shrink");
-            ShopButton.AddToClassList("shrink");
-            AchievementButton.AddToClassList("shrink");
-            SettingButton.AddToClassList("shrink");
-            LogoutButton.AddToClassList("shrink");
-        }
-        );
+            exitConfirmationOverlay.AddToClassList("panel-hidden");
+        });
+        root.Q("SwitchToRegister").RegisterCallback<ClickEvent>(evt => ShowPanel(registerForm));
+        root.Q("SwitchToLogin").RegisterCallback<ClickEvent>(evt => ShowPanel(loginForm));
+    }
+
+    private void ShowPanel(VisualElement panelToShow)
+    {
+        loginForm.AddToClassList("panel-hidden");
+        registerForm.AddToClassList("panel-hidden");
+        levelSelectPanel.AddToClassList("panel-hidden");
+        shopPanel.AddToClassList("panel-hidden");
+        achievementsPanel.AddToClassList("panel-hidden");
+        questsPanel.AddToClassList("panel-hidden");
+        settingsPanel.AddToClassList("panel-hidden");
+
+        panelToShow.RemoveFromClassList("panel-hidden");
     }
 }

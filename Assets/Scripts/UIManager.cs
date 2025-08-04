@@ -78,14 +78,14 @@ public class UIManager : Singleton<UIManager>
     {
         switch (screenId)
         {
-            case "MainMenu":
+            /*case "MainMenu":
                 return new MainMenuController();
             case "Shop":
                 return new ShopController();
             case "Achievement":
                 return new AchievementController();
             case "Setting":
-                return new SettingController();
+                return new SettingController();*/
             default:
                 Debug.LogError($"No controller defined for screen ID '{screenId}'");
                 return null;
