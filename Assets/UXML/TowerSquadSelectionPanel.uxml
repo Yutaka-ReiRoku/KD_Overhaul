@@ -24,6 +24,12 @@
                         <ui:Label text="150" name="cost" class="tower-card__cost-label" />
                     </ui:VisualElement>
                 </ui:Button>
+                <ui:Button name="AvailableTower_Instance" class="tower-card off-display">
+                    <ui:VisualElement name="icon" class="tower-card__icon" />
+                    <ui:VisualElement name="cost-panel" class="tower-card__cost-panel">
+                        <ui:Label text="150" name="cost" class="tower-card__cost-label" />
+                    </ui:VisualElement>
+                </ui:Button>
             </ui:VisualElement>
         </ui:ScrollView>
         <ui:VisualElement name="panel-footer" class="panel-footer">

@@ -13,8 +13,4 @@ public class TowersManager : ScriptableObject
     }
 
     public List<Tower> towers = new List<Tower>();
-    public ItemData GetItemByID(int id)
-    {
-        return allItems.Find(item => item.itemID == id);
-    }
 }

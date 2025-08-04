@@ -1,5 +1,7 @@
 // Yutaka ReiRoku
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MainMenuController : MonoBehaviour
@@ -38,6 +40,7 @@ public class MainMenuController : MonoBehaviour
         var exitButton = root.Q<Button>("ExitButton");
         var confirmExitButton = root.Q<Button>("ConfirmExitButton");
         var cancelExitButton = root.Q<Button>("CancelExitButton");
+        var levelButtons = root.Query<Button>("LevelButton").ToList();
 
 
         startButton.RegisterCallback<ClickEvent>(evt => ShowPanel(levelSelectPanel));
@@ -60,6 +63,15 @@ public class MainMenuController : MonoBehaviour
         });
         root.Q("SwitchToRegister").RegisterCallback<ClickEvent>(evt => ShowPanel(registerForm));
         root.Q("SwitchToLogin").RegisterCallback<ClickEvent>(evt => ShowPanel(loginForm));
+        Debug.Log(levelButtons.Count);
+        foreach (var button in levelButtons)
+        {
+            button.RegisterCallback<ClickEvent>(evt =>
+            {
+                SceneManager.LoadScene(1);
+
+            });
+        }
     }
 
     private void ShowPanel(VisualElement panelToShow)

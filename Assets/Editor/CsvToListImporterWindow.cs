@@ -40,7 +40,7 @@ public class CsvToListImporterWindow : EditorWindow
     private void ImportData()
     {
         string itemsList = "allItems"; // Change "allItems" if named it differently in SO
-        // Get the List inside the SO using Reflection
+
         FieldInfo listField = targetDatabase.GetType().GetField(itemsList); 
         if (listField == null)
         {
@@ -48,29 +48,22 @@ public class CsvToListImporterWindow : EditorWindow
             return;
         }
 
-        // Get the data type of the elements in the list ('Item' class)
         System.Type itemType = listField.FieldType.GetGenericArguments()[0];
 
-        // Get the list of fields for the Item class (itemID, itemName,...)
         FieldInfo[] itemFields = itemType.GetFields(BindingFlags.Public | BindingFlags.Instance);
 
-        // Clear the old data in the list to re-import from scratch
         var list = listField.GetValue(targetDatabase) as System.Collections.IList;
         list.Clear();
 
-        // Read the CSV file
         string[] lines = csvFile.text.Split('\n');
         string[] headers = lines[0].Trim().Split(',');
 
-        // Start from the second line (skip the header)
         for (int i = 1; i < lines.Length; i++)
         {
             if (string.IsNullOrWhiteSpace(lines[i])) continue;
 
-            // Trim
             string[] values = lines[i].Trim().Split(',');
 
-            // Create a new instance of the Item class
             object newItem = System.Activator.CreateInstance(itemType);
 
             for (int j = 0; j < headers.Length; j++)
@@ -79,17 +72,14 @@ public class CsvToListImporterWindow : EditorWindow
                 FieldInfo field = itemFields.FirstOrDefault(f => f.Name == header);
                 if (field != null)
                 {
-                    // Convert and assign the value
                     object convertedValue = System.Convert.ChangeType(values[j], field.FieldType);
                     field.SetValue(newItem, convertedValue);
                 }
             }
 
-            // Add the new item to the list
             list.Add(newItem);  
         }
 
-        // Mark the ScriptableObject as "dirty" to ensure changes are saved
         EditorUtility.SetDirty(targetDatabase);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
