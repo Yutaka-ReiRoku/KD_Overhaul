@@ -11,7 +11,7 @@
             <ui:Button name="ExitButton" text="Exit Game" class="nav-button exit-button" />
         </ui:VisualElement>
         <ui:VisualElement name="ContentPanel" class="content-panel">
-            <ui:VisualElement name="LoginForm" class="content-view">
+            <ui:VisualElement name="LoginForm" class="content-view panel-hidden">
                 <ui:Label text="Login" class="view-title" />
                 <ui:TextField name="LoginUsername" label="Username/Email" class="form-input" />
                 <ui:TextField name="LoginPassword" label="Password" password="true" class="form-input" />
@@ -26,14 +26,13 @@
                 <ui:Button name="RegisterSubmitButton" text="Register" class="form-button" />
                 <ui:Label text="Already have an account? Login here." name="SwitchToLogin" class="link-label" />
             </ui:VisualElement>
-            <ui:VisualElement name="LevelSelectPanel" class="content-view panel-hidden">
+            <ui:VisualElement name="LevelSelectPanel" class="content-view">
                 <ui:Label text="Select Level" class="view-title" />
                 <ui:ScrollView>
                     <ui:VisualElement class="grid-container">
-                        <ui:Button text="Forest Of Echoes" class="level-button" />
-                        <ui:Button text="Crystal Caves" class="level-button" />
-                        <ui:Button text="Volcanic Keep" class="level-button" />
-                        <ui:Button text="Sunken City" class="level-button" />
+                        <ui:Button text="Level 1" class="level-button" />
+                        <ui:Button text="Level 2" class="level-button" />
+                        <ui:Button text="Level 3" class="level-button" />
                     </ui:VisualElement>
                 </ui:ScrollView>
             </ui:VisualElement>
