@@ -11,7 +11,7 @@
             <ui:Button name="ExitButton" text="Exit Game" class="nav-button exit-button" />
         </ui:VisualElement>
         <ui:VisualElement name="ContentPanel" class="content-panel">
-            <ui:VisualElement name="LoginForm" class="content-view panel-hidden">
+            <ui:VisualElement name="LoginForm" class="content-view">
                 <ui:Label text="Login" class="view-title" />
                 <ui:TextField name="LoginUsername" label="Username/Email" class="form-input" />
                 <ui:TextField name="LoginPassword" label="Password" password="true" class="form-input" />
@@ -26,7 +26,7 @@
                 <ui:Button name="RegisterSubmitButton" text="Register" class="form-button" />
                 <ui:Label text="Already have an account? Login here." name="SwitchToLogin" class="link-label" />
             </ui:VisualElement>
-            <ui:VisualElement name="LevelSelectPanel" class="content-view">
+            <ui:VisualElement name="LevelSelectPanel" class="content-view panel-hidden">
                 <ui:Label text="Select Level" class="view-title" />
                 <ui:ScrollView>
                     <ui:VisualElement class="grid-container">
@@ -41,13 +41,13 @@
                 <ui:ScrollView>
                     <ui:VisualElement class="shop-item">
                         <ui:VisualElement class="shop-item__icon" />
-                        <ui:Label text="Health Potion" class="shop-item__name" />
+                        <ui:Label text="Hero" class="shop-item__name" />
                         <ui:Label text="Price: 50 Gold" class="shop-item__price" />
                         <ui:Button text="Buy" class="shop-item__button" />
                     </ui:VisualElement>
                     <ui:VisualElement class="shop-item">
                         <ui:VisualElement class="shop-item__icon" />
-                        <ui:Label text="Sword of Valor" class="shop-item__name" />
+                        <ui:Label text="Demon" class="shop-item__name" />
                         <ui:Label text="Price: 1000 Gold" class="shop-item__price" />
                         <ui:Button text="Buy" class="shop-item__button" />
                     </ui:VisualElement>
@@ -70,12 +70,12 @@
                 <ui:ScrollView>
                     <ui:Label text="Available Quests" class="quest-category-title" />
                     <ui:VisualElement class="quest-item">
-                        <ui:Label text="The Lost Artifact" class="quest-item__name" />
+                        <ui:Label text="Kill 5 Armored Goblins" class="quest-item__name" />
                         <ui:Button text="Accept" class="quest-item__button" />
                     </ui:VisualElement>
                     <ui:Label text="Active Quests" class="quest-category-title" />
                     <ui:VisualElement class="quest-item quest-item--active">
-                        <ui:Label text="Slay 10 Goblins" class="quest-item__name" />
+                        <ui:Label text="Kill 10 Goblins" class="quest-item__name" />
                         <ui:Label text="Progress: 3/10" class="quest-item__progress" />
                     </ui:VisualElement>
                 </ui:ScrollView>
