@@ -10,7 +10,7 @@
 }
 
 .nav-panel {
-    width: 300px;
+    width: 25%;
     background-color: rgba(0, 0, 0, 0.6);
     padding: 20px;
     border-right-width: 2px;
@@ -52,6 +52,8 @@
     -unity-text-outline-width: 2px;
     -unity-text-outline-color: rgb(40, 25, 10);
     margin-bottom: 50px;
+    -unity-font-definition: url("project://database/Assets/Font/SuperMario256%20SDF.asset?fileID=11400000&guid=8e78adf5036ef5f4d8c0c9b713a927d0&type=2#SuperMario256 SDF");
+    -unity-text-align: middle-center;
 }
 
 .nav-button {
@@ -65,15 +67,21 @@
     border-color: rgb(150, 150, 150);
     border-radius: 5px;
     transition: background-color 0.2s, scale 0.1s;
+    transition-property: background-color, height;
+    transition-duration: 0.2s, 0.3s;
+    height: 5%;
+    transition-timing-function: ease, ease-out-elastic;
 }
 
 .nav-button:hover {
     background-color: rgba(80, 80, 80, 0.9);
     border-color: white;
+    height: 7%;
 }
 
 .nav-button:active {
     scale: 0.97 0.97;
+    height: 3%;
 }
 
 .exit-button {
@@ -281,6 +289,8 @@
     min-height: 45px;
     font-size: 18px;
     width: 45%;
+    align-self: center;
+    height: 100%;
 }
 
 .dialog-button--confirm {
@@ -297,4 +307,14 @@
 
 .dialog-button--cancel:hover {
     background-color: rgb(110, 110, 110);
+}
+
+.dialog-button:hover {
+    width: 50%;
+    height: 125%;
+}
+
+.dialog-button:active {
+    width: 40%;
+    height: 75%;
 }

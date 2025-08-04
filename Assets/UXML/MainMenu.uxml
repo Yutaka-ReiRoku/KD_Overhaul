@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/USS/MainMenu.uss?fileID=7433441132597879392&amp;guid=8eab758112172f246b2a8ccdadf66e93&amp;type=3#MainMenu" />
     <ui:VisualElement name="MainMenuContainer" class="main-menu-container">
         <ui:VisualElement name="NavPanel" class="nav-panel">
-            <ui:Label text="Your Game Title" class="title-label" />
+            <ui:Label text="Kingdom Defender" class="title-label" />
             <ui:Button name="StartButton" text="Start Game" class="nav-button" />
             <ui:Button name="ShopButton" text="Shop" class="nav-button" />
             <ui:Button name="AchievementsButton" text="Achievements" class="nav-button" />
