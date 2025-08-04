@@ -72,6 +72,21 @@ public class MainMenuController : MonoBehaviour
         questsPanel.AddToClassList("panel-hidden");
         settingsPanel.AddToClassList("panel-hidden");
 
-        panelToShow.RemoveFromClassList("panel-hidden");
+        loginForm.AddToClassList("panel-scale0");
+        registerForm.AddToClassList("panel-scale0");
+        levelSelectPanel.AddToClassList("panel-scale0");
+        shopPanel.AddToClassList("panel-scale0");
+        achievementsPanel.AddToClassList("panel-scale0");
+        questsPanel.AddToClassList("panel-scale0");
+        settingsPanel.AddToClassList("panel-scale0");
+
+        panelToShow.schedule.Execute(() =>
+        {
+            panelToShow.RemoveFromClassList("panel-hidden");
+        });
+        panelToShow.schedule.Execute(() =>
+        {
+            panelToShow.RemoveFromClassList("panel-scale0");
+        });
     }
 }
