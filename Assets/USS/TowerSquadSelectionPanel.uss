@@ -111,3 +111,6 @@
     color: rgb(255, 220, 100);
     -unity-font-style: bold;
 }
+
+.fullscreen {
+}
