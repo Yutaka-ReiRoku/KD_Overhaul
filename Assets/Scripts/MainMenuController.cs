@@ -1,4 +1,4 @@
-// Yutaka ReiRoku
+﻿// Yutaka ReiRoku
 using System.Xml.Linq;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -8,8 +8,11 @@ using UnityEngine.UIElements;
 public class MainMenuController : MonoBehaviour
 {
     private VisualElement root;
+
     private int transOrder = 1;
     private VisualElement currentPanel;
+
+    private VisualElement[] allPanels;
 
     private VisualElement loginForm;
     private VisualElement registerForm;
@@ -33,8 +36,12 @@ public class MainMenuController : MonoBehaviour
         settingsPanel = root.Q("SettingsPanel");
         exitConfirmationOverlay = root.Q("ExitConfirmationOverlay");
 
-        currentPanel = loginForm;
+        allPanels = new VisualElement[] {
+            loginForm, registerForm, levelSelectPanel, shopPanel,
+            achievementsPanel, questsPanel, settingsPanel
+        };
 
+        currentPanel = loginForm;
 
         var startButton = root.Q<Button>("StartButton");
         var shopButton = root.Q<Button>("ShopButton");
@@ -46,74 +53,82 @@ public class MainMenuController : MonoBehaviour
         var cancelExitButton = root.Q<Button>("CancelExitButton");
         var levelButtons = root.Query<Button>("LevelButton").ToList();
 
-
         startButton.RegisterCallback<ClickEvent>(evt => ShowPanel(levelSelectPanel, 3));
         shopButton.RegisterCallback<ClickEvent>(evt => ShowPanel(shopPanel, 4));
         achievementsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(achievementsPanel, 5));
         questsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(questsPanel, 6));
         settingsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(settingsPanel, 7));
-        exitButton.RegisterCallback<ClickEvent>(evt =>
-        {
-            exitConfirmationOverlay.RemoveFromClassList("panel-hidden");
-        });
-        confirmExitButton.RegisterCallback<ClickEvent>(evt =>
-        {
-            Debug.Log("Quitting application...");
-            Application.Quit();
-        });
-        cancelExitButton.RegisterCallback<ClickEvent>(evt =>
-        {
-            exitConfirmationOverlay.AddToClassList("panel-hidden");
-        });
-        root.Q("SwitchToRegister").RegisterCallback<ClickEvent>(evt => ShowPanel(registerForm, 1));
-        root.Q("SwitchToLogin").RegisterCallback<ClickEvent>(evt => ShowPanel(loginForm, 2));
-        Debug.Log(levelButtons.Count);
+
+        root.Q("SwitchToRegister").RegisterCallback<ClickEvent>(evt => ShowPanel(registerForm, 2));
+        root.Q("SwitchToLogin").RegisterCallback<ClickEvent>(evt => ShowPanel(loginForm, 1));
+
+        exitButton.RegisterCallback<ClickEvent>(evt => exitConfirmationOverlay.RemoveFromClassList("panel-hidden"));
+        confirmExitButton.RegisterCallback<ClickEvent>(evt => Application.Quit());
+        cancelExitButton.RegisterCallback<ClickEvent>(evt => exitConfirmationOverlay.AddToClassList("panel-hidden"));
+
         foreach (var button in levelButtons)
         {
-            button.RegisterCallback<ClickEvent>(evt =>
-            {
+            var capturedButton = button;
+            capturedButton.RegisterCallback<ClickEvent>(evt => {
                 SceneManager.LoadScene(1);
-
             });
         }
     }
-
     private void ShowPanel(VisualElement panelToShow, int order)
     {
+        if (currentPanel == panelToShow)
+        {
+            return;
+        }
 
-        if (order > transOrder)
+        foreach (var panel in allPanels)
+        {
+            panel.AddToClassList("panel-hidden");
+            panel.RemoveFromClassList("content-view--above");
+            panel.RemoveFromClassList("content-view--bottom");
+            panel.RemoveFromClassList("content-view--insta-above");
+            panel.RemoveFromClassList("content-view--insta-bottom");
+        }
+
+        bool isGoingForward = order > transOrder;
+
+        if (currentPanel != null)
+        {
+            currentPanel.RemoveFromClassList("panel-hidden");
+            if (isGoingForward)
+            {
+                currentPanel.AddToClassList("content-view--above");
+            }
+            else
+            {
+                currentPanel.AddToClassList("content-view--bottom");
+            }
+        }
+
+        panelToShow.RemoveFromClassList("panel-hidden");
+
+        if (isGoingForward)
         {
             panelToShow.AddToClassList("content-view--insta-bottom");
-            panelToShow.schedule.Execute(() =>
-            {
-                panelToShow.RemoveFromClassList("panel-hidden");
-                panelToShow.RemoveFromClassList("content-view--insta-bottom");
-            });
-            currentPanel.AddToClassList("content-view--above");
-            currentPanel.RegisterCallback<TransitionEndEvent>(evt =>
-            {
-                currentPanel.AddToClassList("panel-hidden");
-                currentPanel.RemoveFromClassList("content-view--above");
-                currentPanel = panelToShow;
-                transOrder = order;
-            });
         }
-        else if (order < transOrder)
+        else
         {
             panelToShow.AddToClassList("content-view--insta-above");
-            panelToShow.schedule.Execute(() =>
-            {
-                panelToShow.RemoveFromClassList("panel-hidden");
-                panelToShow.RemoveFromClassList("content-view--insta-above");
-            });
-            currentPanel.AddToClassList("content-view--bottom");
-            currentPanel.RegisterCallback<TransitionEndEvent>(evt =>
-            {
-                currentPanel.AddToClassList("panel-hidden");
-                currentPanel.RemoveFromClassList("content-view--bottom");
-                currentPanel = panelToShow;
-                transOrder = order;
-            });
         }
+
+        panelToShow.schedule.Execute(() =>
+        {
+            if (isGoingForward)
+            {
+                panelToShow.RemoveFromClassList("content-view--insta-bottom");
+            }
+            else
+            {
+                panelToShow.RemoveFromClassList("content-view--insta-above");
+            }
+        });
+
+        currentPanel = panelToShow;
+        transOrder = order;
     }
 }

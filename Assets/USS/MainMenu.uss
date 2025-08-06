@@ -29,13 +29,14 @@
 .content-view {
     width: 80%;
     max-width: 700px;
-    height: 85%;
+    height: 80%;
     background-color: rgba(10, 20, 30, 0.85);
     padding: 25px;
     border-radius: 10px;
     border-width: 1px;
     border-color: rgba(100, 150, 200, 0.5);
     transition-duration: 1s;
+    position: absolute;
 }
 
 .view-title {
@@ -71,7 +72,7 @@
     transition: background-color 0.2s, scale 0.1s;
     transition-property: background-color, height;
     transition-duration: 0.2s, 0.3s;
-    height: 5%;
+    height: 7%;
     transition-timing-function: ease, ease-out-elastic;
 }
 
@@ -139,7 +140,7 @@
 }
 
 .level-button {
-    width: 45%;
+    width: 40%;
     min-height: 100px;
     margin: 10px;
     font-size: 25px;
@@ -367,7 +368,7 @@
     height: 75%;
 }
 
-.xontent-view--bottom {
+.content-view--bottom {
     translate: 0 125%;
 }
 
