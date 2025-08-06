@@ -8,6 +8,7 @@
             <ui:Button name="AchievementsButton" text="Achievements" class="nav-button" />
             <ui:Button name="QuestsButton" text="Quests" class="nav-button" />
             <ui:Button name="SettingsButton" text="Settings" class="nav-button" />
+            <ui:Button name="LogoutButton" text="Log Out" class="nav-button" />
             <ui:Button name="ExitButton" text="Exit Game" class="nav-button exit-button" />
         </ui:VisualElement>
         <ui:VisualElement name="ContentPanel" class="content-panel">

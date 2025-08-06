@@ -21,6 +21,7 @@
     border-right-width: 2px;
     border-right-color: rgba(255, 255, 255, 0.2);
     align-items: center;
+    transition-duration: 1s;
 }
 
 .content-panel {
@@ -39,7 +40,6 @@
     border-radius: 10px;
     border-width: 1px;
     border-color: rgba(100, 150, 200, 0.5);
-    transition-timing-function: ease-out-elastic;
     transition-duration: 1s;
 }
 
@@ -324,7 +324,6 @@
     border-color: rgba(100, 150, 200, 0.7);
     min-width: 400px;
     max-width: 90%;
-    /* box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5); */
 }
 
 .dialog-title {
@@ -371,4 +370,26 @@
 .dialog-button:active {
     width: 40%;
     height: 75%;
+}
+
+.xontent-view--bottom {
+    translate: 0 125%;
+}
+
+.content-view--above {
+    translate: 0 -125%;
+}
+
+.content-view--insta-bottom {
+    translate: 0 125%;
+    transition-duration: 0s;
+}
+
+.content-view--insta-above {
+    transition-duration: 0s;
+    translate: 0 -125%;
+}
+
+.nav-panel--hidden {
+    width: 0%;
 }
