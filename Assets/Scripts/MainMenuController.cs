@@ -1,4 +1,5 @@
 // Yutaka ReiRoku
+using System.Xml.Linq;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ using UnityEngine.UIElements;
 public class MainMenuController : MonoBehaviour
 {
     private VisualElement root;
+    private int transOrder = 1;
+    private VisualElement currentPanel;
 
     private VisualElement loginForm;
     private VisualElement registerForm;
@@ -30,6 +33,7 @@ public class MainMenuController : MonoBehaviour
         settingsPanel = root.Q("SettingsPanel");
         exitConfirmationOverlay = root.Q("ExitConfirmationOverlay");
 
+        currentPanel = loginForm;
 
 
         var startButton = root.Q<Button>("StartButton");
@@ -43,11 +47,11 @@ public class MainMenuController : MonoBehaviour
         var levelButtons = root.Query<Button>("LevelButton").ToList();
 
 
-        startButton.RegisterCallback<ClickEvent>(evt => ShowPanel(levelSelectPanel));
-        shopButton.RegisterCallback<ClickEvent>(evt => ShowPanel(shopPanel));
-        achievementsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(achievementsPanel));
-        questsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(questsPanel));
-        settingsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(settingsPanel));
+        startButton.RegisterCallback<ClickEvent>(evt => ShowPanel(levelSelectPanel, 3));
+        shopButton.RegisterCallback<ClickEvent>(evt => ShowPanel(shopPanel, 4));
+        achievementsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(achievementsPanel, 5));
+        questsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(questsPanel, 6));
+        settingsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(settingsPanel, 7));
         exitButton.RegisterCallback<ClickEvent>(evt =>
         {
             exitConfirmationOverlay.RemoveFromClassList("panel-hidden");
@@ -61,8 +65,8 @@ public class MainMenuController : MonoBehaviour
         {
             exitConfirmationOverlay.AddToClassList("panel-hidden");
         });
-        root.Q("SwitchToRegister").RegisterCallback<ClickEvent>(evt => ShowPanel(registerForm));
-        root.Q("SwitchToLogin").RegisterCallback<ClickEvent>(evt => ShowPanel(loginForm));
+        root.Q("SwitchToRegister").RegisterCallback<ClickEvent>(evt => ShowPanel(registerForm, 1));
+        root.Q("SwitchToLogin").RegisterCallback<ClickEvent>(evt => ShowPanel(loginForm, 2));
         Debug.Log(levelButtons.Count);
         foreach (var button in levelButtons)
         {
@@ -74,31 +78,42 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
-    private void ShowPanel(VisualElement panelToShow)
+    private void ShowPanel(VisualElement panelToShow, int order)
     {
-        loginForm.AddToClassList("panel-hidden");
-        registerForm.AddToClassList("panel-hidden");
-        levelSelectPanel.AddToClassList("panel-hidden");
-        shopPanel.AddToClassList("panel-hidden");
-        achievementsPanel.AddToClassList("panel-hidden");
-        questsPanel.AddToClassList("panel-hidden");
-        settingsPanel.AddToClassList("panel-hidden");
 
-        loginForm.AddToClassList("panel-scale0");
-        registerForm.AddToClassList("panel-scale0");
-        levelSelectPanel.AddToClassList("panel-scale0");
-        shopPanel.AddToClassList("panel-scale0");
-        achievementsPanel.AddToClassList("panel-scale0");
-        questsPanel.AddToClassList("panel-scale0");
-        settingsPanel.AddToClassList("panel-scale0");
-
-        panelToShow.schedule.Execute(() =>
+        if (order > transOrder)
         {
-            panelToShow.RemoveFromClassList("panel-hidden");
-        });
-        panelToShow.schedule.Execute(() =>
+            panelToShow.AddToClassList("content-view--insta-bottom");
+            panelToShow.schedule.Execute(() =>
+            {
+                panelToShow.RemoveFromClassList("panel-hidden");
+                panelToShow.RemoveFromClassList("content-view--insta-bottom");
+            });
+            currentPanel.AddToClassList("content-view--above");
+            currentPanel.RegisterCallback<TransitionEndEvent>(evt =>
+            {
+                currentPanel.AddToClassList("panel-hidden");
+                currentPanel.RemoveFromClassList("content-view--above");
+                currentPanel = panelToShow;
+                transOrder = order;
+            });
+        }
+        else if (order < transOrder)
         {
-            panelToShow.RemoveFromClassList("panel-scale0");
-        });
+            panelToShow.AddToClassList("content-view--insta-above");
+            panelToShow.schedule.Execute(() =>
+            {
+                panelToShow.RemoveFromClassList("panel-hidden");
+                panelToShow.RemoveFromClassList("content-view--insta-above");
+            });
+            currentPanel.AddToClassList("content-view--bottom");
+            currentPanel.RegisterCallback<TransitionEndEvent>(evt =>
+            {
+                currentPanel.AddToClassList("panel-hidden");
+                currentPanel.RemoveFromClassList("content-view--bottom");
+                currentPanel = panelToShow;
+                transOrder = order;
+            });
+        }
     }
 }

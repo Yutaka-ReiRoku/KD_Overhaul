@@ -19,7 +19,7 @@
                 <ui:Button name="LoginSubmitButton" text="Login" class="form-button" />
                 <ui:Label text="Don&apos;t have an account? Register now!" name="SwitchToRegister" class="link-label" />
             </ui:VisualElement>
-            <ui:VisualElement name="RegisterForm" class="content-view panel-hidden panel-scale0">
+            <ui:VisualElement name="RegisterForm" class="content-view panel-hidden">
                 <ui:Label text="Register" class="view-title" />
                 <ui:TextField name="RegisterUsername" label="Username" class="form-input" />
                 <ui:TextField name="RegisterEmail" label="Email" class="form-input" />
@@ -27,7 +27,7 @@
                 <ui:Button name="RegisterSubmitButton" text="Register" class="form-button" />
                 <ui:Label text="Already have an account? Login here." name="SwitchToLogin" class="link-label" />
             </ui:VisualElement>
-            <ui:VisualElement name="LevelSelectPanel" class="content-view panel-hidden panel-scale0">
+            <ui:VisualElement name="LevelSelectPanel" class="content-view panel-hidden">
                 <ui:Label text="Select Level" class="view-title" />
                 <ui:ScrollView>
                     <ui:VisualElement class="grid-container">
@@ -37,7 +37,7 @@
                     </ui:VisualElement>
                 </ui:ScrollView>
             </ui:VisualElement>
-            <ui:VisualElement name="ShopPanel" class="content-view panel-hidden panel-scale0">
+            <ui:VisualElement name="ShopPanel" class="content-view panel-hidden">
                 <ui:Label text="Item Shop" class="view-title" />
                 <ui:ScrollView>
                     <ui:VisualElement class="shop-item">
@@ -54,7 +54,7 @@
                     </ui:VisualElement>
                 </ui:ScrollView>
             </ui:VisualElement>
-            <ui:VisualElement name="AchievementsPanel" class="content-view panel-hidden panel-scale0">
+            <ui:VisualElement name="AchievementsPanel" class="content-view panel-hidden">
                 <ui:Label text="Achievements" class="view-title" />
                 <ui:ScrollView>
                     <ui:VisualElement class="achievement-item">
@@ -66,7 +66,7 @@
                     </ui:VisualElement>
                 </ui:ScrollView>
             </ui:VisualElement>
-            <ui:VisualElement name="QuestsPanel" class="content-view panel-hidden panel-scale0">
+            <ui:VisualElement name="QuestsPanel" class="content-view panel-hidden">
                 <ui:Label text="Quests" class="view-title" />
                 <ui:ScrollView>
                     <ui:Label text="Available Quests" class="quest-category-title" />
@@ -81,7 +81,7 @@
                     </ui:VisualElement>
                 </ui:ScrollView>
             </ui:VisualElement>
-            <ui:VisualElement name="SettingsPanel" class="content-view panel-hidden panel-scale0">
+            <ui:VisualElement name="SettingsPanel" class="content-view panel-hidden">
                 <ui:Label text="Settings" class="view-title" />
                 <ui:VisualElement class="settings-option">
                     <ui:Label text="Music Volume" />

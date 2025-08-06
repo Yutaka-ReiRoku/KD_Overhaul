@@ -2,11 +2,6 @@
     display: none;
 }
 
-.panel-scale0 {
-    scale: 0 0;
-    transition-duration: 0.01s;
-}
-
 .main-menu-container {
     flex-grow: 1;
     flex-direction: row;
