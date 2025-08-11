@@ -102,5 +102,6 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement picking-mode="Ignore" name="LoadingPanel" class="loading-panel loading-panel-active" />
     </ui:VisualElement>
 </ui:UXML>

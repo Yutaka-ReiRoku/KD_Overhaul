@@ -394,3 +394,25 @@
     padding-left: 0;
     width: 0%;
 }
+
+.loading-panel {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    right: 50%;
+    bottom: 50%;
+    background-image: url("project://database/Assets/Sprites/Lucid_Origin_Panoramic_view_of_a_serene_fantasy_kingdom_with_r_3.png?fileID=2800000&guid=98065736b1ade374c9582074c7459a06&type=3#Lucid_Origin_Panoramic_view_of_a_serene_fantasy_kingdom_with_r_3");
+    opacity: 0;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+}
+
+.loading-panel-active {
+    top: 0%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    opacity: 1;
+    transition-timing-function: ease-out-elastic;
+    transition-duration: 1.5s;
+}

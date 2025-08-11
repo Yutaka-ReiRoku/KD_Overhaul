@@ -16,18 +16,27 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Transform targetPos;
 
     private VisualElement rootVisualElement;
+    private VisualElement loadingPanel;
     private TemplateContainer towersBarInstance;
     private TemplateContainer towersPanelInstance;
 
-    private void Start()
+
+    private void OnEnable()
     {
         rootVisualElement = document.rootVisualElement;
+
+        loadingPanel = rootVisualElement.Q("LoadingPanel");
+
+        rootVisualElement.schedule.Execute(() => loadingPanel.RemoveFromClassList("loading-panel-active")).ExecuteLater(1500);
+    }
+    private void Start()
+    {
 
         UpdateUI();
 
         // Sử dụng DOTween Sequence để quản lý các hành động theo thời gian
         Sequence introSequence = DOTween.Sequence();
-        introSequence.AppendInterval(1f)
+        introSequence.AppendInterval(2f)
                      .AppendCallback(MoveScreen)
                      .JoinCallback(ShowUIElements);
     }

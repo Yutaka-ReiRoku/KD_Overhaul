@@ -45,6 +45,7 @@ public class MainMenuController : MonoBehaviour
     // Overlay và NavPanel có thể được quản lý riêng
     private VisualElement exitConfirmationOverlay;
     private VisualElement navPanel;
+    private VisualElement loadingPanel;
 
     void OnEnable()
     {
@@ -57,7 +58,8 @@ public class MainMenuController : MonoBehaviour
         RegisterButtonCallbacks();
 
         // Hiển thị panel đầu tiên một cách an toàn sau khi UI đã được render
-        root.schedule.Execute(() => ShowPanelByOrder(1)).ExecuteLater(1500);
+        root.schedule.Execute(() => loadingPanel.RemoveFromClassList("loading-panel-active")).ExecuteLater(1500);
+        root.schedule.Execute(() => ShowPanelByOrder(1)).ExecuteLater(2500);
     }
 
     private void InitializeElements()
@@ -68,6 +70,7 @@ public class MainMenuController : MonoBehaviour
         }
         exitConfirmationOverlay = root.Q("ExitConfirmationOverlay");
         navPanel = root.Q("NavPanel");
+        loadingPanel = root.Q("LoadingPanel");
     }
 
     private void RegisterButtonCallbacks()
@@ -95,10 +98,16 @@ public class MainMenuController : MonoBehaviour
 
         // Logic vào màn chơi
         root.Query<Button>("LevelButton").ForEach(button => {
-            button.clicked += () => SceneManager.LoadScene(1);
+            button.clicked += () => { loadingPanel.RegisterCallback<TransitionEndEvent>(StartGame); loadingPanel.AddToClassList("loading-panel-active"); };
         });
     }
 
+
+    private void StartGame(TransitionEndEvent evt)
+    {
+        loadingPanel.UnregisterCallback<TransitionEndEvent>(StartGame);
+        SceneManager.LoadScene(1);
+    }
     private void PerformLogin()
     {
         navPanel.RemoveFromClassList(NAV_PANEL_HIDDEN_CLASS);
