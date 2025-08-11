@@ -127,7 +127,6 @@
     font-size: 14px;
     margin-top: 20px;
     -unity-text-align: middle-center;
-    cursor: link;
 }
 
 .link-label:hover {

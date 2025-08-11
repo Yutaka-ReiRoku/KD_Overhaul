@@ -9,7 +9,7 @@ public class MainMenuController : MonoBehaviour
 {
     private VisualElement root;
 
-    private int transOrder = 1;
+    private int transOrder = 0;
     private VisualElement currentPanel;
 
     private VisualElement[] allPanels;
@@ -41,7 +41,7 @@ public class MainMenuController : MonoBehaviour
             achievementsPanel, questsPanel, settingsPanel
         };
 
-        currentPanel = loginForm;
+        currentPanel = null;
 
         var startButton = root.Q<Button>("StartButton");
         var shopButton = root.Q<Button>("ShopButton");
@@ -70,8 +70,8 @@ public class MainMenuController : MonoBehaviour
         cancelExitButton.RegisterCallback<ClickEvent>(evt => exitConfirmationOverlay.AddToClassList("panel-hidden"));
 
 
-        loginButton.RegisterCallback<ClickEvent>(evt => navPanel.RemoveFromClassList("nav-panel-hidden"));
-        logoutButton.RegisterCallback<ClickEvent>(evt => navPanel.AddToClassList("nav-panel-hidden"));
+        loginButton.RegisterCallback<ClickEvent>(evt => { navPanel.RemoveFromClassList("nav-panel-hidden"); ShowPanel(levelSelectPanel, 3); });
+        logoutButton.RegisterCallback<ClickEvent>(evt => { navPanel.AddToClassList("nav-panel-hidden"); ShowPanel(loginForm, 1); });
 
 
         foreach (var button in levelButtons)
@@ -81,6 +81,15 @@ public class MainMenuController : MonoBehaviour
                 SceneManager.LoadScene(1);
             });
         }
+        root.RegisterCallback<GeometryChangedEvent>(OnUIGeometryChanged);
+
+    }
+
+    private void OnUIGeometryChanged(GeometryChangedEvent evt)
+    {
+        root.schedule.Execute(() => ShowPanel(loginForm, 1)).ExecuteLater(1000);
+
+        root.UnregisterCallback<GeometryChangedEvent>(OnUIGeometryChanged);
     }
     private void ShowPanel(VisualElement panelToShow, int order)
     {

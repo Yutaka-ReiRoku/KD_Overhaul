@@ -12,7 +12,7 @@
             <ui:Button name="ExitButton" text="Exit Game" class="nav-button exit-button" />
         </ui:VisualElement>
         <ui:VisualElement name="ContentPanel" class="content-panel">
-            <ui:VisualElement name="LoginForm" class="content-view">
+            <ui:VisualElement name="LoginForm" class="content-view panel-hidden">
                 <ui:Label text="Login" class="view-title" />
                 <ui:TextField name="LoginUsername" label="Username/Email" class="form-input" />
                 <ui:TextField name="LoginPassword" label="Password" password="true" class="form-input" />
