@@ -1,151 +1,164 @@
 ﻿// Yutaka ReiRoku
-using System.Xml.Linq;
-using UnityEditor.SearchService;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MainMenuController : MonoBehaviour
 {
+    // Định nghĩa các hằng số cho tên class CSS để dễ quản lý và tránh lỗi
+    private const string PANEL_HIDDEN_CLASS = "panel-hidden";
+    private const string NAV_PANEL_HIDDEN_CLASS = "nav-panel-hidden";
+    private const string VIEW_ABOVE_CLASS = "content-view--above";
+    private const string VIEW_BOTTOM_CLASS = "content-view--bottom";
+    private const string INSTA_ABOVE_CLASS = "content-view--insta-above";
+    private const string INSTA_BOTTOM_CLASS = "content-view--insta-bottom";
+
+    // Class nhỏ để chứa thông tin về một panel
+    [System.Serializable]
+    public class PanelInfo
+    {
+        public string Name;
+        public int Order;
+        [HideInInspector] public VisualElement Element;
+    }
+
+    // Quản lý tất cả các panel trong một danh sách duy nhất.
+    // Dễ dàng thêm, bớt hoặc thay đổi thứ tự.
+    [SerializeField]
+    private List<PanelInfo> panels = new List<PanelInfo>
+    {
+        new PanelInfo { Name = "LoginForm", Order = 1 },
+        new PanelInfo { Name = "RegisterForm", Order = 2 },
+        new PanelInfo { Name = "LevelSelectPanel", Order = 3 },
+        new PanelInfo { Name = "ShopPanel", Order = 4 },
+        new PanelInfo { Name = "AchievementsPanel", Order = 5 },
+        new PanelInfo { Name = "QuestsPanel", Order = 6 },
+        new PanelInfo { Name = "SettingsPanel", Order = 7 }
+    };
+
     private VisualElement root;
-
-    private int transOrder = 0;
     private VisualElement currentPanel;
+    private int currentOrder = 0;
 
-    private VisualElement[] allPanels;
-
-    private VisualElement loginForm;
-    private VisualElement registerForm;
-    private VisualElement levelSelectPanel;
-    private VisualElement shopPanel;
-    private VisualElement achievementsPanel;
-    private VisualElement questsPanel;
-    private VisualElement settingsPanel;
+    // Overlay và NavPanel có thể được quản lý riêng
     private VisualElement exitConfirmationOverlay;
+    private VisualElement navPanel;
 
     void OnEnable()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
 
-        loginForm = root.Q("LoginForm");
-        registerForm = root.Q("RegisterForm");
-        levelSelectPanel = root.Q("LevelSelectPanel");
-        shopPanel = root.Q("ShopPanel");
-        achievementsPanel = root.Q("AchievementsPanel");
-        questsPanel = root.Q("QuestsPanel");
-        settingsPanel = root.Q("SettingsPanel");
-        exitConfirmationOverlay = root.Q("ExitConfirmationOverlay");
+        // Tự động query tất cả các panel và các element quan trọng khác
+        InitializeElements();
 
-        allPanels = new VisualElement[] {
-            loginForm, registerForm, levelSelectPanel, shopPanel,
-            achievementsPanel, questsPanel, settingsPanel
-        };
+        // Đăng ký tất cả các sự kiện cho button
+        RegisterButtonCallbacks();
 
-        currentPanel = null;
-
-        var startButton = root.Q<Button>("StartButton");
-        var shopButton = root.Q<Button>("ShopButton");
-        var achievementsButton = root.Q<Button>("AchievementsButton");
-        var questsButton = root.Q<Button>("QuestsButton");
-        var settingsButton = root.Q<Button>("SettingsButton");
-        var exitButton = root.Q<Button>("ExitButton");
-        var confirmExitButton = root.Q<Button>("ConfirmExitButton");
-        var cancelExitButton = root.Q<Button>("CancelExitButton");
-        var navPanel = root.Q<VisualElement>("NavPanel");
-        var loginButton = root.Q<Button>("LoginSubmitButton");
-        var logoutButton = root.Q<Button>("LogoutButton");
-        var levelButtons = root.Query<Button>("LevelButton").ToList();
-
-        startButton.RegisterCallback<ClickEvent>(evt => ShowPanel(levelSelectPanel, 3));
-        shopButton.RegisterCallback<ClickEvent>(evt => ShowPanel(shopPanel, 4));
-        achievementsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(achievementsPanel, 5));
-        questsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(questsPanel, 6));
-        settingsButton.RegisterCallback<ClickEvent>(evt => ShowPanel(settingsPanel, 7));
-
-        root.Q("SwitchToRegister").RegisterCallback<ClickEvent>(evt => ShowPanel(registerForm, 2));
-        root.Q("SwitchToLogin").RegisterCallback<ClickEvent>(evt => ShowPanel(loginForm, 1));
-
-        exitButton.RegisterCallback<ClickEvent>(evt => exitConfirmationOverlay.RemoveFromClassList("panel-hidden"));
-        confirmExitButton.RegisterCallback<ClickEvent>(evt => Application.Quit());
-        cancelExitButton.RegisterCallback<ClickEvent>(evt => exitConfirmationOverlay.AddToClassList("panel-hidden"));
-
-
-        loginButton.RegisterCallback<ClickEvent>(evt => { navPanel.RemoveFromClassList("nav-panel-hidden"); ShowPanel(levelSelectPanel, 3); });
-        logoutButton.RegisterCallback<ClickEvent>(evt => { navPanel.AddToClassList("nav-panel-hidden"); ShowPanel(loginForm, 1); });
-
-
-        foreach (var button in levelButtons)
-        {
-            var capturedButton = button;
-            capturedButton.RegisterCallback<ClickEvent>(evt => {
-                SceneManager.LoadScene(1);
-            });
-        }
-        root.RegisterCallback<GeometryChangedEvent>(OnUIGeometryChanged);
-
+        // Hiển thị panel đầu tiên một cách an toàn sau khi UI đã được render
+        root.schedule.Execute(() => ShowPanelByOrder(1)).ExecuteLater(1500);
     }
 
-    private void OnUIGeometryChanged(GeometryChangedEvent evt)
+    private void InitializeElements()
     {
-        root.schedule.Execute(() => ShowPanel(loginForm, 1)).ExecuteLater(1000);
-
-        root.UnregisterCallback<GeometryChangedEvent>(OnUIGeometryChanged);
+        foreach (var panelInfo in panels)
+        {
+            panelInfo.Element = root.Q(panelInfo.Name);
+        }
+        exitConfirmationOverlay = root.Q("ExitConfirmationOverlay");
+        navPanel = root.Q("NavPanel");
     }
+
+    private void RegisterButtonCallbacks()
+    {
+        // Liên kết các button điều hướng chính (dùng .clicked cho Button là OK)
+        root.Q<Button>("StartButton").clicked += () => ShowPanelByOrder(3);
+        root.Q<Button>("ShopButton").clicked += () => ShowPanelByOrder(4);
+        root.Q<Button>("AchievementsButton").clicked += () => ShowPanelByOrder(5);
+        root.Q<Button>("QuestsButton").clicked += () => ShowPanelByOrder(6);
+        root.Q<Button>("SettingsButton").clicked += () => ShowPanelByOrder(7);
+
+        // SỬA LẠI Ở ĐÂY: Dùng RegisterCallback cho các element không phải là Button
+        // Cách này đúng với code gốc của bạn và hoạt động cho mọi VisualElement.
+        root.Q("SwitchToRegister").RegisterCallback<ClickEvent>(evt => ShowPanelByOrder(2));
+        root.Q("SwitchToLogin").RegisterCallback<ClickEvent>(evt => ShowPanelByOrder(1));
+
+        // Logic thoát game
+        root.Q<Button>("ExitButton").clicked += () => exitConfirmationOverlay.RemoveFromClassList(PANEL_HIDDEN_CLASS);
+        root.Q<Button>("ConfirmExitButton").clicked += () => Application.Quit();
+        root.Q<Button>("CancelExitButton").clicked += () => exitConfirmationOverlay.AddToClassList(PANEL_HIDDEN_CLASS);
+
+        // Logic đăng nhập / đăng xuất
+        root.Q<Button>("LoginSubmitButton").clicked += PerformLogin;
+        root.Q<Button>("LogoutButton").clicked += PerformLogout;
+
+        // Logic vào màn chơi
+        root.Query<Button>("LevelButton").ForEach(button => {
+            button.clicked += () => SceneManager.LoadScene(1);
+        });
+    }
+
+    private void PerformLogin()
+    {
+        navPanel.RemoveFromClassList(NAV_PANEL_HIDDEN_CLASS);
+        ShowPanelByOrder(3); // Chuyển đến màn hình chọn level sau khi đăng nhập
+    }
+
+    private void PerformLogout()
+    {
+        navPanel.AddToClassList(NAV_PANEL_HIDDEN_CLASS);
+        ShowPanelByOrder(1); // Quay về màn hình đăng nhập
+    }
+
+    // Hàm tìm và hiển thị panel dựa trên Order
+    private void ShowPanelByOrder(int order)
+    {
+        var panelInfo = panels.Find(p => p.Order == order);
+        if (panelInfo != null)
+        {
+            ShowPanel(panelInfo.Element, panelInfo.Order);
+        }
+    }
+
     private void ShowPanel(VisualElement panelToShow, int order)
     {
-        if (currentPanel == panelToShow)
+        if (currentPanel == panelToShow || panelToShow == null)
         {
             return;
         }
 
-        foreach (var panel in allPanels)
+        // 1. Reset trạng thái của tất cả các panel
+        foreach (var panelInfo in panels)
         {
-            panel.AddToClassList("panel-hidden");
-            panel.RemoveFromClassList("content-view--above");
-            panel.RemoveFromClassList("content-view--bottom");
-            panel.RemoveFromClassList("content-view--insta-above");
-            panel.RemoveFromClassList("content-view--insta-bottom");
+            panelInfo.Element?.AddToClassList(PANEL_HIDDEN_CLASS);
+            panelInfo.Element?.RemoveFromClassList(VIEW_ABOVE_CLASS);
+            panelInfo.Element?.RemoveFromClassList(VIEW_BOTTOM_CLASS);
+            panelInfo.Element?.RemoveFromClassList(INSTA_ABOVE_CLASS);
+            panelInfo.Element?.RemoveFromClassList(INSTA_BOTTOM_CLASS);
         }
 
-        bool isGoingForward = order > transOrder;
+        bool isGoingForward = order > currentOrder;
 
+        // 2. Animate panel hiện tại (nếu có) ra khỏi màn hình
         if (currentPanel != null)
         {
-            currentPanel.RemoveFromClassList("panel-hidden");
-            if (isGoingForward)
-            {
-                currentPanel.AddToClassList("content-view--above");
-            }
-            else
-            {
-                currentPanel.AddToClassList("content-view--bottom");
-            }
+            currentPanel.RemoveFromClassList(PANEL_HIDDEN_CLASS);
+            currentPanel.AddToClassList(isGoingForward ? VIEW_ABOVE_CLASS : VIEW_BOTTOM_CLASS);
         }
 
-        panelToShow.RemoveFromClassList("panel-hidden");
+        // 3. Chuẩn bị panel mới để animate vào
+        panelToShow.RemoveFromClassList(PANEL_HIDDEN_CLASS);
+        panelToShow.AddToClassList(isGoingForward ? INSTA_BOTTOM_CLASS : INSTA_ABOVE_CLASS);
 
-        if (isGoingForward)
-        {
-            panelToShow.AddToClassList("content-view--insta-bottom");
-        }
-        else
-        {
-            panelToShow.AddToClassList("content-view--insta-above");
-        }
-
+        // 4. Thực thi animation vào ở frame tiếp theo
         panelToShow.schedule.Execute(() =>
         {
-            if (isGoingForward)
-            {
-                panelToShow.RemoveFromClassList("content-view--insta-bottom");
-            }
-            else
-            {
-                panelToShow.RemoveFromClassList("content-view--insta-above");
-            }
+            panelToShow.RemoveFromClassList(isGoingForward ? INSTA_BOTTOM_CLASS : INSTA_ABOVE_CLASS);
         });
 
+        // 5. Cập nhật trạng thái
         currentPanel = panelToShow;
-        transOrder = order;
+        currentOrder = order;
     }
 }
