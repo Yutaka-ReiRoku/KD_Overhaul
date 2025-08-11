@@ -51,6 +51,9 @@ public class MainMenuController : MonoBehaviour
         var exitButton = root.Q<Button>("ExitButton");
         var confirmExitButton = root.Q<Button>("ConfirmExitButton");
         var cancelExitButton = root.Q<Button>("CancelExitButton");
+        var navPanel = root.Q<VisualElement>("NavPanel");
+        var loginButton = root.Q<Button>("LoginSubmitButton");
+        var logoutButton = root.Q<Button>("LogoutButton");
         var levelButtons = root.Query<Button>("LevelButton").ToList();
 
         startButton.RegisterCallback<ClickEvent>(evt => ShowPanel(levelSelectPanel, 3));
@@ -65,6 +68,11 @@ public class MainMenuController : MonoBehaviour
         exitButton.RegisterCallback<ClickEvent>(evt => exitConfirmationOverlay.RemoveFromClassList("panel-hidden"));
         confirmExitButton.RegisterCallback<ClickEvent>(evt => Application.Quit());
         cancelExitButton.RegisterCallback<ClickEvent>(evt => exitConfirmationOverlay.AddToClassList("panel-hidden"));
+
+
+        loginButton.RegisterCallback<ClickEvent>(evt => navPanel.RemoveFromClassList("nav-panel-hidden"));
+        logoutButton.RegisterCallback<ClickEvent>(evt => navPanel.AddToClassList("nav-panel-hidden"));
+
 
         foreach (var button in levelButtons)
         {

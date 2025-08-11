@@ -57,6 +57,7 @@
     margin-bottom: 50px;
     -unity-font-definition: url("project://database/Assets/Font/SuperMario256%20SDF.asset?fileID=11400000&guid=8e78adf5036ef5f4d8c0c9b713a927d0&type=2#SuperMario256 SDF");
     -unity-text-align: middle-center;
+    overflow: hidden;
 }
 
 .nav-button {
@@ -386,6 +387,11 @@
     translate: 0 -125%;
 }
 
-.nav-panel--hidden {
+.nav-panel-hidden {
+    align-items: flex-end;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
     width: 0%;
 }
