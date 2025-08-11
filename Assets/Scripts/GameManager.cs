@@ -1,57 +1,81 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static TowersManager;
 
 public class GameManager : Singleton<GameManager>
 {
-    public UIDocument document;
-    public Transform Camera;
-    public Transform InitialPos;
-    public Transform TargetPos;
-    public VisualTreeAsset towersBar;
-    public VisualTreeAsset towersPanel;
+    [Header("UI Toolkit References")]
+    [SerializeField] private UIDocument document;
+    [SerializeField] private VisualTreeAsset towersBar;
+    [SerializeField] private VisualTreeAsset towersPanel;
 
-    public VisualElement rootVisualElement;
+    [Header("Camera Movement")]
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Transform initialPos; // Có thể bạn không cần biến này nếu chỉ di chuyển một chiều
+    [SerializeField] private Transform targetPos;
 
-    private TemplateContainer newScreenInstance;
+    private VisualElement rootVisualElement;
+    private TemplateContainer towersBarInstance;
+    private TemplateContainer towersPanelInstance;
 
-    private TemplateContainer new2ScreenInstance;
     private void Start()
     {
         rootVisualElement = document.rootVisualElement;
-        updateUI();
-        Invoke("moveScreen", 1f);
-        Invoke("removeSelectorClass", 1f);
+
+        UpdateUI();
+
+        // Sử dụng DOTween Sequence để quản lý các hành động theo thời gian
+        Sequence introSequence = DOTween.Sequence();
+        introSequence.AppendInterval(1f)
+                     .AppendCallback(MoveScreen)
+                     .JoinCallback(ShowUIElements);
     }
 
-    private void updateUI()
+    /// <summary>
+    /// Khởi tạo và hiển thị các element của UI từ VisualTreeAssets.
+    /// </summary>
+    private void UpdateUI()
     {
-        newScreenInstance = towersBar.CloneTree();
-        newScreenInstance.AddToClassList("fullscreen");
-        rootVisualElement.Add(newScreenInstance);
-        newScreenInstance.pickingMode = PickingMode.Ignore;
-        new2ScreenInstance = towersPanel.CloneTree();
-        new2ScreenInstance.AddToClassList("fullscreen");
-        rootVisualElement.Add(new2ScreenInstance);
-        new2ScreenInstance.pickingMode = PickingMode.Ignore;
+        towersBarInstance = CreateAndAddUIElement(towersBar, "fullscreen");
+        towersPanelInstance = CreateAndAddUIElement(towersPanel, "fullscreen");
     }
 
-    private void removeSelectorClass()
+    /// <summary>
+    /// Hàm phụ trợ để tạo một UI element từ asset, thêm class và add vào root.
+    /// </summary>
+    private TemplateContainer CreateAndAddUIElement(VisualTreeAsset visualTree, string className)
     {
-        new2ScreenInstance.Q<VisualElement>("squad-selection-panel").schedule.Execute(() =>
+        var newInstance = visualTree.CloneTree();
+        newInstance.AddToClassList(className);
+        newInstance.pickingMode = PickingMode.Ignore;
+        rootVisualElement.Add(newInstance);
+        return newInstance;
+    }
+
+    /// <summary>
+    /// Làm cho các panel UI trở nên hữu hình bằng cách xóa class "--hidden".
+    /// </summary>
+    private void ShowUIElements()
+    {
+        var squadPanel = towersPanelInstance.Q<VisualElement>("squad-selection-panel");
+        squadPanel?.schedule.Execute(() =>
         {
-            new2ScreenInstance.Q<VisualElement>("squad-selection-panel").RemoveFromClassList("squad-selection-panel--hidden");
+            squadPanel.RemoveFromClassList("squad-selection-panel--hidden");
         });
-        newScreenInstance.Q<VisualElement>("tower-selection-bar").schedule.Execute(() =>
+
+        var towerBar = towersBarInstance.Q<VisualElement>("tower-selection-bar");
+        towerBar?.schedule.Execute(() =>
         {
-            newScreenInstance.Q<VisualElement>("tower-selection-bar").RemoveFromClassList("tower-selection-bar--hidden");
+            towerBar.RemoveFromClassList("tower-selection-bar--hidden");
         });
     }
-    
-    private void moveScreen()
+
+    /// <summary>
+    /// Di chuyển camera đến vị trí mục tiêu một cách mượt mà.
+    /// </summary>
+    private void MoveScreen()
     {
-        Camera.DOMove(TargetPos.position, 1f);
+        cameraTransform.DOMove(targetPos.position, 2f).SetEase(Ease.InOutQuad);
     }
 }

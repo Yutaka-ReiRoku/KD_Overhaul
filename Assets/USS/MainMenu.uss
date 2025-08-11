@@ -6,7 +6,7 @@
     flex-grow: 1;
     flex-direction: row;
     align-items: stretch;
-    background-size: cover;
+    background-image: url("project://database/Assets/Sprites/6a99d25f48dbeff9fe4b22e0515aa353.png?fileID=2800000&guid=d9dafca3326dba640acc88a3ac6e138f&type=3#6a99d25f48dbeff9fe4b22e0515aa353");
 }
 
 .nav-panel {
@@ -80,12 +80,12 @@
 .nav-button:hover {
     background-color: rgba(80, 80, 80, 0.9);
     border-color: white;
-    height: 7%;
+    height: 9%;
 }
 
 .nav-button:active {
     scale: 0.97 0.97;
-    height: 3%;
+    height: 8%;
 }
 
 .exit-button {
@@ -140,7 +140,7 @@
 }
 
 .level-button {
-    width: 40%;
+    width: 42.5%;
     min-height: 100px;
     margin: 10px;
     font-size: 25px;
