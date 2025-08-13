@@ -1,4 +1,4 @@
-﻿.tower-selection-bar {
+.tower-selection-bar {
     position: absolute;
     left: 10px;
     top: 10px;
@@ -77,8 +77,8 @@
 }
 
 .shovel-card {
-    width: 85px;
-    height: 95px;
+    width: 95px;
+    height: 105px;
     background-color: rgb(80, 70, 60);
     border-radius: 8px;
     margin-bottom: 8px;
@@ -89,12 +89,12 @@
     transition: scale 0.1s ease-in-out, border-color 0.1s ease-in-out;
 }
 
-.shovel-card:hover {
+.shovel-card:enabled:hover {
     scale: 1.05 1.05;
     border-color: rgb(255, 200, 100);
 }
 
-.shovel-card:active {
+.shovel-card:enabled:active {
     scale: 0.95 0.95;
     border-color: rgb(255, 255, 255);
 }
@@ -135,8 +135,8 @@
     height: 100%;
 }
 
-    .tower-card.selected {
-    border-color: rgb(255, 255, 100); 
+.tower-card.selected {
+    border-color: rgb(255, 255, 100);
     border-width: 3px;
-    scale: 1.03 1.03; 
+    scale: 1.03 1.03;
 }

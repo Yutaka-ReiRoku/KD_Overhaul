@@ -1,0 +1,6 @@
+WaveID,TimeAfterWave,TimeBetweenSpawns,EnemyGroups
+1,15,1.5,SkeletonData:5
+2,20,1.0,SkeletonData:3,SlimeData:4
+3,20,1.2,SkeletonData:6,OrcData:1
+4,25,0.5,SlimeData:10,SkeletonData:5
+5,30,0.8,SkeletonData:8,SlimeData:6,OrcData:3

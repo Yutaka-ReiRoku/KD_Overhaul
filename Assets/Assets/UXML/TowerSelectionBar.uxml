@@ -36,7 +36,7 @@
                     <ui:Label text="300" name="cost" class="tower-card__cost-label" />
                 </ui:VisualElement>
             </ui:Button>
-            <ui:Button name="ShovelCard" class="tower-card">
+            <ui:Button name="ShovelCard" class="shovel-card">
                 <ui:VisualElement name="icon" class="shovel-card__icon" />
             </ui:Button>
         </ui:VisualElement>

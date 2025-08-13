@@ -62,14 +62,13 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
                 abilityCooldowns[i] -= Time.deltaTime;
             }
         }
-        Debug.Log(currentAnimWeight);
     }
 
     // --- Core Logic ---
     public void StartAttackingBase()
     {
         isAttackingBase = true;
-        RunAnimation("Attack", 6);
+        RunAnimation("Attack", 9);
     }
 
     protected virtual void Die()

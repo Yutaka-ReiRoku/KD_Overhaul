@@ -4,9 +4,8 @@ using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance { get; private set; }
     public enum GameState { Playing, Won, Lost }
     public GameState currentState { get; private set; }
 
@@ -35,7 +34,6 @@ public class GameManager : MonoBehaviour
     private Slider sfxSlider;
     private bool isPaused = false;
 
-    private void Awake() { /* Singleton */ }
 
     private void Start()
     {
@@ -176,9 +174,9 @@ public class GameManager : MonoBehaviour
         currentState = GameState.Lost;
         Debug.Log("GAME OVER!");
         ShowEndGamePanel(false);
-        FindObjectOfType<WaveSpawner>().enabled = false;
-        foreach (var tower in FindObjectsOfType<TowerBase>()) { Destroy(tower.gameObject); }
-        foreach (var enemy in FindObjectsOfType<EnemyBase>())
+        FindAnyObjectByType<WaveSpawner>().enabled = false;
+        foreach (var tower in FindObjectsByType<TowerBase>(FindObjectsSortMode.None)) { Destroy(tower.gameObject); }
+        foreach (var enemy in FindObjectsByType<EnemyBase>(FindObjectsSortMode.None))
         {
             if (enemy != intrudingEnemy) Destroy(enemy.gameObject);
         }
