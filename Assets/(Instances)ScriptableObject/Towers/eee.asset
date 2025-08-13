@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a71bf33ddf3a5c044a1aaa9e23b4f1c0, type: 3}
-  m_Name: bbb
+  m_Name: eee
   m_EditorClassIdentifier: 
-  towerName: bbb
-  towerIcon: {fileID: -5163991181310921478, guid: 8c9f3534c7679b24497373e8cfbd6cde, type: 3}
-  cost: 200
-  description: BBB
+  towerName: eee
+  towerIcon: {fileID: 3122379837939107900, guid: 9ac82ddbc76966045a0e4c9d32f3eb21, type: 3}
+  cost: 150
+  description: eee
   cooldownTime: 0
   towerPrefab: {fileID: 0}
   health: 100

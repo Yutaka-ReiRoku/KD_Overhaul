@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: aaa
   m_EditorClassIdentifier: 
   towerName: aaa
-  towerIcon: {fileID: -7978735674136817684, guid: 1eca8262e5ade584095f389695ef10d4, type: 3}
+  towerIcon: {fileID: -7978735674136817684, guid: 65cee26733febe449b4425fa3a0d6135, type: 3}
   cost: 100
   description: AAA
   cooldownTime: 10

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a71bf33ddf3a5c044a1aaa9e23b4f1c0, type: 3}
-  m_Name: bbb
+  m_Name: ggg
   m_EditorClassIdentifier: 
-  towerName: bbb
-  towerIcon: {fileID: -5163991181310921478, guid: 8c9f3534c7679b24497373e8cfbd6cde, type: 3}
-  cost: 200
-  description: BBB
+  towerName: ggg
+  towerIcon: {fileID: 1165980247489307053, guid: 833eac192ba334f4099ffa31a9186ac3, type: 3}
+  cost: 125
+  description: ggg
   cooldownTime: 0
   towerPrefab: {fileID: 0}
   health: 100

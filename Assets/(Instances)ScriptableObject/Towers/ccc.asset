@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: ccc
   m_EditorClassIdentifier: 
   towerName: ccc
-  towerIcon: {fileID: 21300000, guid: 52c1d54b783d70a44b4ca6a5ca5eeda8, type: 3}
+  towerIcon: {fileID: -1876193172397773986, guid: 0d6dd1c7af71b7b45a00193ca581f10c, type: 3}
   cost: 300
   description: CCC
+  cooldownTime: 0
+  towerPrefab: {fileID: 0}
+  health: 100
+  abilities: []
