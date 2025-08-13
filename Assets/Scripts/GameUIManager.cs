@@ -227,6 +227,7 @@ public class GameUIManager : MonoBehaviour
                 VisualElement cooldownOverlay = overlayInstance.Q("cooldown-overlay");
                 if (cooldownOverlay != null)
                 {
+                    cooldownOverlay.style.display = DisplayStyle.Flex;
                     cooldownOverlay.style.position = Position.Absolute;
                     slot.Add(cooldownOverlay);
                 }
