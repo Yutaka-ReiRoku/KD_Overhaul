@@ -18,20 +18,20 @@ MonoBehaviour:
   description: AAA
   cooldownTime: 10
   towerPrefab: {fileID: 8980457999054767670, guid: 42c5efb1bc3ba4d40924324a68bffa64, type: 3}
-  health: 100
+  health: 200
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne
-    cooldownDuration: 6
+    cooldownDuration: 2
     damage: 10
     projectilePrefab: {fileID: 0}
   - abilityName: AttackTwo
     animationName: AttackTwo
     cooldownDuration: 4
-    damage: 7
+    damage: 15
     projectilePrefab: {fileID: 0}
   - abilityName: AttackThree
     animationName: AttackThree
-    cooldownDuration: 10
+    cooldownDuration: 2
     damage: 10
     projectilePrefab: {fileID: 7372804906341040070, guid: dbb678e3d39d2f14eabc5e7916330b87, type: 3}

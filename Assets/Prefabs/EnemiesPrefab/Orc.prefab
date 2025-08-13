@@ -253,12 +253,12 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.035446286, y: -0.03518492}
-  m_Size: {x: 0.8412359, y: 1.1130077}
+  m_Offset: {x: 0.24655592, y: -0.03518492}
+  m_Size: {x: 1.2634552, y: 1.2634552}
   m_Direction: 0
 --- !u!1 &7532176817191635556
 GameObject:

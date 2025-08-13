@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ff551c635b8064d9c6619b86db40ac, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: 
+  enemyName: 
+  enemyPrefab: {fileID: 0}
   health: 100
   moveSpeed: 1
-  attackDamage: 10
-  attackRate: 1
-  enemyPrefab: {fileID: 0}
+  abilities:
+  - abilityName: 
+    animationName: 
+    cooldownDuration: 0
+    damage: 0
+    projectilePrefab: {fileID: 0}
+  - abilityName: 
+    animationName: 
+    cooldownDuration: 0
+    damage: 0
+    projectilePrefab: {fileID: 0}

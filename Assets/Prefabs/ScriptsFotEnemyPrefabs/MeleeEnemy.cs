@@ -35,7 +35,7 @@ public class MeleeEnemy : EnemyBase
     private void PerformAbility(Ability ability, int abilityIndex)
     {
         currentAbility = ability;
-        RunAnimation(ability.animationName, 3);
+        RunAnimation(ability.animationName, 6);
         abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
 

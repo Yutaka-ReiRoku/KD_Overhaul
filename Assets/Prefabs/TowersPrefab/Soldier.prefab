@@ -66,8 +66,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.5, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: 0.6024529, y: 0}
+  m_Radius: 0.6024529
 --- !u!1 &4993686612506260631
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 661559284325395340}
   - component: {fileID: 1260564513070394997}
   - component: {fileID: 717945362716308217}
+  - component: {fileID: 7519219526542429628}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -297,3 +298,40 @@ MonoBehaviour:
   meleeRangeCollider: {fileID: 6586322202232155356}
   rangedRangeCollider: {fileID: 6399952430854009863}
   firePoint: {fileID: 7140984627631836295}
+--- !u!70 &7519219526542429628
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8980457999054767670}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.18767583, y: 0.07277739}
+  m_Size: {x: 0.39499164, y: 1.3289323}
+  m_Direction: 0

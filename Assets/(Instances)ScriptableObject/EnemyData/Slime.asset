@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ff551c635b8064d9c6619b86db40ac, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
+  enemyName: Slime
+  enemyPrefab: {fileID: 5720945034100268565, guid: 4735283741246c740999fe2f288964ba, type: 3}
   health: 100
   moveSpeed: 1
-  attackDamage: 10
-  attackRate: 1
-  enemyPrefab: {fileID: 0}
+  abilities:
+  - abilityName: AttackOne
+    animationName: AttackOne
+    cooldownDuration: 2
+    damage: 10
+    projectilePrefab: {fileID: 0}
+  - abilityName: AttackTwo
+    animationName: AttackTwo
+    cooldownDuration: 5
+    damage: 20
+    projectilePrefab: {fileID: 0}
