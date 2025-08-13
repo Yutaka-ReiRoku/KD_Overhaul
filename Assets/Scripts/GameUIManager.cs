@@ -217,7 +217,7 @@ public class GameUIManager : MonoBehaviour
 
     private void InitializeTowerSelectionBar()
     {
-        barSlots = barCardContainer.Query<Button>().ToList();
+        barSlots = barCardContainer.Query<Button>("TowerCard").ToList();
         foreach (var slot in barSlots)
         {
             slot.style.display = DisplayStyle.Flex;
@@ -227,6 +227,7 @@ public class GameUIManager : MonoBehaviour
                 VisualElement cooldownOverlay = overlayInstance.Q("cooldown-overlay");
                 if (cooldownOverlay != null)
                 {
+                    cooldownOverlay.style.position = Position.Absolute;
                     slot.Add(cooldownOverlay);
                 }
             }
@@ -318,7 +319,6 @@ public class GameUIManager : MonoBehaviour
         UpdateAllCardStates(currencyManager.GetCurrentCurrency());
     }
 
-    #region Unchanged Logic (No modifications needed below)
     private void OnSquadCardClick(ClickEvent evt)
     {
         if (currentPhase != GamePhase.SquadSelection) return;
@@ -398,7 +398,7 @@ public class GameUIManager : MonoBehaviour
 
             if (newTower != null)
             {
-                clickedTile.SetOccupied(newTower);
+                clickedTile.SetOccupied(newTower, towerToPlace);
             }
 
             currencyManager.SpendCurrency(towerToPlace.cost);
@@ -482,7 +482,7 @@ public class GameUIManager : MonoBehaviour
             Destroy(clickedTile.TowerOnTile.gameObject);
             clickedTile.SetEmpty();
 
-            // currencyManager.AddCurrency(refundAmount);
+            currencyManager.AddCurrency(clickedTile.TowerData.cost);
         }
         else
         {
@@ -515,5 +515,4 @@ public class GameUIManager : MonoBehaviour
     {
         return isShovelSelected;
     }
-    #endregion
 }

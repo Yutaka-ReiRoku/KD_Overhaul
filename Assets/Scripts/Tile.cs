@@ -17,6 +17,8 @@ public class Tile : MonoBehaviour
     public bool IsOccupied { get; private set; } = false;
     public TowerBase TowerOnTile { get; private set; }
 
+    public TowerData TowerData { get; private set; }
+
     public void Start()
     {
         this.gameUIManager = FindAnyObjectByType<GameUIManager>();
@@ -58,10 +60,11 @@ public class Tile : MonoBehaviour
         gameUIManager.OnTileClicked(this);
     }
 
-    public void SetOccupied(TowerBase tower)
+    public void SetOccupied(TowerBase tower, TowerData towerData)
     {
         IsOccupied = true;
         TowerOnTile = tower;
+        TowerData = towerData;
         spriteRenderer.color = originalColor;
         originalColor = spriteRenderer.color;
     }
@@ -69,6 +72,7 @@ public class Tile : MonoBehaviour
     {
         IsOccupied = false;
         TowerOnTile = null;
+        TowerData = null;
         spriteRenderer.color = originalColor;
     }
 }
