@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/CSS/TowerSelectionStyles.uss?fileID=7433441132597879392&amp;guid=5a6c15e17cc5ed0449b73c2a5edfcae7&amp;type=3#TowerSelectionStyles" />
+    <ui:VisualElement name="selection-bar">
+        <ui:VisualElement class="selection-slot" />
+        <ui:VisualElement class="selection-slot" />
+        <ui:VisualElement class="selection-slot" />
+        <ui:VisualElement class="selection-slot" />
+        <ui:VisualElement class="selection-slot" />
+        <ui:VisualElement class="selection-slot" />
+        <ui:VisualElement class="selection-slot" />
+        <ui:VisualElement class="selection-slot" />
+    </ui:VisualElement>
+    <ui:ScrollView name="tower-panel" />
+</ui:UXML>

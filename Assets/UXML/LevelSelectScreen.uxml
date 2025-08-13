@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/CSS/LevelSelect.uss?fileID=7433441132597879392&amp;guid=e44b18ba2a571bf49a4ffacc1d507206&amp;type=3#LevelSelect" />
+    <ui:VisualElement class="level-select-screen">
+        <ui:VisualElement name="level-grid" class="level-grid" />
+    </ui:VisualElement>
+</ui:UXML>

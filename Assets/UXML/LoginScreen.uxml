@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/CSS/LoginScreen.uss?fileID=7433441132597879392&amp;guid=93802d4044d654f47a3a85a6eb1c2432&amp;type=3#LoginScreen" />
+    <ui:VisualElement name="login-screen" class="login-screen">
+        <ui:VisualElement name="auth-container" class="auth-container">
+            <ui:VisualElement name="login-form">
+                <ui:Label text="Login" class="auth-container__title" />
+                <ui:TextField name="login-username" label="Username" class="input-field" />
+                <ui:TextField name="login-password" label="Password" password="true" class="input-field" />
+                <ui:Button name="login-button" text="Login" class="submit-button" />
+                <ui:Label name="login-error-label" class="error-label" />
+                <ui:Label text="Don&apos;t have an account? Sign Up" name="switch-to-signup" class="switch-link" />
+            </ui:VisualElement>
+            <ui:VisualElement name="signup-form" style="display: none;">
+                <ui:Label text="Sign Up" class="auth-container__title" />
+                <ui:TextField name="signup-username" label="Username" class="input-field" />
+                <ui:TextField name="signup-email" label="Email" class="input-field" />
+                <ui:TextField name="signup-password" label="Password" password="true" class="input-field" />
+                <ui:Button name="signup-button" text="Sign Up" class="submit-button" />
+                <ui:Label name="signup-error-label" class="error-label" />
+                <ui:Label text="Already have an account? Login" name="switch-to-login" class="switch-link" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,105 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:engine="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Assets/USS/MainMenu.uss?fileID=7433441132597879392&amp;guid=8eab758112172f246b2a8ccdadf66e93&amp;type=3#MainMenu" />
+    <ui:VisualElement name="MainMenuContainer" class="main-menu-container">
+        <ui:VisualElement name="NavPanel" class="nav-panel nav-panel-hidden">
+            <ui:Label text="Kingdom Defender" class="title-label" />
+            <ui:Button name="StartButton" text="Start Game" class="nav-button" />
+            <ui:Button name="ShopButton" text="Shop" class="nav-button" />
+            <ui:Button name="AchievementsButton" text="Achievements" class="nav-button" />
+            <ui:Button name="QuestsButton" text="Quests" class="nav-button" />
+            <ui:Button name="SettingsButton" text="Settings" class="nav-button" />
+            <ui:Button name="LogoutButton" text="Log Out" class="nav-button" />
+            <ui:Button name="ExitButton" text="Exit Game" class="nav-button exit-button" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ContentPanel" class="content-panel">
+            <ui:VisualElement name="LoginForm" class="content-view panel-hidden">
+                <ui:Label text="Login" class="view-title" />
+                <ui:TextField name="LoginUsername" label="Username/Email" class="form-input" />
+                <ui:TextField name="LoginPassword" label="Password" password="true" class="form-input" />
+                <ui:Button name="LoginSubmitButton" text="Login" class="form-button" />
+                <ui:Label text="Don&apos;t have an account? Register now!" name="SwitchToRegister" class="link-label" />
+            </ui:VisualElement>
+            <ui:VisualElement name="RegisterForm" class="content-view panel-hidden">
+                <ui:Label text="Register" class="view-title" />
+                <ui:TextField name="RegisterUsername" label="Username" class="form-input" />
+                <ui:TextField name="RegisterEmail" label="Email" class="form-input" />
+                <ui:TextField name="RegisterPassword" label="Password" password="true" class="form-input" />
+                <ui:Button name="RegisterSubmitButton" text="Register" class="form-button" />
+                <ui:Label text="Already have an account? Login here." name="SwitchToLogin" class="link-label" />
+            </ui:VisualElement>
+            <ui:VisualElement name="LevelSelectPanel" class="content-view panel-hidden">
+                <ui:Label text="Select Level" class="view-title" />
+                <ui:ScrollView>
+                    <ui:Button text="Level 1" name="LevelButton" class="level-button" />
+                    <ui:VisualElement name="LevelButtonContainer" class="grid-container" />
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:VisualElement name="ShopPanel" class="content-view panel-hidden">
+                <ui:Label text="Item Shop" class="view-title" />
+                <ui:ScrollView>
+                    <ui:VisualElement class="shop-item">
+                        <ui:VisualElement class="shop-item__icon" />
+                        <ui:Label text="Hero" class="shop-item__name" />
+                        <ui:Label text="Price: 50 Gold" class="shop-item__price" />
+                        <ui:Button text="Buy" class="shop-item__button" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="shop-item">
+                        <ui:VisualElement class="shop-item__icon" />
+                        <ui:Label text="Demon" class="shop-item__name" />
+                        <ui:Label text="Price: 1000 Gold" class="shop-item__price" />
+                        <ui:Button text="Buy" class="shop-item__button" />
+                    </ui:VisualElement>
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:VisualElement name="AchievementsPanel" class="content-view panel-hidden">
+                <ui:Label text="Achievements" class="view-title" />
+                <ui:ScrollView>
+                    <ui:VisualElement class="achievement-item">
+                        <ui:VisualElement class="achievement-item__icon" />
+                        <ui:VisualElement class="achievement-item__text">
+                            <ui:Label text="First Blood" class="achievement-item__name" />
+                            <ui:Label text="Defeat your first enemy." class="achievement-item__desc" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:VisualElement name="QuestsPanel" class="content-view panel-hidden">
+                <ui:Label text="Quests" class="view-title" />
+                <ui:ScrollView>
+                    <ui:Label text="Available Quests" class="quest-category-title" />
+                    <ui:VisualElement class="quest-item">
+                        <ui:Label text="Kill 5 Armored Goblins" class="quest-item__name" />
+                        <ui:Button text="Accept" class="quest-item__button" />
+                    </ui:VisualElement>
+                    <ui:Label text="Active Quests" class="quest-category-title" />
+                    <ui:VisualElement class="quest-item quest-item--active">
+                        <ui:Label text="Kill 10 Goblins" class="quest-item__name" />
+                        <ui:Label text="Progress: 3/10" class="quest-item__progress" />
+                    </ui:VisualElement>
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:VisualElement name="SettingsPanel" class="content-view panel-hidden">
+                <ui:Label text="Settings" class="view-title" />
+                <ui:VisualElement class="settings-option">
+                    <ui:Label text="Music Volume" />
+                    <ui:Slider name="MusicSlider" low-value="0" high-value="100" value="80" />
+                </ui:VisualElement>
+                <ui:VisualElement class="settings-option">
+                    <ui:Label text="Sound Effects Volume" />
+                    <ui:Slider name="SfxSlider" low-value="0" high-value="100" value="100" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label name="ErrorLabel" picking-mode="Ignore" class="error-label" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ExitConfirmationOverlay" class="modal-overlay panel-hidden">
+            <ui:VisualElement name="ExitDialog" class="modal-dialog">
+                <ui:Label text="Are you sure you want to quit?" class="dialog-title" />
+                <ui:VisualElement class="dialog-button-container">
+                    <ui:Button name="ConfirmExitButton" text="Yes, Quit" class="dialog-button dialog-button--confirm" />
+                    <ui:Button name="CancelExitButton" text="No, Cancel" class="dialog-button dialog-button--cancel" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement picking-mode="Ignore" name="LoadingPanel" class="loading-panel loading-panel-active" />
+    </ui:VisualElement>
+</ui:UXML>

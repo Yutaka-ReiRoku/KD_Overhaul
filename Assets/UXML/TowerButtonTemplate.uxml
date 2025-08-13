@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/CSS/TowerSquadSelectionPanel.uss?fileID=7433441132597879392&amp;guid=662fa07a1dec5a0499c75c35d5a16df0&amp;type=3#TowerSquadSelectionPanel" />
+    <ui:Button name="tower-card" class="tower-card">
+        <ui:VisualElement name="icon" class="tower-card__icon" />
+        <ui:VisualElement name="cost-panel" class="tower-card__cost-panel">
+            <ui:Label text="100" name="cost" class="tower-card__cost-label" />
+        </ui:VisualElement>
+    </ui:Button>
+</ui:UXML>

@@ -1,0 +1,64 @@
+﻿/* EndGamePanel.uss */
+.end-game-panel-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); 
+    
+    
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.end-game-panel-container--visible {
+    display: flex;
+    opacity: 1;
+}
+
+.end-game-panel {
+    width: 500px;
+    padding: 30px;
+    background-color: rgb(70, 60, 50);
+    border-radius: 20px;
+    border-color: rgb(200, 150, 100);
+    border-width: 4px;
+    align-items: center;
+}
+
+.end-game-panel__title {
+    font-size: 48px;
+    -unity-font-style: bold;
+    margin-bottom: 20px;
+}
+
+.end-game-panel__title--victory {
+    color: rgb(180, 255, 180);
+}
+
+.end-game-panel__title--defeat {
+    color: rgb(255, 150, 150);
+}
+
+.button-container {
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+.end-game-button {
+    flex-grow: 1;
+    height: 60px;
+    margin: 0 10px;
+    font-size: 22px;
+    border-radius: 10px;
+}
+
+.end-game-button--primary {
+    background-color: rgb(100, 140, 80);
+}
+
+.end-game-button--secondary {
+    background-color: rgb(120, 120, 120);
+}

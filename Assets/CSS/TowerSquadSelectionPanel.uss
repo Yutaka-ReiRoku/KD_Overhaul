@@ -1,0 +1,128 @@
+.fullscreen {
+    position: absolute;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+    height: 100%;
+}
+
+.squad-selection-panel {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 130px;
+    width: 40%;
+    background-color: rgba(40, 30, 20, 0.85);
+    border-color: rgb(90, 60, 40);
+    border-width: 3px;
+    border-radius: 15px;
+    flex-direction: column;
+    transition-duration: 1s;
+    transition-delay: 1s;
+}
+
+.squad-selection-panel--hidden {
+    translate: 0 1080px;
+}
+
+.panel-header {
+    padding: 15px;
+    border-bottom-width: 3px;
+    border-bottom-color: rgb(90, 60, 40);
+    align-items: center;
+}
+
+.panel-header__title {
+    font-size: 28px;
+    color: rgb(255, 220, 100);
+    -unity-font-style: bold;
+}
+
+.card-scroll-view {
+    flex-grow: 1;
+}
+
+.card-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 15px;
+    justify-content: flex-start;
+}
+
+.panel-footer {
+    padding: 10px;
+    border-top-width: 3px;
+    border-top-color: rgb(90, 60, 40);
+    align-items: center;
+}
+
+.confirm-button {
+    width: 200px;
+    height: 50px;
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: white;
+    background-color: rgb(100, 140, 80);
+    border-color: rgb(150, 190, 130);
+    border-width: 3px;
+    border-radius: 10px;
+    transition: background-color 0.1s ease-in-out, scale 0.1s ease-in-out;
+}
+
+.confirm-button:hover {
+    background-color: rgb(120, 160, 100);
+    border-color: white;
+}
+
+.confirm-button:active {
+    scale: 0.97 0.97;
+}
+
+.tower-card {
+    width: 95px;
+    height: 105px;
+    background-color: rgb(80, 70, 60);
+    border-radius: 8px;
+    margin: 7px;
+    overflow: hidden;
+    border-width: 2px;
+    border-color: rgb(50, 40, 30);
+    padding: 0;
+    transition: scale 0.1s ease-in-out, border-color 0.1s ease-in-out;
+}
+
+.tower-card:hover {
+    scale: 1.05 1.05;
+    border-color: rgb(255, 200, 100);
+}
+
+.tower-card:active {
+    scale: 0.95 0.95;
+    border-color: rgb(255, 255, 255);
+}
+
+.tower-card__icon {
+    flex-grow: 1;
+    -unity-background-scale-mode: scale-to-fit;
+    margin: 5px;
+}
+
+.tower-card__cost-panel {
+    height: 25px;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.tower-card__cost-label {
+    font-size: 18px;
+    color: rgb(255, 220, 100);
+    -unity-font-style: bold;
+}
+
+.off-display {
+    visibility: hidden;
+    display: none;
+}

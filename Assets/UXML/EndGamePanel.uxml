@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="project:/Assets/CSS/EndGamePanel.uss" />
+    <ui:VisualElement name="end-game-panel-container" class="end-game-panel-container">
+        <ui:VisualElement name="end-game-panel" class="end-game-panel">
+            <ui:Label name="title-label" class="end-game-panel__title" />
+            <ui:VisualElement name="button-container" class="button-container">
+                <ui:Button name="secondary-button" class="end-game-button end-game-button--secondary" />
+                <ui:Button name="primary-button" class="end-game-button end-game-button--primary" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

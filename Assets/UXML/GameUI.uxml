@@ -1,0 +1,60 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:engine="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/CSS/TowerSquadSelectionPanel.uss?fileID=7433441132597879392&amp;guid=662fa07a1dec5a0499c75c35d5a16df0&amp;type=3#TowerSquadSelectionPanel" />
+    <Style src="project://database/Assets/CSS/TowerSelectionBar.uss?fileID=7433441132597879392&amp;guid=d3b29b27e80a7504ebe616201a7eaa5d&amp;type=3#TowerSelectionBar" />
+    <ui:VisualElement name="tower-selection-bar" class="tower-selection-bar">
+        <ui:VisualElement name="currency-display" class="currency-display">
+            <ui:VisualElement name="currency-icon" class="currency-display__icon" />
+            <ui:Label text="150" name="currency-amount" class="currency-display__amount" />
+        </ui:VisualElement>
+        <ui:VisualElement name="card-container" class="card-container">
+            <ui:Button name="TowerCard_1" class="tower-card">
+                <ui:VisualElement name="icon" class="tower-card__icon" />
+                <ui:VisualElement name="cost-panel" class="tower-card__cost-panel">
+                    <ui:Label text="100" name="cost" class="tower-card__cost-label" />
+                </ui:VisualElement>
+            </ui:Button>
+            <ui:Button name="TowerCard_2" class="tower-card">
+                <ui:VisualElement name="icon" class="tower-card__icon" />
+                <ui:VisualElement name="cost-panel" class="tower-card__cost-panel">
+                    <ui:Label text="125" name="cost" class="tower-card__cost-label" />
+                </ui:VisualElement>
+            </ui:Button>
+            <ui:Button name="TowerCard_3" class="tower-card">
+                <ui:VisualElement name="icon" class="tower-card__icon" />
+                <ui:VisualElement name="cost-panel" class="tower-card__cost-panel">
+                    <ui:Label text="300" name="cost" class="tower-card__cost-label" />
+                </ui:VisualElement>
+            </ui:Button>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="squad-selection-panel" class="squad-selection-panel">
+        <ui:VisualElement name="panel-header" class="panel-header">
+            <ui:Label text="Choose Your Defenders" class="panel-header__title" />
+        </ui:VisualElement>
+        <ui:ScrollView name="card-scroll-view" class="card-scroll-view">
+            <ui:VisualElement name="card-grid" class="card-grid">
+                <ui:Button name="AvailableTower_Archer" class="tower-card">
+                    <ui:VisualElement name="icon" class="tower-card__icon" />
+                    <ui:VisualElement name="cost-panel" class="tower-card__cost-panel">
+                        <ui:Label text="100" name="cost" class="tower-card__cost-label" />
+                    </ui:VisualElement>
+                </ui:Button>
+                <ui:Button name="AvailableTower_Barracks" class="tower-card">
+                    <ui:VisualElement name="icon" class="tower-card__icon" />
+                    <ui:VisualElement name="cost-panel" class="tower-card__cost-panel">
+                        <ui:Label text="125" name="cost" class="tower-card__cost-label" />
+                    </ui:VisualElement>
+                </ui:Button>
+                <ui:Button name="AvailableTower_Instance" class="tower-card off-display">
+                    <ui:VisualElement name="icon" class="tower-card__icon" />
+                    <ui:VisualElement name="cost-panel" class="tower-card__cost-panel">
+                        <ui:Label text="150" name="cost" class="tower-card__cost-label" />
+                    </ui:VisualElement>
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:ScrollView>
+        <ui:VisualElement name="panel-footer" class="panel-footer">
+            <ui:Button text="To Battle!" name="confirm-button" class="confirm-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

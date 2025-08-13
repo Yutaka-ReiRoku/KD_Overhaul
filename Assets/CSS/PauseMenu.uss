@@ -1,0 +1,43 @@
+﻿/* PauseMenu.uss */
+.pause-menu-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6); 
+    
+    
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.pause-menu-container--visible {
+    display: flex;
+    opacity: 1;
+}
+
+.pause-menu {
+    width: 400px;
+    padding: 30px;
+    background-color: rgb(50, 60, 80);
+    border-radius: 15px;
+    border-color: rgb(120, 140, 180);
+    border-width: 3px;
+    align-items: center;
+}
+
+.pause-menu__title {
+    font-size: 40px;
+    -unity-font-style: bold;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.pause-menu__button {
+    width: 80%;
+    height: 55px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}

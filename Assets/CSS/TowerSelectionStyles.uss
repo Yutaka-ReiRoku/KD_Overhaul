@@ -1,0 +1,67 @@
+﻿/* TowerSelectionStyles.uss */
+
+
+#selection-bar {
+    flex-direction: row; 
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+
+.selection-slot {
+    width: 90px;
+    height: 90px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-left-color: rgb(140, 140, 140);
+    border-right-color: rgb(140, 140, 140);
+    border-top-color: rgb(140, 140, 140);
+    border-bottom-color: rgb(140, 140, 140);
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+#tower-panel {
+    flex-grow: 1; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    padding: 10px;
+}
+
+
+#tower-button {
+    width: 80px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin: 5px;
+    padding: 5px;
+}
+
+
+#tower-button:disabled {
+    opacity: 0.4;
+}
+
+
+#tower-icon {
+    flex-grow: 1; 
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+}
+
+
+#tower-name {
+    height: 20px;
+    color: white;
+    font-size: 12px;
+    -unity-text-align: middle-center;
+}
