@@ -43,18 +43,22 @@ public class GameManager : Singleton<GameManager>
 
         if (endGamePanelTemplate != null)
         {
-            endGamePanelInstance = endGamePanelTemplate.CloneTree();
-            endGamePanelInstance.style.position = Position.Absolute;
-            endGamePanelInstance.style.width = new Length(100, LengthUnit.Percent);
-            endGamePanelInstance.style.height = new Length(100, LengthUnit.Percent);
+            VisualElement panelInstance = endGamePanelTemplate.CloneTree();
 
-            endGamePanelInstance.pickingMode = PickingMode.Ignore;
+            panelInstance.style.position = Position.Absolute;
+            panelInstance.style.width = new Length(100, LengthUnit.Percent);
+            panelInstance.style.height = new Length(100, LengthUnit.Percent);
+            panelInstance.pickingMode = PickingMode.Ignore;
+            endGamePanelContainer = panelInstance.Q("end-game-panel-container");
+            endGamePanelContainer.pickingMode = PickingMode.Ignore;
+            titleLabel = panelInstance.Q<Label>("title-label");
+            primaryButton = panelInstance.Q<Button>("primary-button");
+            secondaryButton = panelInstance.Q<Button>("secondary-button");
 
-            endGamePanelContainer = endGamePanelInstance.Q("end-game-panel-container");
-            titleLabel = endGamePanelInstance.Q<Label>("title-label");
-            primaryButton = endGamePanelInstance.Q<Button>("primary-button");
-            secondaryButton = endGamePanelInstance.Q<Button>("secondary-button");
-            root.Add(endGamePanelInstance);
+            primaryButton.clicked += OnPrimaryEndGameButtonClicked;
+            secondaryButton.clicked += OnSecondaryEndGameButtonClicked;
+
+            root.Add(panelInstance);
         }
 
         if (pauseMenuTemplate != null)
@@ -144,6 +148,17 @@ public class GameManager : Singleton<GameManager>
         root.Add(rewardCard);
         rewardCard.RegisterCallback<ClickEvent>(evt => OnRewardCardClicked(rewardCard, rewardData));
     }
+
+    private void OnPrimaryEndGameButtonClicked()
+    {
+        if (currentState == GameState.Won) GoToNextLevel();
+        else if (currentState == GameState.Lost) RestartLevel();
+    }
+
+    private void OnSecondaryEndGameButtonClicked()
+    {
+        GoToMainMenu();
+    }
     private void OnRewardCardClicked(Button card, TowerData rewardData)
     {
         Debug.Log($"Collected reward: {rewardData.towerName}!");
@@ -182,7 +197,7 @@ public class GameManager : Singleton<GameManager>
         }
         if (intrudingEnemy != null) { intrudingEnemy.StartAttackingBase(); }
     }
-    private void GoToNextLevel() { SceneManager.LoadScene("LevelSelectScene"); }
+    private void GoToNextLevel() { SceneManager.LoadScene(0); }
     private void RestartLevel() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
     private void GoToMainMenu() { SceneManager.LoadScene(0); }
     private void OnMusicVolumeChanged(ChangeEvent<float> evt) { float volume = evt.newValue; SoundManager.Instance.SetMusicVolume(volume); PlayerPrefs.SetFloat("MusicVolume", volume); }
