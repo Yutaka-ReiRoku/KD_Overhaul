@@ -35,7 +35,6 @@ public class Soldier : TowerBase
         {
             currentTarget = meleeTarget.transform;
 
-            FaceTarget();
 
             if (abilityCooldowns[1] <= 0)
             {
@@ -54,7 +53,6 @@ public class Soldier : TowerBase
             if (rangedTarget != null)
             {
                 currentTarget = rangedTarget.transform;
-                FaceTarget();
 
                 if (abilityCooldowns[2] <= 0)
                 {
@@ -79,19 +77,7 @@ public class Soldier : TowerBase
         abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
 
-    private void FaceTarget()
-    {
-        if (currentTarget == null) return;
-
-        if (currentTarget.position.x < transform.position.x)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-    }
+    
 
     public void AnimationEvent_DealMeleeDamage()
     {
