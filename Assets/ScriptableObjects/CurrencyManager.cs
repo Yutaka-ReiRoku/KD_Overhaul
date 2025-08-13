@@ -5,7 +5,6 @@ using System;
 [CreateAssetMenu(fileName = "InGameCurrencyManager", menuName = "Tower Defense/In-Game Currency Manager")]
 public class CurrencyManager : ScriptableObject
 {
-    // Trong CurrencyManager.cs
     public static CurrencyManager Instance { get; private set; }
     
 

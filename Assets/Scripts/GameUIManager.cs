@@ -68,7 +68,7 @@ public class GameUIManager : MonoBehaviour
     }
     void Start()
     {
-
+        Time.timeScale = 1f;
         UpdateUI();
 
         Sequence introSequence = DOTween.Sequence();

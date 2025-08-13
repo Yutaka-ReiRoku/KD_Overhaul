@@ -196,6 +196,7 @@ public class GameManager : Singleton<GameManager>
             if (enemy != intrudingEnemy) Destroy(enemy.gameObject);
         }
         if (intrudingEnemy != null) { intrudingEnemy.StartAttackingBase(); }
+        Time.timeScale = 0f;
     }
     private void GoToNextLevel() { SceneManager.LoadScene(0); }
     private void RestartLevel() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }

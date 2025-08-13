@@ -119,6 +119,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
     private void StartGame(TransitionEndEvent evt)
     {
+        Time.timeScale = 1f;
         loadingPanel.UnregisterCallback<TransitionEndEvent>(StartGame);
         SceneManager.LoadScene(1);
     }
@@ -215,6 +216,14 @@ public class MainMenuController : Singleton<MainMenuController>
 
         newPlayerData.ownedTowerIDs.Add("aaa");
         newPlayerData.ownedTowerIDs.Add("bbb");
+        newPlayerData.ownedTowerIDs.Add("ccc");
+        newPlayerData.ownedTowerIDs.Add("ddd");
+        newPlayerData.ownedTowerIDs.Add("eee");
+        newPlayerData.ownedTowerIDs.Add("fff");
+        newPlayerData.ownedTowerIDs.Add("ggg");
+        newPlayerData.ownedTowerIDs.Add("hhh");
+
+        newPlayerData.maxLevelReached = 2;
 
         SaveSystem.Save(newPlayerData, username);
 

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24462d17431d80747892f07953662919, type: 3}
   m_Name: MainCurrencyManager
   m_EditorClassIdentifier: 
-  startingCurrency: 150
+  startingCurrency: 1500
