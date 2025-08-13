@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66ff551c635b8064d9c6619b86db40ac, type: 3}
-  m_Name: NewEnemyData 3
+  m_Name: Skeleton
   m_EditorClassIdentifier: 
   health: 100
   moveSpeed: 1
