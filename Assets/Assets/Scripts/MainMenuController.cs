@@ -223,7 +223,7 @@ public class MainMenuController : Singleton<MainMenuController>
         newPlayerData.ownedTowerIDs.Add("ggg");
         newPlayerData.ownedTowerIDs.Add("hhh");
 
-        newPlayerData.maxLevelReached = 2;
+        newPlayerData.maxLevelReached = 1;
 
         SaveSystem.Save(newPlayerData, username);
 

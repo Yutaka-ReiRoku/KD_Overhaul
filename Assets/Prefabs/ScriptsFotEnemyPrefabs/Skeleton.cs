@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class Skeleton : EnemyBase
+public class Skeletom : EnemyBase
 {
     private Ability currentAbility;
 
     protected override void Update()
     {
         base.Update();
+
+        if (isAttackingBase) return;
 
         if (currentTarget != null && currentTarget.Health > 0)
         {

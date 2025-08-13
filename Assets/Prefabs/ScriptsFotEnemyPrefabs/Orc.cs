@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class MeleeEnemy : EnemyBase
+public class Orc : EnemyBase
 {
     private Ability currentAbility;
 
     protected override void Update()
     {
         base.Update();
+
+        if (isAttackingBase) return;
 
         if (currentTarget != null && currentTarget.Health > 0)
         {
@@ -35,7 +37,7 @@ public class MeleeEnemy : EnemyBase
     private void PerformAbility(Ability ability, int abilityIndex)
     {
         currentAbility = ability;
-        RunAnimation(ability.animationName, 6);
+        RunAnimation(ability.animationName, 3);
         abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
 

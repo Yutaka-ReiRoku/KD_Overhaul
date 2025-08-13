@@ -19,7 +19,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     protected List<float> abilityCooldowns;
 
     // State
-    private bool isAttackingBase = false;
+    protected bool isAttackingBase = false;
 
     // Animation Management
     protected int currentAnimWeight = 0;
@@ -68,7 +68,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     public void StartAttackingBase()
     {
         isAttackingBase = true;
-        RunAnimation("Attack", 5);
+        RunAnimation("Attack", 3);
     }
 
     protected virtual void Die()

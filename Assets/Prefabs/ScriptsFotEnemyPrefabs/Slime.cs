@@ -8,6 +8,8 @@ public class Slime : EnemyBase
     {
         base.Update();
 
+        if (isAttackingBase) return;
+
         if (currentTarget != null && currentTarget.Health > 0)
         {
             TryToAttack();
