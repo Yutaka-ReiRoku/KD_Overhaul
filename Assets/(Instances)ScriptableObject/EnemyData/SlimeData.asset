@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Slime
   enemyPrefab: {fileID: 5004467475623406546, guid: 9d5b0e250e1fee4448452410decd5ecc, type: 3}
-  health: 100
+  health: 150
   moveSpeed: 0.5
   abilities:
   - abilityName: AttackOne

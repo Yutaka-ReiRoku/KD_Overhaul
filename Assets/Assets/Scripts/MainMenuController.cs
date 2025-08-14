@@ -218,14 +218,10 @@ public class MainMenuController : Singleton<MainMenuController>
             persistentCoins = 50
         };
 
-        newPlayerData.ownedTowerIDs.Add("aaa");
-        newPlayerData.ownedTowerIDs.Add("bbb");
-        newPlayerData.ownedTowerIDs.Add("ccc");
-        newPlayerData.ownedTowerIDs.Add("ddd");
-        newPlayerData.ownedTowerIDs.Add("eee");
-        newPlayerData.ownedTowerIDs.Add("fff");
-        newPlayerData.ownedTowerIDs.Add("ggg");
-        newPlayerData.ownedTowerIDs.Add("hhh");
+        newPlayerData.ownedTowerIDs.Add("Archer");
+        newPlayerData.ownedTowerIDs.Add("Knight");
+        newPlayerData.ownedTowerIDs.Add("Swordsman");
+        newPlayerData.ownedTowerIDs.Add("Soldier");
 
         newPlayerData.maxLevelReached = 1;
 

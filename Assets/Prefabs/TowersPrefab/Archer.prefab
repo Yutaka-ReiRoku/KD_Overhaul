@@ -212,7 +212,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.25, y: 0}
   m_Radius: 0.5
 --- !u!50 &3682526097486293189
 Rigidbody2D:
