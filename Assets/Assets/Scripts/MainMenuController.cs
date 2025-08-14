@@ -193,8 +193,8 @@ public class MainMenuController : Singleton<MainMenuController>
         string username = signupUsernameField.value;
         string email = signupEmailField.value;
         string password = signupPasswordField.value;
-
-        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+        LoginManager.Instance.RegisterUser.Register(username,email,password);        
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))            
         {
             ShowError(ErrorLabel, "Username and Password cannot be empty.");
             return;
@@ -204,8 +204,12 @@ public class MainMenuController : Singleton<MainMenuController>
         {
             ShowError(ErrorLabel, "Username already exists.");
             return;
+        }        
+        if (!LoginManager.Instance.RegisterUser.RegisterIsSuccess)
+        {
+            ShowError(ErrorLabel,LoginManager.Instance.RegisterUser.message);
+            return;
         }
-
         PlayerData newPlayerData = new PlayerData
         {
             playerName = username,
@@ -239,9 +243,8 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         string username = loginUsernameField.value;
         string password = loginPasswordField.value;
-
-        PlayerData playerData = SaveSystem.Load(username);
-
+        LoginManager.Instance.LoginUser.Login(username,password);      
+        PlayerData playerData = SaveSystem.Load(username);        
         if (playerData == null)
         {
             ShowError(ErrorLabel, "Username does not exist.");
@@ -253,7 +256,11 @@ public class MainMenuController : Singleton<MainMenuController>
             ShowError(ErrorLabel, "Incorrect password.");
             return;
         }
-
+        if (!LoginManager.Instance.LoginUser.LoginIsSuccess)
+        {
+            ShowError(ErrorLabel, LoginManager.Instance.LoginUser.message);
+            return;
+        }
         Login(username);
     }
 
