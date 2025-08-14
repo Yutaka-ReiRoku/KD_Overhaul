@@ -1,9 +1,8 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements">
-    <Style src="project:/Assets/CSS/PauseMenu.uss" />
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/CSS/PauseMenu.uss?fileID=7433441132597879392&amp;guid=a04e2b80c028e4b4693de88c193e9781&amp;type=3#PauseMenu" />
     <ui:VisualElement name="pause-menu-container" class="pause-menu-container">
         <ui:VisualElement name="pause-menu" class="pause-menu">
             <ui:Label text="Game Paused" class="pause-menu__title" />
-
             <ui:Slider name="music-slider" label="Music Volume" low-value="0.0001" high-value="1" />
             <ui:Slider name="sfx-slider" label="SFX Volume" low-value="0.0001" high-value="1" />
             <ui:Button name="resume-button" text="Resume" class="pause-menu__button" />

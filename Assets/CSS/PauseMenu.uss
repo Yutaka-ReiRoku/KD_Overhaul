@@ -1,13 +1,10 @@
-﻿/* PauseMenu.uss */
 .pause-menu-container {
     position: absolute;
     width: 100%;
     height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.6); 
-    
-    
+    background-color: rgba(0, 0, 0, 0.6);
     display: none;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -19,7 +16,7 @@
 }
 
 .pause-menu {
-    width: 400px;
+    width: 450px;
     padding: 30px;
     background-color: rgb(50, 60, 80);
     border-radius: 15px;
@@ -35,9 +32,57 @@
     margin-bottom: 25px;
 }
 
+.unity-slider {
+    width: 90%;
+    margin-bottom: 20px;
+    height: 30px;
+    align-items: center;
+}
+
+.unity-slider > .unity-label {
+    color: rgb(220, 220, 220);
+    font-size: 18px;
+    min-width: 140px;
+    -unity-text-align: middle-left;
+}
+
+.unity-slider > .unity-text-field {
+    display: none;
+}
+
+.unity-slider #unity-tracker {
+    height: 10px;
+    background-color: rgb(30, 40, 60);
+    border-radius: 5px;
+}
+
+.unity-slider #unity-dragger {
+    width: 24px;
+    height: 24px;
+    background-color: rgb(150, 180, 255);
+    border-radius: 12px;
+    border-color: white;
+    border-width: 2px;
+}
+
 .pause-menu__button {
     width: 80%;
     height: 55px;
     font-size: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    transition-timing-function: ease-out-elastic;
+    transition-duration: 0.5s;
+}
+
+.pause-menu__button:hover {
+    scale: 1.1 1.1;
+}
+
+.pause-menu__button:active {
+    scale: 1.05 1.05;
 }

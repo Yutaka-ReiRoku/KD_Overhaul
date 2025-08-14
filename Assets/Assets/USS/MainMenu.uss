@@ -317,6 +317,42 @@
     width: 60%;
 }
 
+
+
+.unity-slider {
+    width: 90%;
+    margin-bottom: 20px;
+    height: 30px;
+    align-items: center;
+}
+
+.unity-slider > .unity-label {
+    color: rgb(220, 220, 220);
+    font-size: 18px;
+    min-width: 140px;
+    -unity-text-align: middle-left;
+}
+
+.unity-slider > .unity-text-field {
+    display: none;
+}
+
+.unity-slider #unity-tracker {
+    height: 10px;
+    background-color: rgb(30, 40, 60);
+    border-radius: 5px;
+}
+
+.unity-slider #unity-dragger {
+    width: 24px;
+    height: 24px;
+    background-color: rgb(150, 180, 255);
+    border-radius: 12px;
+    border-color: white;
+    border-width: 2px;
+}
+
+
 .modal-overlay {
     position: absolute;
     top: 0;
