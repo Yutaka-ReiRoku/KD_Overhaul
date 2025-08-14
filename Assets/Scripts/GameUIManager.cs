@@ -57,6 +57,10 @@ public class GameUIManager : MonoBehaviour
     private VisualElement loadingPanel;
 
 
+    private Coroutine currencyAnimationCoroutine;
+    private int lastDisplayedCurrency = 0;
+
+
     private TemplateContainer towersBarInstance;
     private TemplateContainer towersPanelInstance;
     private void OnEnable()
@@ -108,7 +112,8 @@ public class GameUIManager : MonoBehaviour
 
         currentPhase = GamePhase.SquadSelection;
 
-        UpdateAllCardStates(currencyManager.GetCurrentCurrency());
+        lastDisplayedCurrency = currencyManager.GetCurrentCurrency();
+        UpdateAllCardStates(lastDisplayedCurrency);
     }
 
 
@@ -283,6 +288,13 @@ public class GameUIManager : MonoBehaviour
 
     private void UpdateAllCardStates(int newCurrency)
     {
+        if (currencyAnimationCoroutine != null)
+        {
+            StopCoroutine(currencyAnimationCoroutine);
+        }
+        currencyAnimationCoroutine = StartCoroutine(AnimateCurrencyText(newCurrency));
+
+
         currencyLabel.text = newCurrency.ToString();
 
         foreach (var barCard in barSlots)
@@ -297,6 +309,35 @@ public class GameUIManager : MonoBehaviour
                 }
             }
         }
+    }
+
+
+    private System.Collections.IEnumerator AnimateCurrencyText(int targetValue)
+    {
+        float duration = 0.5f;
+        float elapsedTime = 0f;
+        int startValue = lastDisplayedCurrency;
+
+        IStyle style = currencyLabel.style;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float progress = elapsedTime / duration;
+
+            int currentValue = (int)Mathf.Lerp(startValue, targetValue, progress);
+            currencyLabel.text = currentValue.ToString();
+
+            float scaleValue = 1f + Mathf.Sin(progress * Mathf.PI) * 0.5f;
+            style.scale = new Scale(new Vector2(scaleValue, scaleValue));
+
+            yield return null;
+        }
+        currencyLabel.text = targetValue.ToString();
+        style.scale = new Scale(Vector2.one);
+
+        lastDisplayedCurrency = targetValue;
+        currencyAnimationCoroutine = null;
     }
 
     private System.Collections.IEnumerator CooldownCoroutine(Button card, float duration)
