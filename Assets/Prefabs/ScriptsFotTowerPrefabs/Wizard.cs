@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Soldier : TowerBase
+public class Wizard : TowerBase
 {
     [Header("Soldier Specifics")]
     [Tooltip("Collider cho phạm vi tấn công cận chiến")]
