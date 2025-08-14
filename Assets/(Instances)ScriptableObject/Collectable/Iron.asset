@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f4037135ff935648ae783cee2d3ba80, type: 3}
-  m_Name: NewLevelData 1
+  m_Script: {fileID: 11500000, guid: a6b5549e3f6b8f740b064b846702b82b, type: 3}
+  m_Name: Iron
   m_EditorClassIdentifier: 
-  allItems:
-  - WaveID: 0
-    TimeAfterWave: 0
-    TimeBetweenSpawns: 0
-    EnemyGroups: 
+  itemSprite: {fileID: -6055129183056458621, guid: 2538cecc618c6784bb347c4222a2f067, type: 3}
+  colliderSize: {x: 0.5, y: 0.5}
+  currencyValue: 25
+  despawnTime: 15

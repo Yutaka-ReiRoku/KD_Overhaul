@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71bf33ddf3a5c044a1aaa9e23b4f1c0, type: 3}
+  m_Name: Lancer
+  m_EditorClassIdentifier: 
+  towerName: Lancer
+  towerIcon: {fileID: 3465079563596065642, guid: 83b843950ef10ab4d98223d85a37b772, type: 3}
+  cost: 350
+  description: eee
+  cooldownTime: 30
+  towerPrefab: {fileID: 4153851973378603748, guid: 2a1630832425ab9468b55e099abccaad, type: 3}
+  health: 500
+  abilities:
+  - abilityName: AttackOne
+    animationName: AttackOne
+    cooldownDuration: 3
+    damage: 10
+    projectilePrefab: {fileID: 0}
+  - abilityName: AttackTwo
+    animationName: AttackTwo
+    cooldownDuration: 6
+    damage: 20
+    projectilePrefab: {fileID: 0}
+  - abilityName: AttackThree
+    animationName: AttackThree
+    cooldownDuration: 12
+    damage: 15
+    projectilePrefab: {fileID: 0}

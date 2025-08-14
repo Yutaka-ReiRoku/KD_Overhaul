@@ -220,7 +220,6 @@ public class MainMenuController : Singleton<MainMenuController>
 
         newPlayerData.ownedTowerIDs.Add("Archer");
         newPlayerData.ownedTowerIDs.Add("Knight");
-        newPlayerData.ownedTowerIDs.Add("Swordsman");
         newPlayerData.ownedTowerIDs.Add("Soldier");
 
         newPlayerData.maxLevelReached = 1;

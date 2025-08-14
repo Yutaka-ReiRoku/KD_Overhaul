@@ -44,11 +44,13 @@ public class Archer : TowerBase
 
                 if (abilityCooldowns[0] <= 0)
                 {
+                    isAttacking = true;
                     PerformAbility(towerData.abilities[0], 0);
                     return;
                 }
                 if (abilityCooldowns[1] <= 0)
                 {
+                    isAttacking = true;
                     PerformAbility(towerData.abilities[1], 1);
                     return;
                 }

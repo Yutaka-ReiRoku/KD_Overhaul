@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f4037135ff935648ae783cee2d3ba80, type: 3}
-  m_Name: NewLevelData 2
+  m_Name: Level3
   m_EditorClassIdentifier: 
   allItems:
   - WaveID: 0
     TimeAfterWave: 0
     TimeBetweenSpawns: 0
     EnemyGroups: 
+  rewardTowerData: {fileID: 11400000, guid: 9d29ec0b9f032014abdd6bae3f42e932, type: 2}
