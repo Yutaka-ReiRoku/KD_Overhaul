@@ -89,7 +89,7 @@
                     <ui:Slider name="SfxSlider" low-value="0" high-value="100" value="100" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Label name="LoginErrorLabel" picking-mode="Ignore" class="error-label" />
+            <ui:Label name="ErrorLabel" picking-mode="Ignore" class="error-label" />
             <ui:Label name="SignupErrorLabel" picking-mode="Ignore" class="error-label" style="top: 48%;" />
         </ui:VisualElement>
         <ui:VisualElement name="ExitConfirmationOverlay" class="modal-overlay panel-hidden">

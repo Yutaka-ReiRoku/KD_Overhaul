@@ -52,8 +52,8 @@ public class MainMenuController : Singleton<MainMenuController>
     private TextField signupEmailField;
     private TextField signupPasswordField;
 
-    private Label LoginErrorLabel;
-    private Label SigninErrorLabel;
+    private Label ErrorLabel;
+    private Label SignupErrorLabel;
 
     void OnEnable()
     {
@@ -85,8 +85,8 @@ public class MainMenuController : Singleton<MainMenuController>
         signupEmailField = root.Q<TextField>("RegisterEmail");
         signupPasswordField = root.Q<TextField>("RegisterPassword");
 
-        LoginErrorLabel = root.Q<Label>("LoginErrorLabel");
-        SigninErrorLabel = root.Q<Label>("SigninErrorLabel");
+        ErrorLabel = root.Q<Label>("ErrorLabel");
+        SignupErrorLabel = root.Q<Label>("SignupErrorLabel");
     }
 
     private void RegisterButtonCallbacks()
@@ -153,8 +153,8 @@ public class MainMenuController : Singleton<MainMenuController>
 
     private void ShowPanel(VisualElement panelToShow, int order)
     {
-        LoginErrorLabel.style.display = DisplayStyle.None;
-        SigninErrorLabel.style.display = DisplayStyle.None;
+        ErrorLabel.style.display = DisplayStyle.None;
+        SignupErrorLabel.style.display = DisplayStyle.None;
         if (currentPanel == panelToShow || panelToShow == null)
         {
             return;
@@ -199,18 +199,18 @@ public class MainMenuController : Singleton<MainMenuController>
         LoginManager.Instance.RegisterUser.Register(username,email,password);        
         if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))            
         {
-            ShowError(SigninErrorLabel, "Username and Password cannot be empty.");
+            ShowError(SignupErrorLabel, "Username and Password cannot be empty.");
             return;
         }
 
         if (SaveSystem.DoesProfileExist(username))
         {
-            ShowError(SigninErrorLabel, "Username already exists.");
+            ShowError(SignupErrorLabel, "Username already exists.");
             return;
         }        
         if (!LoginManager.Instance.RegisterUser.RegisterIsSuccess)
         {
-            ShowError(SigninErrorLabel, LoginManager.Instance.RegisterUser.message);
+            ShowError(SignupErrorLabel, LoginManager.Instance.RegisterUser.message);
             return;
         }
         PlayerData newPlayerData = new PlayerData
@@ -245,18 +245,18 @@ public class MainMenuController : Singleton<MainMenuController>
         PlayerData playerData = SaveSystem.Load(username);        
         if (playerData == null)
         {
-            ShowError(LoginErrorLabel, "Username does not exist.");
+            ShowError(ErrorLabel, "Username does not exist.");
             return;
         }
 
         if (playerData.password != password)
         {
-            ShowError(LoginErrorLabel, "Incorrect password.");
+            ShowError(ErrorLabel, "Incorrect password.");
             return;
         }
         if (!LoginManager.Instance.LoginUser.LoginIsSuccess)
         {
-            ShowError(LoginErrorLabel, LoginManager.Instance.LoginUser.message);
+            ShowError(ErrorLabel, LoginManager.Instance.LoginUser.message);
             return;
         }
         Login(username);
