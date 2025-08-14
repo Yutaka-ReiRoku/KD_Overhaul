@@ -33,19 +33,7 @@ public class Archer : TowerBase
         EnemyBase meleeTarget = FindClosestEnemyInCollider(meleeRangeCollider);
         if (meleeTarget != null)
         {
-            currentTarget = meleeTarget.transform;
 
-
-            if (abilityCooldowns[1] <= 0)
-            {
-                PerformAbility(towerData.abilities[1], 1);
-                return;
-            }
-            if (abilityCooldowns[0] <= 0)
-            {
-                PerformAbility(towerData.abilities[0], 0);
-                return;
-            }
         }
         else
         {
@@ -54,9 +42,14 @@ public class Archer : TowerBase
             {
                 currentTarget = rangedTarget.transform;
 
-                if (abilityCooldowns[2] <= 0)
+                if (abilityCooldowns[0] <= 0)
                 {
-                    PerformAbility(towerData.abilities[2], 2);
+                    PerformAbility(towerData.abilities[0], 0);
+                    return;
+                }
+                if (abilityCooldowns[1] <= 0)
+                {
+                    PerformAbility(towerData.abilities[1], 1);
                     return;
                 }
             }
@@ -77,27 +70,31 @@ public class Archer : TowerBase
         abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
 
-    
 
-    public void AnimationEvent_DealMeleeDamage()
-    {
-        float damage = towerData.abilities[0].damage;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(meleeRangeCollider.transform.position, ((CircleCollider2D)meleeRangeCollider).radius);
-        foreach (var hit in hits)
-        {
-            if (hit.TryGetComponent<IDamageable>(out IDamageable target) && hit.CompareTag("Enemy"))
-            {
-                target.TakeDamage(damage);
-            }
-        }
-    }
-
-    public void AnimationEvent_FireProjectile()
+    public void AnimationEvent_FireProjectile1()
     {
         if (currentTarget == null) return;
 
-        Ability bowAbility = towerData.abilities[2];
+        Ability bowAbility = towerData.abilities[0];
+
+        Vector2 direction = (currentTarget.position - firePoint.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+        GameObject projectileGO = Instantiate(bowAbility.projectilePrefab, firePoint.position, rotation);
+        Projectile projectile = projectileGO.GetComponent<Projectile>();
+        if (projectile != null)
+        {
+            projectile.Seek(currentTarget, bowAbility.damage);
+        }
+    }
+
+    public void AnimationEvent_FireProjectile2()
+    {
+        if (currentTarget == null) return;
+
+        Ability bowAbility = towerData.abilities[1];
 
         Vector2 direction = (currentTarget.position - firePoint.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

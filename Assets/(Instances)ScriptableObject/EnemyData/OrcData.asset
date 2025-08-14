@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: OrcData
   m_EditorClassIdentifier: 
   enemyName: Orc
-  enemyPrefab: {fileID: 2034364501845198710, guid: 96a1e45cd493ee442b424c83cccd52a5, type: 3}
+  enemyPrefab: {fileID: 8060292819750760730, guid: b99ce96c6e7537a4eb0ef0466d578d70, type: 3}
   health: 100
-  moveSpeed: 0.75
+  moveSpeed: 0.5
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne
-    cooldownDuration: 1
+    cooldownDuration: 5
     damage: 10
     projectilePrefab: {fileID: 0}
   - abilityName: AttackTwo
     animationName: AttackTwo
-    cooldownDuration: 1
+    cooldownDuration: 6
     damage: 15
     projectilePrefab: {fileID: 0}

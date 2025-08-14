@@ -1,4 +1,4 @@
-﻿// Soldier.cs (Final Version)
+﻿
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -35,7 +35,11 @@ public class KnightTemplar : TowerBase
         {
             currentTarget = meleeTarget.transform;
 
-
+            if (abilityCooldowns[2] <= 0)
+            {
+                PerformAbility(towerData.abilities[2], 2);
+                return;
+            }
             if (abilityCooldowns[1] <= 0)
             {
                 PerformAbility(towerData.abilities[1], 1);
@@ -47,21 +51,6 @@ public class KnightTemplar : TowerBase
                 return;
             }
         }
-        else
-        {
-            EnemyBase rangedTarget = FindClosestEnemyInCollider(rangedRangeCollider);
-            if (rangedTarget != null)
-            {
-                currentTarget = rangedTarget.transform;
-
-                if (abilityCooldowns[2] <= 0)
-                {
-                    PerformAbility(towerData.abilities[2], 2);
-                    return;
-                }
-            }
-        }
-
         if (currentAnimWeight == 0)
         {
             RunAnimation("Idle", 0);
@@ -77,9 +66,9 @@ public class KnightTemplar : TowerBase
         abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
 
-    
 
-    public void AnimationEvent_DealMeleeDamage()
+
+    public void AnimationEvent_DealMeleeDamage1()
     {
         float damage = towerData.abilities[0].damage;
 
@@ -92,22 +81,30 @@ public class KnightTemplar : TowerBase
             }
         }
     }
-
-    public void AnimationEvent_FireProjectile()
+    public void AnimationEvent_DealMeleeDamage2()
     {
-        if (currentTarget == null) return;
+        float damage = towerData.abilities[1].damage;
 
-        Ability bowAbility = towerData.abilities[2];
-
-        Vector2 direction = (currentTarget.position - firePoint.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.Euler(0, 0, angle);
-
-        GameObject projectileGO = Instantiate(bowAbility.projectilePrefab, firePoint.position, rotation);
-        Projectile projectile = projectileGO.GetComponent<Projectile>();
-        if (projectile != null)
+        Collider2D[] hits = Physics2D.OverlapCircleAll(meleeRangeCollider.transform.position, ((CircleCollider2D)meleeRangeCollider).radius);
+        foreach (var hit in hits)
         {
-            projectile.Seek(currentTarget, bowAbility.damage);
+            if (hit.TryGetComponent<IDamageable>(out IDamageable target) && hit.CompareTag("Enemy"))
+            {
+                target.TakeDamage(damage);
+            }
+        }
+    }
+    public void AnimationEvent_DealMeleeDamage3()
+    {
+        float damage = towerData.abilities[2].damage;
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(meleeRangeCollider.transform.position, ((CircleCollider2D)meleeRangeCollider).radius);
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent<IDamageable>(out IDamageable target) && hit.CompareTag("Enemy"))
+            {
+                target.TakeDamage(damage);
+            }
         }
     }
 

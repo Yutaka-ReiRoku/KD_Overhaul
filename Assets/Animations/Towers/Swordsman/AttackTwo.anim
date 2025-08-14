@@ -116,21 +116,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.25
-    functionName: AnimationEvent_DealMeleeDamage
+    functionName: AnimationEvent_DealMeleeDamage2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
-    functionName: AnimationEvent_DealMeleeDamage
+  - time: 0.51666665
+    functionName: AnimationEvent_DealMeleeDamage2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: AnimationEvent_DealMeleeDamage
+    functionName: AnimationEvent_DealMeleeDamage2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

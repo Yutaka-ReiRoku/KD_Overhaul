@@ -205,10 +205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09524e12ce5b57c4ea51c112ac17e7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerData: {fileID: 0}
-  meleeRangeCollider: {fileID: 0}
-  rangedRangeCollider: {fileID: 0}
-  firePoint: {fileID: 0}
+  towerData: {fileID: 11400000, guid: 6076e2e4d39fefc4dbdecc3fa0c2c066, type: 2}
+  meleeRangeCollider: {fileID: 5017581562377549307}
+  rangedRangeCollider: {fileID: 6256268245133286203}
+  firePoint: {fileID: 1986852718167115855}
 --- !u!58 &2793561499069056181
 CircleCollider2D:
   m_ObjectHideFlags: 0

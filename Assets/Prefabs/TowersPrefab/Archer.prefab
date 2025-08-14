@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0aee10edb08d74ab4f9cef84fdaf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerData: {fileID: 0}
+  towerData: {fileID: 11400000, guid: aa57e78c14cd2f84591498040c609db6, type: 2}
   meleeRangeCollider: {fileID: 6231499471070384313}
   rangedRangeCollider: {fileID: 7204174756320201758}
   firePoint: {fileID: 4006329477228183615}
