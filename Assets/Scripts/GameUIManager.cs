@@ -113,7 +113,7 @@ public class GameUIManager : MonoBehaviour
         currentPhase = GamePhase.SquadSelection;
         currencyManager.UpdateInitalCurrency();
         lastDisplayedCurrency = currencyManager.GetCurrentCurrency();
-        UpdateAllCardStates(lastDisplayedCurrency);
+        UpdateAllCardStates(currencyManager.GetCurrentCurrency());
     }
 
 
