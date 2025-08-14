@@ -24,6 +24,7 @@ public class CurrencyManager : ScriptableObject
 
     public int GetCurrentCurrency()
     {
+        Debug.Log(_currentCurrency);
         return _currentCurrency;
     }
 
