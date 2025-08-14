@@ -7,8 +7,6 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
-    public bool isLoggedIn = false;
-
     [SerializeField] private AudioMixer mainMixer;
     [SerializeField] private Sound[] sounds;
 

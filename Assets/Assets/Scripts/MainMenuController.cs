@@ -63,8 +63,8 @@ public class MainMenuController : Singleton<MainMenuController>
 
         RegisterButtonCallbacks();
 
-        root.schedule.Execute(() => { loadingPanel.RemoveFromClassList("loading-panel-active"); if (SoundManager.Instance.isLoggedIn == true) PerformLogin(); }).ExecuteLater(1500);
-        root.schedule.Execute(() => { if (SoundManager.Instance.isLoggedIn == false) ShowPanelByOrder(1); }).ExecuteLater(2500);
+        root.schedule.Execute(() => { loadingPanel.RemoveFromClassList("loading-panel-active"); if (currentPlayerSO.isLoggedin == true) PerformLogin(); }).ExecuteLater(1500);
+        root.schedule.Execute(() => { if (currentPlayerSO.isLoggedin == false) ShowPanelByOrder(1); }).ExecuteLater(2500);
     }
 
     private void InitializeElements()
@@ -127,9 +127,10 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     private void PerformLogin()
     {
-        SoundManager.Instance.isLoggedIn = true;
+        currentPlayerSO.isLoggedin = true;
         navPanel.RemoveFromClassList(NAV_PANEL_HIDDEN_CLASS);
         ShowPanelByOrder(3);
+        LevelSelectManager.Instance.LevelButtonLoad();
         loginUsernameField.value = "";
         loginPasswordField.value = "";
         signupUsernameField.value = "";
@@ -139,7 +140,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
     private void PerformLogout()
     {
-        SoundManager.Instance.isLoggedIn = false;
+        currentPlayerSO.isLoggedin = false;
         navPanel.AddToClassList(NAV_PANEL_HIDDEN_CLASS);
         ShowPanelByOrder(1);
     }
@@ -244,7 +245,6 @@ public class MainMenuController : Singleton<MainMenuController>
                         () => {
                             currentPlayerSO.LoadFrom(newPlayerData);
                             PerformLogin();
-                            LevelSelectManager.Instance.LevelButtonLoad();
                         },
                         (errorMsg) => { ShowError(ErrorLabel, $"Failed to save initial data: {errorMsg}"); }
                     );
@@ -258,7 +258,6 @@ public class MainMenuController : Singleton<MainMenuController>
                             {
                                 currentPlayerSO.LoadFrom(playerData);
                                 PerformLogin();
-                                LevelSelectManager.Instance.LevelButtonLoad();
                             }
                             else
                             {

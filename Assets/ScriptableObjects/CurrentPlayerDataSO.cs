@@ -9,6 +9,8 @@ public class CurrentPlayerDataSO : ScriptableObject
     [Header("Player Info")]
     public string playerName;
 
+    public bool isLoggedin = false;
+
     [Header("Player Stats")]
     public int persistentCoins;
     public List<string> ownedTowerIDs;
