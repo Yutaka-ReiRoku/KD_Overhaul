@@ -128,6 +128,16 @@
     margin-top: 10px;
     background-image: url("project://database/Assets/PlayFabEditorExtensions/Editor/UI/Images/green.png?fileID=2800000&guid=f30842e29e3a14ecea9b07a2e8f04c55&type=3#green");
     -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgba(0, 0, 0, 0.59);
+    border-right-color: rgba(0, 0, 0, 0.59);
+    border-top-color: rgba(0, 0, 0, 0.59);
+    border-bottom-color: rgba(0, 0, 0, 0.59);
+    transition-timing-function: ease-out-elastic;
+    transition-duration: 0.5s;
 }
 
 .link-label {
@@ -317,8 +327,6 @@
     width: 60%;
 }
 
-
-
 .unity-slider {
     width: 90%;
     margin-bottom: 20px;
@@ -351,7 +359,6 @@
     border-color: white;
     border-width: 2px;
 }
-
 
 .modal-overlay {
     position: absolute;
@@ -477,4 +484,12 @@
 #unity-text-input {
     background-image: url("project://database/Assets/Gentleland/SteampunkUI/Art/Steampunk_UI_Buttons_2.png?fileID=-6513349321188212269&guid=f85c0b0d6e5acd64185eafcda5d6cba8&type=3#Steampunk_UI_Buttons_2_5");
     background-color: rgb(219, 255, 0);
+}
+
+.form-button:hover {
+    scale: 1.025 1.025;
+}
+
+.form-button:active {
+    scale: 0.975 0.975;
 }
