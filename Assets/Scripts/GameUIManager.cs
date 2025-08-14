@@ -103,6 +103,8 @@ public class GameUIManager : MonoBehaviour
 
         confirmButton.RegisterCallback<ClickEvent>(OnConfirmButtonClick);
 
+        confirmButton.SetEnabled(false);
+
 
         currentPhase = GamePhase.SquadSelection;
 
@@ -335,6 +337,7 @@ public class GameUIManager : MonoBehaviour
             emptyBarSlot.style.visibility = Visibility.Visible;
             activeCardsMap[emptyBarSlot] = clickedPanelCard;
             emptyBarSlot.RemoveFromClassList("slot--reserved");
+            UpdateConfirmButtonState();
         });
     }
 
@@ -357,6 +360,7 @@ public class GameUIManager : MonoBehaviour
             AnimateMove(clickedBarCard, correspondingPanelCard, clickedBarCard.userData as TowerData, () => {
                 correspondingPanelCard.SetEnabled(true);
                 clickedBarCard.userData = null;
+                UpdateConfirmButtonState();
             });
         }
     }
@@ -473,8 +477,6 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// </summary>
     private void HandleShovelClick(Tile clickedTile)
     {
         if (clickedTile.IsOccupied && clickedTile.TowerOnTile != null)
@@ -493,8 +495,6 @@ public class GameUIManager : MonoBehaviour
         DeselectShovel();
     }
 
-    /// <summary>
-    /// </summary>
     private void DeselectShovel()
     {
         isShovelSelected = false;
@@ -515,5 +515,24 @@ public class GameUIManager : MonoBehaviour
     public bool IsShovelSelected()
     {
         return isShovelSelected;
+    }
+
+
+
+    private void UpdateConfirmButtonState()
+    {
+        bool allBarSlotsFull = barSlots.All(slot => slot.style.visibility == Visibility.Visible);
+
+        var panelCards = cardGrid.Query<Button>().ToList();
+        bool allPanelCardsSelected = panelCards.All(card => !card.enabledSelf);
+
+        if (allBarSlotsFull || allPanelCardsSelected)
+        {
+            confirmButton.SetEnabled(true);
+        }
+        else
+        {
+            confirmButton.SetEnabled(false);
+        }
     }
 }
