@@ -481,11 +481,12 @@ public class GameUIManager : MonoBehaviour
     {
         if (clickedTile.IsOccupied && clickedTile.TowerOnTile != null)
         {
+            TowerData removedTowerData = clickedTile.TowerOnTile.Data;
+            int refundAmount = Mathf.RoundToInt(removedTowerData.cost * 0.5f);
+            currencyManager.AddCurrency(refundAmount);
             Debug.Log($"Removing tower {clickedTile.TowerOnTile.name} from tile.");
             Destroy(clickedTile.TowerOnTile.gameObject);
             clickedTile.SetEmpty();
-
-            currencyManager.AddCurrency(clickedTile.TowerData.cost);
         }
         else
         {

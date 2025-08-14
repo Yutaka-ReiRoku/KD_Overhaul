@@ -17,7 +17,6 @@ public class Tile : MonoBehaviour
     public bool IsOccupied { get; private set; } = false;
     public TowerBase TowerOnTile { get; private set; }
 
-    public TowerData TowerData { get; private set; }
 
     public void Start()
     {
@@ -64,7 +63,6 @@ public class Tile : MonoBehaviour
     {
         IsOccupied = true;
         TowerOnTile = tower;
-        TowerData = towerData;
         spriteRenderer.color = originalColor;
         originalColor = spriteRenderer.color;
     }
@@ -72,7 +70,6 @@ public class Tile : MonoBehaviour
     {
         IsOccupied = false;
         TowerOnTile = null;
-        TowerData = null;
         spriteRenderer.color = originalColor;
     }
 }

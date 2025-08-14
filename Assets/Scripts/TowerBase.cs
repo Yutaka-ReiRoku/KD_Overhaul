@@ -8,6 +8,8 @@ public abstract class TowerBase : MonoBehaviour, IDamageable
     [SerializeField] protected TowerData towerData;
     protected Animator animator;
 
+    public TowerData Data => towerData;
+
     // Stats
     protected float currentHealth;
     protected Transform currentTarget;
