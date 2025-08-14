@@ -37,16 +37,19 @@
     border-color: rgba(100, 150, 200, 0.5);
     transition-duration: 1s;
     position: absolute;
+    background-image: url("project://database/Assets/PlayFabEditorExtensions/Editor/UI/Images/underlineimg.png?fileID=2800000&guid=2d332125bb3615144b5dcd1cc1417006&type=3#underlineimg");
 }
 
 .view-title {
     font-size: 32px;
-    color: rgb(220, 220, 220);
+    color: rgb(0, 255, 17);
     -unity-text-align: middle-left;
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom-width: 1px;
     border-bottom-color: rgba(100, 150, 200, 0.5);
+    background-image: none;
+    -unity-font-style: bold;
 }
 
 .title-label {
@@ -65,7 +68,7 @@
     min-height: 50px;
     margin-bottom: 15px;
     font-size: 20px;
-    color: rgb(220, 220, 220);
+    color: rgb(137, 253, 124);
     background-color: rgba(30, 30, 30, 0.8);
     border-width: 1px;
     border-color: rgb(150, 150, 150);
@@ -75,6 +78,7 @@
     transition-duration: 0.2s, 0.3s;
     height: 7%;
     transition-timing-function: ease, ease-out-elastic;
+    -unity-font-style: bold;
 }
 
 .nav-button:hover {
@@ -104,29 +108,35 @@
 }
 
 .form-input > .unity-label {
-    color: rgb(180, 180, 180);
+    color: rgb(0, 223, 255);
     margin-bottom: 5px;
+    background-image: url("project://database/Assets/PlayFabEditorExtensions/Editor/UI/Images/underlineimg.png?fileID=2800000&guid=2d332125bb3615144b5dcd1cc1417006&type=3#underlineimg");
 }
 
 .form-input > .unity-text-input {
     background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: rgb(47, 41, 41);
     border-color: rgb(100, 100, 100);
     border-radius: 4px;
     padding: 8px;
+    background-image: none;
+    display: flex;
+    -unity-font-style: bold;
 }
 
 .form-button {
     width: 100%;
     min-height: 45px;
     margin-top: 10px;
+    background-image: url("project://database/Assets/PlayFabEditorExtensions/Editor/UI/Images/green.png?fileID=2800000&guid=f30842e29e3a14ecea9b07a2e8f04c55&type=3#green");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 .link-label {
-    color: rgb(120, 180, 255);
-    font-size: 14px;
+    color: rgb(255, 227, 21);
     margin-top: 20px;
     -unity-text-align: middle-center;
+    background-image: url("project://database/Assets/Tiny%20RPG%20Character%20Asset%20Pack%20v1.03%20-Full%2020%20Characters/Characters(100x100)/Enemies/Orc%20rider/Orc%20rider/Shadow%20sprites/Orc%20rider-shadow_death.png?fileID=-5581107019758982247&guid=25ddeed7fe6e1d545a416b47ea246540&type=3#Orc rider-shadow_death_2");
 }
 
 .link-label:hover {
@@ -172,6 +182,8 @@
     margin-bottom: 10px;
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+    background-image: url("project://database/Assets/Gentleland/SteampunkUI/Art/Steampunk_UI_Buttons_2.png?fileID=-6613772995676377648&guid=f85c0b0d6e5acd64185eafcda5d6cba8&type=3#Steampunk_UI_Buttons_2_2");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 .shop-item__icon {
@@ -179,12 +191,14 @@
     height: 64px;
     margin-right: 15px;
     background-color: rgba(255, 255, 255, 0.1);
+    background-image: none;
 }
 
 .shop-item__name {
     font-size: 20px;
     color: white;
     flex-grow: 1;
+    background-image: none;
 }
 
 .shop-item__price {
@@ -197,6 +211,7 @@
     width: 100px;
     transition-timing-function: ease-out-elastic;
     transition-duration: 0.3s;
+    background-image: url("project://database/Assets/Assets/Sprites_Instances/Carved_9Slides.png?fileID=2800000&guid=986a975dc11a06f4d9bfff231b680fbc&type=3#Carved_9Slides");
 }
 
 .shop-item__button:hover {
@@ -296,10 +311,12 @@
     margin-bottom: 25px;
     font-size: 18px;
     color: white;
+    background-image: none;
 }
 
 .settings-option > .unity-slider {
     width: 60%;
+    background-image: none;
 }
 
 .modal-overlay {
@@ -421,4 +438,8 @@
     display: none;
     position: absolute;
     top: 40%;
+}
+
+#unity-text-input {
+    background-image: url("project://database/Assets/Gentleland/SteampunkUI/Art/Steampunk_UI_Buttons_2.png?fileID=-6513349321188212269&guid=f85c0b0d6e5acd64185eafcda5d6cba8&type=3#Steampunk_UI_Buttons_2_5");
 }
