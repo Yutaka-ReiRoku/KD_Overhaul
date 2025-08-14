@@ -27,6 +27,10 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     // --- IDamageable Implementation ---
     public float Health => currentHealth;
 
+    protected bool isAttacking = false;
+
+    protected int attackIndex;
+
     public virtual void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
@@ -93,6 +97,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
 
     public void AnimationEvent_ResetAnimWeight()
     {
+        isAttacking = false;
         currentAnimWeight = 0;
     }
 

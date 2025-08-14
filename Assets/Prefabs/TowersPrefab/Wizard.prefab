@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5604132322545647671}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5124631509521875331}
   - component: {fileID: 3533061528319682752}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RangedRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3981035397940815606}
   - component: {fileID: 1413033940004633367}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MeleeRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 8681659386218836573}
   - component: {fileID: 8601446340391923083}
   - component: {fileID: 7666768454900662977}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Wizard
   m_TagString: Tower
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478710857620529884}
   - component: {fileID: 403530573223834390}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RangedRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 4848068084779136860}
   - component: {fileID: 6132227768527689193}
   - component: {fileID: 2142046451010262745}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ArmoredAxeman
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3010430936272812113}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5507454681749426960}
   - component: {fileID: 1743931180160832223}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MeleeRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

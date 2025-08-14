@@ -23,6 +23,8 @@ public abstract class TowerBase : MonoBehaviour, IDamageable
     // --- IDamageable Implementation ---
     public float Health => currentHealth;
 
+    protected bool isAttacking = false;
+
     public virtual void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
@@ -78,6 +80,7 @@ public abstract class TowerBase : MonoBehaviour, IDamageable
 
     public void AnimationEvent_ResetAnimWeight()
     {
+        isAttacking = false;
         currentAnimWeight = 0;
     }
 }

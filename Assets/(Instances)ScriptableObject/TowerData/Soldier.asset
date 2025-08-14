@@ -22,12 +22,12 @@ MonoBehaviour:
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne
-    cooldownDuration: 5
+    cooldownDuration: 6
     damage: 10
     projectilePrefab: {fileID: 0}
   - abilityName: AttackTwo
     animationName: AttackTwo
-    cooldownDuration: 6
+    cooldownDuration: 12
     damage: 15
     projectilePrefab: {fileID: 0}
   - abilityName: AttackThree

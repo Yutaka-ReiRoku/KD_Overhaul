@@ -36,9 +36,9 @@ public class Orc : EnemyBase
 
     private void PerformAbility(Ability ability, int abilityIndex)
     {
+        attackIndex = abilityIndex;
         currentAbility = ability;
         RunAnimation(ability.animationName, 3);
-        abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
 
     private void Move()
@@ -51,6 +51,7 @@ public class Orc : EnemyBase
     {
         if (currentTarget != null && currentAbility != null)
         {
+            abilityCooldowns[attackIndex] = enemyData.abilities[attackIndex].cooldownDuration;
             currentTarget.TakeDamage(currentAbility.damage);
         }
     }

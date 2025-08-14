@@ -24,6 +24,6 @@ MonoBehaviour:
     projectilePrefab: {fileID: 0}
   - abilityName: AttackTwo
     animationName: AttackTwo
-    cooldownDuration: 8
+    cooldownDuration: 12
     damage: 20
     projectilePrefab: {fileID: 0}

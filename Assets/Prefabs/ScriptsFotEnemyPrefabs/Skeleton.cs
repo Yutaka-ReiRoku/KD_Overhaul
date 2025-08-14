@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Skeletom : EnemyBase
+public class Skeleton : EnemyBase
 {
     private Ability currentAbility;
 
@@ -25,8 +25,9 @@ public class Skeletom : EnemyBase
     {
         for (int i = 0; i < enemyData.abilities.Count; i++)
         {
-            if (abilityCooldowns[i] <= 0)
+            if (abilityCooldowns[i] <= 0 && !isAttacking)
             {
+                isAttacking = true;
                 PerformAbility(enemyData.abilities[i], i);
                 return;
             }
@@ -36,9 +37,9 @@ public class Skeletom : EnemyBase
 
     private void PerformAbility(Ability ability, int abilityIndex)
     {
+        attackIndex = abilityIndex;
         currentAbility = ability;
         RunAnimation(ability.animationName, 3);
-        abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
 
     private void Move()
@@ -51,6 +52,7 @@ public class Skeletom : EnemyBase
     {
         if (currentTarget != null && currentAbility != null)
         {
+            abilityCooldowns[attackIndex] = enemyData.abilities[attackIndex].cooldownDuration;
             currentTarget.TakeDamage(currentAbility.damage);
         }
     }

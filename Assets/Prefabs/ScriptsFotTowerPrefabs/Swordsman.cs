@@ -1,6 +1,7 @@
 ﻿
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Playables;
 using UnityEngine;
 
 public class Swordsman : TowerBase
@@ -12,7 +13,6 @@ public class Swordsman : TowerBase
     [SerializeField] private Collider2D rangedRangeCollider;
     [Tooltip("Điểm bắn ra mũi tên")]
     [SerializeField] private Transform firePoint;
-
 
     protected override void Start()
     {
@@ -31,22 +31,25 @@ public class Swordsman : TowerBase
     private void DecideAndAct()
     {
         EnemyBase meleeTarget = FindClosestEnemyInCollider(meleeRangeCollider);
-        if (meleeTarget != null)
+        if (meleeTarget != null && !isAttacking)
         {
             currentTarget = meleeTarget.transform;
 
             if (abilityCooldowns[2] <= 0)
             {
+                isAttacking = true;
                 PerformAbility(towerData.abilities[2], 2);
                 return;
             }
             if (abilityCooldowns[1] <= 0)
             {
+                isAttacking = true;
                 PerformAbility(towerData.abilities[1], 1);
                 return;
             }
             if (abilityCooldowns[0] <= 0)
             {
+                isAttacking = true;
                 PerformAbility(towerData.abilities[0], 0);
                 return;
             }
@@ -62,17 +65,15 @@ public class Swordsman : TowerBase
     private void PerformAbility(Ability ability, int abilityIndex)
     {
         RunAnimation(ability.animationName, 3);
-
-        abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
-
-    
 
     public void AnimationEvent_DealMeleeDamage1()
     {
-        float damage = towerData.abilities[0].damage;
+        int index = 0;
+        float damage = towerData.abilities[index].damage;
+        abilityCooldowns[index] = towerData.abilities[index].cooldownDuration;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(meleeRangeCollider.transform.position, ((CircleCollider2D)meleeRangeCollider).radius);
+        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)meleeRangeCollider.transform.position + meleeRangeCollider.offset, ((CircleCollider2D)meleeRangeCollider).radius); 
         foreach (var hit in hits)
         {
             if (hit.TryGetComponent<IDamageable>(out IDamageable target) && hit.CompareTag("Enemy"))
@@ -83,9 +84,11 @@ public class Swordsman : TowerBase
     }
     public void AnimationEvent_DealMeleeDamage2()
     {
-        float damage = towerData.abilities[1].damage;
+        int index = 1;
+        float damage = towerData.abilities[index].damage;
+        abilityCooldowns[index] = towerData.abilities[index].cooldownDuration;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(meleeRangeCollider.transform.position, ((CircleCollider2D)meleeRangeCollider).radius);
+        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)meleeRangeCollider.transform.position + meleeRangeCollider.offset, ((CircleCollider2D)meleeRangeCollider).radius);
         foreach (var hit in hits)
         {
             if (hit.TryGetComponent<IDamageable>(out IDamageable target) && hit.CompareTag("Enemy"))
@@ -96,10 +99,12 @@ public class Swordsman : TowerBase
     }
     public void AnimationEvent_DealMeleeDamage3()
     {
-        Debug.Log(currentTarget.name);
-        float damage = towerData.abilities[2].damage;
+        int index = 2;
+        float damage = towerData.abilities[index].damage;
+        abilityCooldowns[index] = towerData.abilities[index].cooldownDuration;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(meleeRangeCollider.transform.position, ((CircleCollider2D)meleeRangeCollider).radius);
+        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)meleeRangeCollider.transform.position + meleeRangeCollider.offset, ((CircleCollider2D)meleeRangeCollider).radius);
+
         foreach (var hit in hits)
         {
             if (hit.TryGetComponent<IDamageable>(out IDamageable target) && hit.CompareTag("Enemy"))

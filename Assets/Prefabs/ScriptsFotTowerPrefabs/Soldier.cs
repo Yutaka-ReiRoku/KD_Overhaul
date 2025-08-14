@@ -1,4 +1,5 @@
 ﻿// Soldier.cs (Final Version)
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -73,17 +74,15 @@ public class Soldier : TowerBase
     private void PerformAbility(Ability ability, int abilityIndex)
     {
         RunAnimation(ability.animationName, 3);
-
-        abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
-
-    
 
     public void AnimationEvent_DealMeleeDamage()
     {
-        float damage = towerData.abilities[0].damage;
+        int index = 0;
+        float damage = towerData.abilities[index].damage;
+        abilityCooldowns[index] = towerData.abilities[index].cooldownDuration;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(meleeRangeCollider.transform.position, ((CircleCollider2D)meleeRangeCollider).radius);
+        Collider2D[] hits = Physics2D.OverlapCircleAll((Vector2)meleeRangeCollider.transform.position + meleeRangeCollider.offset, ((CircleCollider2D)meleeRangeCollider).radius);
         foreach (var hit in hits)
         {
             if (hit.TryGetComponent<IDamageable>(out IDamageable target) && hit.CompareTag("Enemy"))
@@ -97,6 +96,7 @@ public class Soldier : TowerBase
     {
         if (currentTarget == null) return;
 
+        abilityCooldowns[2] = towerData.abilities[2].cooldownDuration;
         Ability bowAbility = towerData.abilities[2];
 
         Vector2 direction = (currentTarget.position - firePoint.position).normalized;

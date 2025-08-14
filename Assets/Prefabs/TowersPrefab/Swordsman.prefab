@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4786378961674750031}
   - component: {fileID: 5824307972684404529}
   - component: {fileID: 4111215157803486137}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Swordsman
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9129034142032153987}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634364523950794469}
   - component: {fileID: 5138440408189766483}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RangedRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8760444148142454139}
   - component: {fileID: 6483012151445215433}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MeleeRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}

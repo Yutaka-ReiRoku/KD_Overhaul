@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: SkeletonData
   m_EditorClassIdentifier: 
   enemyName: Skeleton
-  enemyPrefab: {fileID: 7204597163459543762, guid: 83e992887673f4c40b8b0d8638bf785b, type: 3}
+  enemyPrefab: {fileID: 7318982786531182478, guid: b88acfc43ba4d2c44a8e408639b2fd6d, type: 3}
   health: 100
-  moveSpeed: 1.5
+  moveSpeed: 1
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne
     cooldownDuration: 5
-    damage: 28
+    damage: 10
     projectilePrefab: {fileID: 0}
   - abilityName: AttackTwo
     animationName: AttackTwo
-    cooldownDuration: 3
-    damage: 6
+    cooldownDuration: 10
+    damage: 15
     projectilePrefab: {fileID: 0}

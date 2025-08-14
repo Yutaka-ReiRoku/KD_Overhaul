@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7941097725689524594}
   - component: {fileID: 8068214372953071246}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RangedRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8901569313353307995}
   - component: {fileID: 5601433532314573846}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MeleeRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 6790394073952437158}
   - component: {fileID: 976639989840354928}
   - component: {fileID: 5763363159256086891}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Soldier
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2947874761802676743}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

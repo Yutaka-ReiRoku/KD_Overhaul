@@ -76,6 +76,7 @@ public class Archer : TowerBase
     {
         if (currentTarget == null) return;
 
+        abilityCooldowns[0] = towerData.abilities[0].cooldownDuration;
         Ability bowAbility = towerData.abilities[0];
 
         Vector2 direction = (currentTarget.position - firePoint.position).normalized;
@@ -94,6 +95,7 @@ public class Archer : TowerBase
     {
         if (currentTarget == null) return;
 
+        abilityCooldowns[1] = towerData.abilities[1].cooldownDuration;
         Ability bowAbility = towerData.abilities[1];
 
         Vector2 direction = (currentTarget.position - firePoint.position).normalized;

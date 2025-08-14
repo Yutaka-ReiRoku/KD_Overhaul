@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Swordsman
   towerIcon: {fileID: 5692671443236587484, guid: 137a69554f920e541b66398dd7548b72, type: 3}
-  cost: 200
+  cost: 300
   description: eee
   cooldownTime: 15
   towerPrefab: {fileID: 182898142592922698, guid: e0a7b71040b25154ebf33090e8ca7ec8, type: 3}
@@ -27,11 +27,11 @@ MonoBehaviour:
     projectilePrefab: {fileID: 0}
   - abilityName: AttackTwo
     animationName: AttackTwo
-    cooldownDuration: 6
+    cooldownDuration: 18
     damage: 5
     projectilePrefab: {fileID: 0}
   - abilityName: AttackThree
     animationName: AttackThree
-    cooldownDuration: 6
+    cooldownDuration: 12
     damage: 2
     projectilePrefab: {fileID: 0}
