@@ -16,7 +16,7 @@ MonoBehaviour:
   towerIcon: {fileID: -5163991181310921478, guid: 8c9f3534c7679b24497373e8cfbd6cde, type: 3}
   cost: 200
   description: BBB
-  cooldownTime: 10
+  cooldownTime: 20
   towerPrefab: {fileID: 7754518800045048024, guid: 79600b250f336b7438c3393a16d5f165, type: 3}
   health: 100
   abilities:
