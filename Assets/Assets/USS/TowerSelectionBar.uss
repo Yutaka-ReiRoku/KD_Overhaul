@@ -38,6 +38,8 @@
     width: 50px;
     height: 50px;
     -unity-background-scale-mode: scale-to-fit;
+    background-image: url("project://database/Assets/Ore%20n%20Gems/Ores/gold.png?fileID=6281173559678341316&guid=4f883a4ca9afa104ba16209d092201af&type=3#gold_5");
+    margin-top: 10px;
 }
 
 .currency-display__amount {
