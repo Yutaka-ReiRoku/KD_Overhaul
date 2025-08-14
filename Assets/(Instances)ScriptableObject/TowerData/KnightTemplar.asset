@@ -18,20 +18,20 @@ MonoBehaviour:
   description: ggg
   cooldownTime: 15
   towerPrefab: {fileID: 8096716808346947299, guid: 2de3136b407ede54a93e2e4868da575e, type: 3}
-  health: 500
+  health: 1000
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne
-    cooldownDuration: 5
-    damage: 5
+    cooldownDuration: 3
+    damage: 2
     projectilePrefab: {fileID: 0}
   - abilityName: AttackTwo
     animationName: AttackTwo
-    cooldownDuration: 15
-    damage: 10
+    cooldownDuration: 10
+    damage: 5
     projectilePrefab: {fileID: 0}
   - abilityName: AttackThree
     animationName: AttackThree
-    cooldownDuration: 10
-    damage: 5
+    cooldownDuration: 5
+    damage: 3
     projectilePrefab: {fileID: 0}

@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Orc
   enemyPrefab: {fileID: 8060292819750760730, guid: b99ce96c6e7537a4eb0ef0466d578d70, type: 3}
-  health: 100
+  health: 150
   moveSpeed: 0.75
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne
-    cooldownDuration: 5
+    cooldownDuration: 3
     damage: 10
     projectilePrefab: {fileID: 0}
   - abilityName: AttackTwo
     animationName: AttackTwo
-    cooldownDuration: 10
+    cooldownDuration: 6
     damage: 15
     projectilePrefab: {fileID: 0}

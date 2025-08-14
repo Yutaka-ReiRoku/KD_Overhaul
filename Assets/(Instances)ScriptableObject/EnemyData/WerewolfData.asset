@@ -15,15 +15,15 @@ MonoBehaviour:
   enemyName: Werewolf
   enemyPrefab: {fileID: 8237569998522830651, guid: 5012642855dc104499c1a9d24eda04fc, type: 3}
   health: 150
-  moveSpeed: 1
+  moveSpeed: 2
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne
-    cooldownDuration: 5
-    damage: 10
+    cooldownDuration: 3
+    damage: 6
     projectilePrefab: {fileID: 0}
   - abilityName: AttackTwo
     animationName: AttackTwo
-    cooldownDuration: 12
-    damage: 15
+    cooldownDuration: 9
+    damage: 10
     projectilePrefab: {fileID: 0}
