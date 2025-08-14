@@ -41,6 +41,7 @@ public class GridManager : MonoBehaviour
                 Vector3 tilePosition = new Vector3(xPos, yPos, 0);
 
                 Tile newTile = Instantiate(tilePrefab, tilePosition, Quaternion.identity);
+                newTile.GetComponent<Collider2D>().isTrigger = true;
                 newTile.name = $"Tile {x}_{y}";
                 newTile.transform.parent = parent.transform;
                 newTile.transform.localScale = new Vector3(tileWidth, tileHeight, 1f);
