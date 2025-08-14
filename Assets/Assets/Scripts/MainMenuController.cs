@@ -63,8 +63,8 @@ public class MainMenuController : Singleton<MainMenuController>
 
         RegisterButtonCallbacks();
 
-        root.schedule.Execute(() => loadingPanel.RemoveFromClassList("loading-panel-active")).ExecuteLater(1500);
-        root.schedule.Execute(() => ShowPanelByOrder(1)).ExecuteLater(2500);
+        root.schedule.Execute(() => { loadingPanel.RemoveFromClassList("loading-panel-active"); if (SoundManager.Instance.isLoggedIn == true) PerformLogin(); }).ExecuteLater(1500);
+        root.schedule.Execute(() => { if (SoundManager.Instance.isLoggedIn == false) ShowPanelByOrder(1); }).ExecuteLater(2500);
     }
 
     private void InitializeElements()
@@ -127,6 +127,7 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     private void PerformLogin()
     {
+        SoundManager.Instance.isLoggedIn = true;
         navPanel.RemoveFromClassList(NAV_PANEL_HIDDEN_CLASS);
         ShowPanelByOrder(3);
         loginUsernameField.value = "";
@@ -138,6 +139,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
     private void PerformLogout()
     {
+        SoundManager.Instance.isLoggedIn = false;
         navPanel.AddToClassList(NAV_PANEL_HIDDEN_CLASS);
         ShowPanelByOrder(1);
     }
@@ -203,72 +205,74 @@ public class MainMenuController : Singleton<MainMenuController>
             return;
         }
 
-        if (SaveSystem.DoesProfileExist(username))
-        {
-            ShowError(SignupErrorLabel, "Username already exists.");
-            return;
-        }        
-        if (!LoginManager.Instance.RegisterUser.RegisterIsSuccess)
-        {
-            ShowError(SignupErrorLabel, LoginManager.Instance.RegisterUser.message);
-            return;
-        }
-        PlayerData newPlayerData = new PlayerData
-        {
-            playerName = username,
-            email = email,
-            password = password,
-            persistentCoins = 50
-        };
-
-        newPlayerData.ownedTowerIDs.Add("Archer");
-        newPlayerData.ownedTowerIDs.Add("Knight");
-        newPlayerData.ownedTowerIDs.Add("Soldier");
-
-        newPlayerData.maxLevelReached = 1;
-
-        SaveSystem.Save(newPlayerData, username);
-
-        List<string> profiles = SaveSystem.LoadProfileList();
-        profiles.Add(username);
-        SaveSystem.SaveProfileList(profiles);
-
-        Login(username);
-
+        PlayFabManager.Instance.RegisterUser(username, email, password,
+            () => {
+                Debug.Log($"PlayFab account for {username} created. Now logging in to save initial data...");
+                Login(username, password, true);
+            },
+            (errorMsg) => {
+                ShowError(SignupErrorLabel, errorMsg);
+            }
+        );
     }
 
     private void OnLoginClicked()
     {
         string username = loginUsernameField.value;
         string password = loginPasswordField.value;
-        LoginManager.Instance.LoginUser.Login(username,password);      
-        PlayerData playerData = SaveSystem.Load(username);        
-        if (playerData == null)
-        {
-            ShowError(ErrorLabel, "Username does not exist.");
-            return;
-        }
-
-        if (playerData.password != password)
-        {
-            ShowError(ErrorLabel, "Incorrect password.");
-            return;
-        }
-        if (!LoginManager.Instance.LoginUser.LoginIsSuccess)
-        {
-            ShowError(ErrorLabel, LoginManager.Instance.LoginUser.message);
-            return;
-        }
-        Login(username);
+        Login(username, password, false);
     }
 
-    private void Login(string username)
-    {
-        PlayerData playerData = SaveSystem.Load(username);
 
-        currentPlayerSO.LoadFrom(playerData);
-        PerformLogin();
-        LevelSelectManager.Instance.LevelButtonLoad();
+    private void Login(string username, string password, bool isFirstLogin)
+    {
+        PlayFabManager.Instance.LoginUser(username, password,
+            () => {
+                if (isFirstLogin)
+                {
+                    Debug.Log("First login successful. Saving default player data...");
+                    PlayerData newPlayerData = new PlayerData
+                    {
+                        playerName = username,
+                        password = password,
+                        persistentCoins = 50,
+                        maxLevelReached = 1,
+                        ownedTowerIDs = new System.Collections.Generic.List<string> { "Soldier", "Archer" }
+                    };
+
+                    PlayFabManager.Instance.SavePlayerData(newPlayerData,
+                        () => {
+                            currentPlayerSO.LoadFrom(newPlayerData);
+                            PerformLogin();
+                            LevelSelectManager.Instance.LevelButtonLoad();
+                        },
+                        (errorMsg) => { ShowError(ErrorLabel, $"Failed to save initial data: {errorMsg}"); }
+                    );
+                }
+                else
+                {
+                    Debug.Log("Login successful. Fetching player data...");
+                    PlayFabManager.Instance.LoadPlayerData(
+                        (playerData) => {
+                            if (playerData != null)
+                            {
+                                currentPlayerSO.LoadFrom(playerData);
+                                PerformLogin();
+                                LevelSelectManager.Instance.LevelButtonLoad();
+                            }
+                            else
+                            {
+                                ShowError(ErrorLabel, "Could not retrieve player data.");
+                            }
+                        },
+                        (errorMsg) => { ShowError(ErrorLabel, $"Failed to load data: {errorMsg}"); }
+                    );
+                }
+            },
+            (errorMsg) => {
+                ShowError(ErrorLabel, errorMsg);
+            }
+        );
     }
 
     private void ShowError(Label errorLabel, string message)

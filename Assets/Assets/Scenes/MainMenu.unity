@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717d7d170b1ca9a478dbd5a200bc4955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoggedIn: 0
   mainMixer: {fileID: 24100000, guid: 66c7f48bcc36a29468dc0007420417f7, type: 2}
   sounds: []
 --- !u!4 &453235983
@@ -405,6 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1227747919}
   - component: {fileID: 1227747918}
+  - component: {fileID: 1227747920}
   m_Layer: 0
   m_Name: LoginManager
   m_TagString: Untagged
@@ -445,6 +447,19 @@ Transform:
   - {fileID: 69727230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1227747920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227747917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1f6afb389539b4d9ea9845437dfd8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDestroyOnLoad: 1
 --- !u!1 &2053166237
 GameObject:
   m_ObjectHideFlags: 0
