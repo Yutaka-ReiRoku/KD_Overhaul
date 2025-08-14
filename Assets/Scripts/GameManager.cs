@@ -105,6 +105,34 @@ public class GameManager : Singleton<GameManager>
     {
         if (endGamePanelContainer == null) return;
 
+        primaryButton.clicked -= GoToNextLevel;
+        primaryButton.clicked -= RestartLevel;
+        secondaryButton.clicked -= GoToMainMenu;
+
+        if (hasWon)
+        {
+            titleLabel.text = "Victory!";
+            titleLabel.RemoveFromClassList("end-game-panel__title--defeat");
+            titleLabel.AddToClassList("end-game-panel__title--victory");
+
+            primaryButton.text = "Next Level";
+            primaryButton.clicked += GoToNextLevel;
+
+            secondaryButton.text = "Main Menu";
+            secondaryButton.clicked += GoToMainMenu;
+        }
+        else
+        {
+            titleLabel.text = "Game Over";
+            titleLabel.RemoveFromClassList("end-game-panel__title--victory");
+            titleLabel.AddToClassList("end-game-panel__title--defeat");
+
+            primaryButton.text = "Try Again";
+            primaryButton.clicked += RestartLevel;
+
+            secondaryButton.text = "Main Menu";
+            secondaryButton.clicked += GoToMainMenu;
+        }
 
         endGamePanelContainer.AddToClassList("end-game-panel-container--visible");
 

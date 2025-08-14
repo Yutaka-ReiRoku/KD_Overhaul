@@ -1,12 +1,11 @@
-﻿/* EndGamePanel.uss */
+﻿
 .end-game-panel-container {
     position: absolute;
     width: 100%;
     height: 100%;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); 
-    
+    background-color: rgba(20, 10, 10, 0.7);
     
     display: none;
     opacity: 0;
@@ -19,19 +18,26 @@
 }
 
 .end-game-panel {
-    width: 500px;
+    width: 550px;
     padding: 30px;
-    background-color: rgb(70, 60, 50);
+    background-color: rgb(71, 56, 43);
     border-radius: 20px;
-    border-color: rgb(200, 150, 100);
+    border-color: rgb(210, 166, 113);
     border-width: 4px;
     align-items: center;
+    
+    -unity-slice-left: 10;
+    -unity-slice-right: 10;
+    -unity-slice-top: 10;
+    -unity-slice-bottom: 10;
 }
 
 .end-game-panel__title {
-    font-size: 48px;
+    font-size: 52px;
     -unity-font-style: bold;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .end-game-panel__title--victory {
@@ -45,20 +51,40 @@
 .button-container {
     flex-direction: row;
     margin-top: 30px;
+    width: 100%;
 }
 
 .end-game-button {
     flex-grow: 1;
     height: 60px;
-    margin: 0 10px;
+    margin: 0 15px;
     font-size: 22px;
-    border-radius: 10px;
+    -unity-font-style: bold;
+    border-radius: 12px;
+    border-width: 2px;
+    transition: scale 0.1s ease-in-out, background-color 0.1s ease-in-out;
 }
 
 .end-game-button--primary {
-    background-color: rgb(100, 140, 80);
+    background-color: rgb(100, 140, 80); 
+    border-color: rgb(180, 220, 160);
+    color: white;
+}
+
+.end-game-button--primary:hover {
+    background-color: rgb(120, 160, 100);
 }
 
 .end-game-button--secondary {
+    background-color: rgb(100, 100, 100);
+    border-color: rgb(180, 180, 180);
+    color: white;
+}
+
+.end-game-button--secondary:hover {
     background-color: rgb(120, 120, 120);
+}
+
+.end-game-button:active {
+    scale: 0.95 0.95;
 }

@@ -22,9 +22,12 @@ public class CurrencyManager : ScriptableObject
         _currentCurrency = startingCurrency;
     }
 
+    public void UpdateInitalCurrency()
+    {
+        _currentCurrency = startingCurrency;
+    }
     public int GetCurrentCurrency()
     {
-        Debug.Log(_currentCurrency);
         return _currentCurrency;
     }
 

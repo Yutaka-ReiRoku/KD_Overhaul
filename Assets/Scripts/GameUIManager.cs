@@ -111,7 +111,7 @@ public class GameUIManager : MonoBehaviour
 
 
         currentPhase = GamePhase.SquadSelection;
-
+        currencyManager.UpdateInitalCurrency();
         lastDisplayedCurrency = currencyManager.GetCurrentCurrency();
         UpdateAllCardStates(lastDisplayedCurrency);
     }
@@ -138,6 +138,8 @@ public class GameUIManager : MonoBehaviour
     /// </summary>
     private void ShowUIElements()
     {
+        currencyManager.UpdateInitalCurrency();
+
         var squadPanel = towersPanelInstance.Q<VisualElement>("squad-selection-panel");
         squadPanel?.schedule.Execute(() =>
         {
