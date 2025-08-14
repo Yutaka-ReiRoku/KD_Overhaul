@@ -13,8 +13,24 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   allItems:
-  - WaveID: 0
-    TimeAfterWave: 0
-    TimeBetweenSpawns: 0
-    EnemyGroups: 
+  - WaveID: 1
+    TimeAfterWave: 15
+    TimeBetweenSpawns: 1.5
+    EnemyGroups: ArmoredSkeletonData:5
+  - WaveID: 2
+    TimeAfterWave: 20
+    TimeBetweenSpawns: 1
+    EnemyGroups: ArmoredOrcData:3
+  - WaveID: 3
+    TimeAfterWave: 20
+    TimeBetweenSpawns: 1.2
+    EnemyGroups: Werewolf:6
+  - WaveID: 4
+    TimeAfterWave: 25
+    TimeBetweenSpawns: 0.5
+    EnemyGroups: SkeletonData:5
+  - WaveID: 5
+    TimeAfterWave: 30
+    TimeBetweenSpawns: 0.8
+    EnemyGroups: OrcData:5
   rewardTowerData: {fileID: 11400000, guid: 9d29ec0b9f032014abdd6bae3f42e932, type: 2}

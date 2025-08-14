@@ -1,0 +1,6 @@
+WaveID,TimeAfterWave,TimeBetweenSpawns,EnemyGroups,,
+1,15,1.5,OrcData:5,SlimeData: 2,ArmoredOrcData: 3
+2,20,1,ArmoredSkeletonData:3,GreatswordSkeletonData:4,
+3,20,1.2,Werewolf:6,WerebearData:3,
+4,25,0.5,GreatswordSkeletonData:5,ArmoredSkeletonData:5,SkeletonData: 6
+5,30,0.8,OrcRiderData:1,ArmoredOrc:6,EliteOrcData:1
