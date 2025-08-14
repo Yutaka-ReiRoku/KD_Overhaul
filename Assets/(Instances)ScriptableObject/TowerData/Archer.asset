@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71bf33ddf3a5c044a1aaa9e23b4f1c0, type: 3}
+  m_Name: Archer
+  m_EditorClassIdentifier: 
+  towerName: Archer
+  towerIcon: {fileID: 5420657165879536120, guid: 73c17387363c66140af0972889832536, type: 3}
+  cost: 100
+  description: CCC
+  cooldownTime: 10
+  towerPrefab: {fileID: 2694771439019737265, guid: 62f3328274b9eb241a67a3789e3ad46f, type: 3}
+  health: 100
+  abilities:
+  - abilityName: AttackOne
+    animationName: AttackOne
+    cooldownDuration: 5
+    damage: 10
+    projectilePrefab: {fileID: 1117616033415434256, guid: bead33bdc4cb8fb4ebfc2e5b72345c1d, type: 3}
+  - abilityName: AttackTwo
+    animationName: AttackTwo
+    cooldownDuration: 7
+    damage: 15
+    projectilePrefab: {fileID: 1117616033415434256, guid: bead33bdc4cb8fb4ebfc2e5b72345c1d, type: 3}
