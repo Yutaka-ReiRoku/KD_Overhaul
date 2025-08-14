@@ -439,7 +439,7 @@ public class GameUIManager : MonoBehaviour
 
         if (currentPhase != GamePhase.Gameplay) return;
 
-        if (towerToPlace.towerPrefab != null)
+        if (towerToPlace?.towerPrefab != null)
         {
             GameObject towerGO = Instantiate(towerToPlace.towerPrefab, clickedTile.transform.position, Quaternion.identity);
             TowerBase newTower = towerGO.GetComponent<TowerBase>();
@@ -452,7 +452,7 @@ public class GameUIManager : MonoBehaviour
             currencyManager.SpendCurrency(towerToPlace.cost);
             if (selectedGameplayCard != null) { StartCooldown(selectedGameplayCard, towerToPlace); }
         }
-        else { Debug.LogError($"TowerData '{towerToPlace.towerName}' chưa được gán Prefab!"); }
+        //else { Debug.LogError($"TowerData '{towerToPlace.towerName}' chưa được gán Prefab!"); }
 
         if (selectedGameplayCard != null) { selectedGameplayCard.RemoveFromClassList("selected"); }
         selectedGameplayCard = null;

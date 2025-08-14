@@ -123,6 +123,7 @@ public class WaveSpawner : MonoBehaviour
         {
             Debug.Log("All waves have been spawned! Waiting for remaining enemies to be defeated.");
             state = SpawnerState.Waiting;
+            isSpawningActive = false;
         }
     }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -55,8 +56,6 @@ public class GameManager : Singleton<GameManager>
             primaryButton = panelInstance.Q<Button>("primary-button");
             secondaryButton = panelInstance.Q<Button>("secondary-button");
 
-            primaryButton.clicked += OnPrimaryEndGameButtonClicked;
-            secondaryButton.clicked += OnSecondaryEndGameButtonClicked;
 
             root.Add(panelInstance);
         }
@@ -177,16 +176,6 @@ public class GameManager : Singleton<GameManager>
         rewardCard.RegisterCallback<ClickEvent>(evt => OnRewardCardClicked(rewardCard, rewardData));
     }
 
-    private void OnPrimaryEndGameButtonClicked()
-    {
-        if (currentState == GameState.Won) GoToNextLevel();
-        else if (currentState == GameState.Lost) RestartLevel();
-    }
-
-    private void OnSecondaryEndGameButtonClicked()
-    {
-        GoToMainMenu();
-    }
     private void OnRewardCardClicked(Button card, TowerData rewardData)
     {
         Debug.Log($"Collected reward: {rewardData.towerName}!");
@@ -211,21 +200,21 @@ public class GameManager : Singleton<GameManager>
         card.RemoveFromHierarchy();
         ShowEndGamePanel(true);
     }
+
+
     public void TriggerLoss(EnemyBase intrudingEnemy)
     {
         if (currentState != GameState.Playing) return;
+
         currentState = GameState.Lost;
         Debug.Log("GAME OVER!");
-        ShowEndGamePanel(false);
-        FindAnyObjectByType<WaveSpawner>().enabled = false;
-        foreach (var tower in FindObjectsByType<TowerBase>(FindObjectsSortMode.None)) { Destroy(tower.gameObject); }
-        foreach (var enemy in FindObjectsByType<EnemyBase>(FindObjectsSortMode.None))
-        {
-            if (enemy != intrudingEnemy) Destroy(enemy.gameObject);
-        }
-        if (intrudingEnemy != null) { intrudingEnemy.StartAttackingBase(); }
-        Time.timeScale = 0f;
+
+        StartCoroutine(LossSequenceCoroutine(intrudingEnemy));
     }
+
+
+
+
     private void GoToNextLevel() { SceneManager.LoadScene(0); }
     private void RestartLevel() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
     private void GoToMainMenu() { SceneManager.LoadScene(0); }
@@ -239,6 +228,38 @@ public class GameManager : Singleton<GameManager>
         sfxSlider.value = sfxVolume;
         SoundManager.Instance.SetMusicVolume(musicVolume);
         SoundManager.Instance.SetSFXVolume(sfxVolume);
+    }
+
+    private IEnumerator LossSequenceCoroutine(EnemyBase intrudingEnemy)
+    {
+        WaveSpawner spawner = FindAnyObjectByType<WaveSpawner>();
+        if (spawner != null)
+        {
+            spawner.enabled = false;
+        }
+
+        foreach (var tower in FindObjectsByType<TowerBase>(FindObjectsSortMode.None))
+        {
+            Destroy(tower.gameObject);
+        }
+        foreach (var enemy in FindObjectsByType<EnemyBase>(FindObjectsSortMode.None))
+        {
+            if (enemy != intrudingEnemy)
+            {
+                Destroy(enemy.gameObject);
+            }
+        }
+
+        if (intrudingEnemy != null)
+        {
+            intrudingEnemy?.StartAttackingBase();
+        }
+
+        ShowEndGamePanel(false);
+
+        
+        yield return new WaitForEndOfFrame();
+
     }
     #endregion
 }

@@ -72,7 +72,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     public void StartAttackingBase()
     {
         isAttackingBase = true;
-        RunAnimation("Attack", 3);
+        RunAnimation("AttackOne", 3);
     }
 
     protected virtual void Die()
