@@ -72,12 +72,12 @@
     transition: background-color 0.1s ease-in-out, scale 0.1s ease-in-out;
 }
 
-.confirm-button:hover {
+.confirm-button:enabled:hover {
     background-color: rgb(120, 160, 100);
     border-color: white;
 }
 
-.confirm-button:active {
+.confirm-button:enabled:active {
     scale: 0.97 0.97;
 }
 
