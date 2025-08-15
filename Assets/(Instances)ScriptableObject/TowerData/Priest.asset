@@ -20,8 +20,13 @@ MonoBehaviour:
   towerPrefab: {fileID: 4075555107250799963, guid: 7a42c8ce769550942996e8039a42a190, type: 3}
   health: 100
   abilities:
-  - abilityName: AttackOne
-    animationName: AttackOne
+  - abilityName: Heal
+    animationName: Heal
     cooldownDuration: 5
     damage: 10
-    projectilePrefab: {fileID: 3890465873059172626, guid: 97c1a65bd1bd32e4ea080d24dec5a542, type: 3}
+    projectilePrefab: {fileID: 6365586311798644044, guid: 985244a2ee57eae4088665fb00906ecf, type: 3}
+  - abilityName: AttackOne
+    animationName: AttackOne
+    cooldownDuration: 10
+    damage: 10
+    projectilePrefab: {fileID: 786210442839775328, guid: 57cd79d517139ad4bba2da6228339c3c, type: 3}
