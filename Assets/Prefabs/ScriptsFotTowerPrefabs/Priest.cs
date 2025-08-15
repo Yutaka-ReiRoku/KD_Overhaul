@@ -1,121 +1,110 @@
-﻿// Soldier.cs (Final Version)
+﻿// Priest.cs
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 public class Priest : TowerBase
 {
-    [Header("Soldier Specifics")]
-    [Tooltip("Collider cho phạm vi tấn công cận chiến")]
-    [SerializeField] private Collider2D meleeRangeCollider;
-    [Tooltip("Collider cho phạm vi tấn công tầm xa")]
-    [SerializeField] private Collider2D rangedRangeCollider;
-    [Tooltip("Điểm bắn ra mũi tên")]
-    [SerializeField] private Transform firePoint;
+    [Header("Priest Specifics")]
+    [SerializeField] private Collider2D attackRangeCollider;
+    [SerializeField] private Collider2D healRangeCollider;
 
+    private Ability currentAbility;
+    private Transform healTarget;
 
-    protected override void Start()
-    {
-        base.Start();
-    }
 
     protected override void Update()
     {
         base.Update();
-
         DecideAndAct();
     }
 
-    /// <summary>
-    /// </summary>
     private void DecideAndAct()
     {
-        EnemyBase meleeTarget = FindClosestEnemyInCollider(meleeRangeCollider);
-        if (meleeTarget != null)
+        if (isAttacking) return;
+
+        if (abilityCooldowns[0] <= 0)
         {
-            currentTarget = meleeTarget.transform;
-
-
-            if (abilityCooldowns[1] <= 0)
+            healTarget = FindWoundedAllyInRange(healRangeCollider)?.transform;
+            if (healTarget != null)
             {
-                PerformAbility(towerData.abilities[1], 1);
-                return;
-            }
-            if (abilityCooldowns[0] <= 0)
-            {
-                PerformAbility(towerData.abilities[0], 0);
+                isAttacking = true;
+                PerformAbility(towerData.abilities[0]);
                 return;
             }
         }
-        else
-        {
-            EnemyBase rangedTarget = FindClosestEnemyInCollider(rangedRangeCollider);
-            if (rangedTarget != null)
-            {
-                currentTarget = rangedTarget.transform;
 
-                if (abilityCooldowns[2] <= 0)
+        if (abilityCooldowns[1] <= 0)
+        {
+            currentTarget = FindClosestEnemyInCollider(attackRangeCollider)?.transform;
+            if (currentTarget != null)
+            {
+                isAttacking = true;
+                PerformAbility(towerData.abilities[1]);
+                return;
+            }
+        }
+
+        RunAnimation("Idle", 0);
+    }
+
+    private void PerformAbility(Ability ability)
+    {
+        currentAbility = ability;
+
+
+        RunAnimation(ability.animationName, 3);
+    }
+
+    public void AnimationEvent_CastSpell()
+    {
+        if (currentAbility == null || currentAbility.projectilePrefab == null) return;
+
+        Transform targetTransform = (currentTarget != null) ? currentTarget : healTarget;
+        if (targetTransform == null) return;
+
+        GameObject effectGO = Instantiate(currentAbility.projectilePrefab, targetTransform.position, Quaternion.identity);
+        AreaEffect effectScript = effectGO.GetComponent<AreaEffect>();
+        if (effectScript != null)
+        {
+            effectScript.Initialize(currentAbility.damage);
+        }
+
+        int abilityIndex = towerData.abilities.IndexOf(currentAbility);
+        if (abilityIndex != -1)
+        {
+            abilityCooldowns[abilityIndex] = currentAbility.cooldownDuration;
+        }
+    }
+
+
+    private TowerBase FindWoundedAllyInRange(Collider2D rangeCollider)
+    {
+        List<Collider2D> hitColliders = new List<Collider2D>();
+        rangeCollider.Overlap(new ContactFilter2D().NoFilter(), hitColliders);
+
+        TowerBase mostWoundedAlly = null;
+        float lowestHealthPercentage = 1f;
+
+        foreach (var hit in hitColliders)
+        {
+            if (hit.CompareTag("Tower") && hit.gameObject != this.gameObject && hit.TryGetComponent<TowerBase>(out TowerBase ally))
+            {
+                float healthPercentage = ally.Health / ally.Data.health;
+                if (healthPercentage < 1f && healthPercentage < lowestHealthPercentage)
                 {
-                    PerformAbility(towerData.abilities[2], 2);
-                    return;
+                    lowestHealthPercentage = healthPercentage;
+                    mostWoundedAlly = ally;
                 }
             }
         }
-
-        if (currentAnimWeight == 0)
-        {
-            RunAnimation("Idle", 0);
-        }
-    }
-
-    /// <summary>
-    /// </summary>
-    private void PerformAbility(Ability ability, int abilityIndex)
-    {
-        RunAnimation(ability.animationName, 3);
-
-        abilityCooldowns[abilityIndex] = ability.cooldownDuration;
-    }
-
-    
-
-    public void AnimationEvent_DealMeleeDamage()
-    {
-        float damage = towerData.abilities[0].damage;
-
-        Collider2D[] hits = Physics2D.OverlapCircleAll(meleeRangeCollider.transform.position, ((CircleCollider2D)meleeRangeCollider).radius);
-        foreach (var hit in hits)
-        {
-            if (hit.TryGetComponent<IDamageable>(out IDamageable target) && hit.CompareTag("Enemy"))
-            {
-                target.TakeDamage(damage);
-            }
-        }
-    }
-
-    public void AnimationEvent_FireProjectile()
-    {
-        if (currentTarget == null) return;
-
-        Ability bowAbility = towerData.abilities[2];
-
-        Vector2 direction = (currentTarget.position - firePoint.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.Euler(0, 0, angle);
-
-        GameObject projectileGO = Instantiate(bowAbility.projectilePrefab, firePoint.position, rotation);
-        Projectile projectile = projectileGO.GetComponent<Projectile>();
-        if (projectile != null)
-        {
-            projectile.Seek(currentTarget, bowAbility.damage);
-        }
+        return mostWoundedAlly;
     }
 
     private EnemyBase FindClosestEnemyInCollider(Collider2D rangeCollider)
     {
         List<Collider2D> hitColliders = new List<Collider2D>();
-        ContactFilter2D filter = new ContactFilter2D().NoFilter();
-        rangeCollider.Overlap(filter, hitColliders);
+        rangeCollider.Overlap(new ContactFilter2D().NoFilter(), hitColliders);
 
         EnemyBase closestEnemy = null;
         float minDistance = float.MaxValue;
@@ -124,11 +113,14 @@ public class Priest : TowerBase
         {
             if (hit.CompareTag("Enemy") && hit.TryGetComponent<EnemyBase>(out EnemyBase enemy))
             {
-                float distance = Vector2.Distance(transform.position, hit.transform.position);
-                if (distance < minDistance && transform.position.x < hit.transform.position.x)
+                if (enemy.Health > 0)
                 {
-                    minDistance = distance;
-                    closestEnemy = enemy;
+                    float distance = Vector2.Distance(transform.position, hit.transform.position);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        closestEnemy = enemy;
+                    }
                 }
             }
         }

@@ -35,6 +35,14 @@ public abstract class TowerBase : MonoBehaviour, IDamageable
             Die();
         }
     }
+    public virtual void Heal(float amount)
+    {
+        currentHealth += amount;
+        if (currentHealth > towerData.health)
+        {
+            currentHealth = towerData.health;
+        }
+    }
 
     // --- Unity Lifecycle ---
     protected virtual void Start()

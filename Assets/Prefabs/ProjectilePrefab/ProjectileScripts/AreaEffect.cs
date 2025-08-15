@@ -2,24 +2,28 @@
 
 public class AreaEffect : MonoBehaviour
 {
-    private float damage;
+    private float effectValue;
 
     public void Initialize(float damageAmount)
     {
-        this.damage = damageAmount;
+        this.effectValue = damageAmount;
     }
 
-    public void AnimationEvent_DealDamage()
+    public void AnimationEvent_DealEffect()
     {
         float radius = GetComponent<CircleCollider2D>().radius;
-
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
 
         foreach (var hit in hits)
         {
-            if (hit.CompareTag("Enemy") && hit.TryGetComponent<IDamageable>(out IDamageable target))
+            if (hit.CompareTag("Enemy") && hit.TryGetComponent<IDamageable>(out IDamageable enemyTarget))
             {
-                target.TakeDamage(damage);
+                enemyTarget.TakeDamage(effectValue);
+            }
+            else if (hit.CompareTag("Tower") && hit.TryGetComponent<TowerBase>(out TowerBase allyTarget))
+            {
+                float healAmount = allyTarget.Data.health * (effectValue / 100f);
+                allyTarget.Heal(healAmount);
             }
         }
     }
