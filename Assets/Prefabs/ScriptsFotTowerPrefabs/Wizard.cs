@@ -1,18 +1,14 @@
-﻿// Soldier.cs (Final Version)
+﻿// Wizard.cs (Final Version - Multi-Ability)
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 public class Wizard : TowerBase
 {
-    [Header("Soldier Specifics")]
-    [Tooltip("Collider cho phạm vi tấn công cận chiến")]
-    [SerializeField] private Collider2D meleeRangeCollider;
-    [Tooltip("Collider cho phạm vi tấn công tầm xa")]
-    [SerializeField] private Collider2D rangedRangeCollider;
-    [Tooltip("Điểm bắn ra mũi tên")]
+    [SerializeField] private Collider2D attackRangeCollider;
     [SerializeField] private Transform firePoint;
 
+    private Ability currentAbility;
 
     protected override void Start()
     {
@@ -22,41 +18,25 @@ public class Wizard : TowerBase
     protected override void Update()
     {
         base.Update();
-
         DecideAndAct();
     }
 
-    /// <summary>
-    /// </summary>
     private void DecideAndAct()
     {
-        EnemyBase meleeTarget = FindClosestEnemyInCollider(meleeRangeCollider);
-        if (meleeTarget != null)
+        if (currentTarget == null || !IsTargetStillValid(currentTarget, attackRangeCollider))
         {
-            currentTarget = meleeTarget.transform;
-
-
-            if (abilityCooldowns[1] <= 0)
-            {
-                PerformAbility(towerData.abilities[1], 1);
-                return;
-            }
-            if (abilityCooldowns[0] <= 0)
-            {
-                PerformAbility(towerData.abilities[0], 0);
-                return;
-            }
+            currentTarget = FindClosestEnemyInCollider(attackRangeCollider)?.transform;
         }
-        else
-        {
-            EnemyBase rangedTarget = FindClosestEnemyInCollider(rangedRangeCollider);
-            if (rangedTarget != null)
-            {
-                currentTarget = rangedTarget.transform;
 
-                if (abilityCooldowns[2] <= 0)
+        if (currentTarget != null)
+        {
+            if (isAttacking) return;
+            for (int i = 0; i < towerData.abilities.Count; i++)
+            {
+                if (abilityCooldowns[i] <= 0)
                 {
-                    PerformAbility(towerData.abilities[2], 2);
+                    isAttacking = true;
+                    PerformAbility(towerData.abilities[i], i);
                     return;
                 }
             }
@@ -68,46 +48,41 @@ public class Wizard : TowerBase
         }
     }
 
-    /// <summary>
-    /// </summary>
     private void PerformAbility(Ability ability, int abilityIndex)
     {
+        currentAbility = ability;
         RunAnimation(ability.animationName, 3);
-
-        abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
 
-    
-
-    public void AnimationEvent_DealMeleeDamage()
+    public void AnimationEvent_CastSpell()
     {
-        float damage = towerData.abilities[0].damage;
+        if (currentTarget == null || currentAbility == null || currentAbility.projectilePrefab == null) return;
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(meleeRangeCollider.transform.position, ((CircleCollider2D)meleeRangeCollider).radius);
-        foreach (var hit in hits)
+        if (currentAbility.projectilePrefab.GetComponent<AreaEffect>() != null)
         {
-            if (hit.TryGetComponent<IDamageable>(out IDamageable target) && hit.CompareTag("Enemy"))
+            GameObject effectGO = Instantiate(currentAbility.projectilePrefab, currentTarget.position, Quaternion.identity);
+
+            AreaEffect effectScript = effectGO.GetComponent<AreaEffect>();
+            if (effectScript != null)
             {
-                target.TakeDamage(damage);
+                effectScript.Initialize(currentAbility.damage);
             }
         }
-    }
-
-    public void AnimationEvent_FireProjectile()
-    {
-        if (currentTarget == null) return;
-
-        Ability bowAbility = towerData.abilities[2];
-
-        Vector2 direction = (currentTarget.position - firePoint.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.Euler(0, 0, angle);
-
-        GameObject projectileGO = Instantiate(bowAbility.projectilePrefab, firePoint.position, rotation);
-        Projectile projectile = projectileGO.GetComponent<Projectile>();
-        if (projectile != null)
+        else if (currentAbility.projectilePrefab.GetComponent<Projectile>() != null)
         {
-            projectile.Seek(currentTarget, bowAbility.damage);
+            GameObject projectileGO = Instantiate(currentAbility.projectilePrefab, firePoint.position, Quaternion.identity);
+
+            Projectile projectile = projectileGO.GetComponent<Projectile>();
+            if (projectile != null)
+            {
+                projectile.Seek(currentTarget, currentAbility.damage);
+            }
+        }
+
+        int abilityIndex = towerData.abilities.IndexOf(currentAbility);
+        if (abilityIndex != -1)
+        {
+            abilityCooldowns[abilityIndex] = currentAbility.cooldownDuration;
         }
     }
 
@@ -116,22 +91,30 @@ public class Wizard : TowerBase
         List<Collider2D> hitColliders = new List<Collider2D>();
         ContactFilter2D filter = new ContactFilter2D().NoFilter();
         rangeCollider.Overlap(filter, hitColliders);
-
         EnemyBase closestEnemy = null;
         float minDistance = float.MaxValue;
-
         foreach (var hit in hitColliders)
         {
             if (hit.CompareTag("Enemy") && hit.TryGetComponent<EnemyBase>(out EnemyBase enemy))
             {
-                float distance = Vector2.Distance(transform.position, hit.transform.position);
-                if (distance < minDistance && transform.position.x < hit.transform.position.x)
+                if (enemy.Health > 0)
                 {
-                    minDistance = distance;
-                    closestEnemy = enemy;
+                    float distance = Vector2.Distance(transform.position, hit.transform.position);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        closestEnemy = enemy;
+                    }
                 }
             }
         }
         return closestEnemy;
+    }
+
+    private bool IsTargetStillValid(Transform target, Collider2D rangeCollider)
+    {
+        if (target == null) return false;
+        if (target.GetComponent<EnemyBase>().Health <= 0) return false;
+        return rangeCollider.OverlapPoint(target.position);
     }
 }

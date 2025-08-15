@@ -68,8 +68,6 @@ public class Archer : TowerBase
     private void PerformAbility(Ability ability, int abilityIndex)
     {
         RunAnimation(ability.animationName, 3);
-
-        abilityCooldowns[abilityIndex] = ability.cooldownDuration;
     }
 
 

@@ -24,7 +24,6 @@ public abstract class TowerBase : MonoBehaviour, IDamageable
     public float Health => currentHealth;
 
     protected bool isAttacking = false;
-
     public virtual void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
