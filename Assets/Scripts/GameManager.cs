@@ -135,7 +135,7 @@ public class GameManager : Singleton<GameManager>
 
         endGamePanelContainer.AddToClassList("end-game-panel-container--visible");
 
-        endGamePanelInstance.pickingMode = PickingMode.Position;
+        //endGamePanelInstance.pickingMode = PickingMode.Position;
     }
 
     public void OnPause(InputAction.CallbackContext context) { if (context.performed && currentState == GameState.Playing) { TogglePause(); } }
@@ -215,7 +215,7 @@ public class GameManager : Singleton<GameManager>
         currentState = GameState.Lost;
         Debug.Log("GAME OVER!");
 
-        StartCoroutine(LossSequenceCoroutine(intrudingEnemy));
+        LossSequenceCoroutine(intrudingEnemy);
     }
 
 
@@ -233,7 +233,7 @@ public class GameManager : Singleton<GameManager>
         SoundManager.Instance.SetSFXVolume(sfxVolume);
     }
 
-    private IEnumerator LossSequenceCoroutine(EnemyBase intrudingEnemy)
+    private void LossSequenceCoroutine(EnemyBase intrudingEnemy)
     {
         WaveSpawner spawner = FindAnyObjectByType<WaveSpawner>();
         if (spawner != null)
@@ -259,10 +259,6 @@ public class GameManager : Singleton<GameManager>
         }
 
         ShowEndGamePanel(false);
-
-        
-        yield return new WaitForEndOfFrame();
-
     }
     private void GoToNextLevel()
     {
