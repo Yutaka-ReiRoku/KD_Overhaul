@@ -8,6 +8,16 @@ public class Projectile : MonoBehaviour
     private float damage;
     public float speed = 10f;
 
+
+    private void OnEnable()
+    {
+        EnemyBase.OnStaticDeath += OnTargetDied;
+    }
+
+    private void OnDisable()
+    {
+        EnemyBase.OnStaticDeath -= OnTargetDied;
+    }
     public void Seek(Transform _target, float _damage)
     {
         target = _target;
@@ -33,12 +43,22 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            if (other.TryGetComponent<IDamageable>(out IDamageable damageableTarget))
+            if (other.transform == target)
             {
-                damageableTarget.TakeDamage(damage);
+                if (other.TryGetComponent<IDamageable>(out IDamageable damageableTarget))
+                {
+                    damageableTarget.TakeDamage(damage);
+                }
+                Destroy(gameObject);
             }
+        }
+    }
 
-            Destroy(gameObject);
+    private void OnTargetDied(EnemyBase diedEnemy)
+    {
+        if (diedEnemy.transform == target)
+        {
+            target = null;
         }
     }
 }
