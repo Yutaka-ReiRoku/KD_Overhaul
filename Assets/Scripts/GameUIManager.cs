@@ -452,8 +452,20 @@ public class GameUIManager : MonoBehaviour
             HandleShovelClick(clickedTile);
             return;
         }
-
-        if (currentPhase != GamePhase.Gameplay) return;
+        if (currentPhase != GamePhase.Gameplay || towerToPlace == null)
+        {
+            return;
+        }
+        if (clickedTile.IsOccupied)
+        {
+            Debug.Log("Tile is already occupied!");
+            return;
+        }
+        if (!currencyManager.CanAfford(towerToPlace.cost))
+        {
+            Debug.Log("Not enough currency!");
+            return;
+        }
 
         if (towerToPlace?.towerPrefab != null)
         {
