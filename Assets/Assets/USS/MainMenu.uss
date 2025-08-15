@@ -161,7 +161,7 @@
     width: 42.5%;
     min-height: 100px;
     margin: 10px;
-    font-size: 25px;
+    font-size: 50px;
     -unity-text-align: middle-center;
     -unity-font-definition: url("project://database/Assets/Assets/Font/Super%20Vanilla%20SDF.asset?fileID=11400000&guid=5cdc185812b168846b854e2ac8c53b2f&type=2#Super Vanilla SDF");
     border-top-left-radius: 25px;
