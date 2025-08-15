@@ -49,6 +49,12 @@
                         <ui:Label text="Price: 1000 Gold" class="shop-item__price" />
                         <ui:Button text="Buy" name="Button" class="shop-item__button" style="background-image: url(&quot;project://database/Assets/Assets/Sprites/Tiny%20Swords%20(Update%20010)/UI/Buttons/Button_Hover_9Slides.png?fileID=-4150051200538250712&amp;guid=e18406513361c5648877a5a51369d560&amp;type=3#Button_Hover_9Slides_0&quot;); color: rgb(0, 0, 0); -unity-font-style: bold;" />
                     </ui:VisualElement>
+                    <ui:VisualElement class="shop-item">
+                        <ui:VisualElement class="shop-item__icon" />
+                        <ui:Label text="Angel" class="shop-item__name" />
+                        <ui:Label text="Price: 1000 Gold" class="shop-item__price" />
+                        <ui:Button text="Buy" name="Button" class="shop-item__button" style="background-image: url(&quot;project://database/Assets/Assets/Sprites/Tiny%20Swords%20(Update%20010)/UI/Buttons/Button_Hover_9Slides.png?fileID=-4150051200538250712&amp;guid=e18406513361c5648877a5a51369d560&amp;type=3#Button_Hover_9Slides_0&quot;); color: rgb(0, 0, 0); -unity-font-style: bold;" />
+                    </ui:VisualElement>
                 </ui:ScrollView>
             </ui:VisualElement>
             <ui:VisualElement name="AchievementsPanel" class="content-view panel-hidden">
