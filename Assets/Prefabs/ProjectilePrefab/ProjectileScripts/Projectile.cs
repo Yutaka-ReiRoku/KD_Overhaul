@@ -5,28 +5,24 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private Transform target;
+    private IDamageable targetDamageable;
     private float damage;
     public float speed = 10f;
 
 
-    private void OnEnable()
-    {
-        EnemyBase.OnStaticDeath += OnTargetDied;
-    }
-
-    private void OnDisable()
-    {
-        EnemyBase.OnStaticDeath -= OnTargetDied;
-    }
     public void Seek(Transform _target, float _damage)
     {
         target = _target;
         damage = _damage;
+        if (target != null)
+        {
+            targetDamageable = target.GetComponent<IDamageable>();
+        }
     }
 
     void Update()
     {
-        if (target == null)
+        if (target == null || targetDamageable == null || targetDamageable.Health <= 0)
         {
             Destroy(gameObject);
             return;
@@ -54,11 +50,4 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnTargetDied(EnemyBase diedEnemy)
-    {
-        if (diedEnemy.transform == target)
-        {
-            target = null;
-        }
-    }
 }
