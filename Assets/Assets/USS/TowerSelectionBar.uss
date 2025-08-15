@@ -91,6 +91,7 @@
     border-color: rgb(50, 40, 30);
     padding: 0;
     transition: scale 0.1s ease-in-out, border-color 0.1s ease-in-out;
+    background-image: url("project://database/Assets/Assets/UXML/Daco_4053566.png?fileID=21300000&guid=9be90991e3d46ed468a7793847685bfd&type=3#Daco_4053566");
 }
 
 .shovel-card:enabled:hover {
