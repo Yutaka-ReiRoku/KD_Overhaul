@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:engine="UnityEngine.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/CSS/CooldownOverlay.uss?fileID=7433441132597879392&amp;guid=9243171174f4b624e85e8f054d5da7dc&amp;type=3#CooldownOverlay" />
-    <ui:VisualElement name="cooldown-overlay" picking-mode="Ignore" class="cooldown-overlay" />
+    <ui:VisualElement name="cooldown-overlay" picking-mode="Ignore" class="cooldown-overlay" style="background-color: rgba(0, 0, 0, 0.88); width: 100%; top: 0; left: 0; position: absolute;" />
 </ui:UXML>
