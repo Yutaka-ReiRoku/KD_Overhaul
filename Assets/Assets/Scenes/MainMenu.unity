@@ -287,7 +287,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMixer: {fileID: 24100000, guid: 66c7f48bcc36a29468dc0007420417f7, type: 2}
-  sounds: []
+  sounds:
+  - type: 0
+    name: BGM
+    clip: {fileID: 8300000, guid: 01e49d93178fe1044a7509a19bd43c2f, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+  - type: 1
+    name: Click
+    clip: {fileID: 8300000, guid: 0175bf129db1e6740ab50fe136770d81, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &453235983
 Transform:
   m_ObjectHideFlags: 0

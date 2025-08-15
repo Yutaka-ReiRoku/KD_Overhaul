@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   towerName: Wizard
-  towerIcon: {fileID: -5163991181310921478, guid: 8c9f3534c7679b24497373e8cfbd6cde, type: 3}
+  towerIcon: {fileID: -5908238798454654921, guid: 09d61877844e0714fae6d32ab254e778, type: 3}
   cost: 200
   description: BBB
   cooldownTime: 20

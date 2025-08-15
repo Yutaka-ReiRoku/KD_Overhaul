@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: -6055129183056458621, guid: 2538cecc618c6784bb347c4222a2f067, type: 3}
   colliderSize: {x: 0.5, y: 0.5}
-  currencyValue: 25
+  currencyValue: 50
   despawnTime: 15

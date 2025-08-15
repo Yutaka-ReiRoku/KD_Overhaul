@@ -67,6 +67,11 @@ public class MainMenuController : Singleton<MainMenuController>
         root.schedule.Execute(() => { if (currentPlayerSO.isLoggedin == false) ShowPanelByOrder(1); }).ExecuteLater(2500);
     }
 
+    void Start()
+    {
+        SoundManager.Instance.PlayMusic("BGM");
+    }
+
     private void InitializeElements()
     {
         foreach (var panelInfo in panels)
@@ -238,7 +243,7 @@ public class MainMenuController : Singleton<MainMenuController>
                         password = password,
                         persistentCoins = 50,
                         maxLevelReached = 1,
-                        ownedTowerIDs = new System.Collections.Generic.List<string> { "Soldier", "Archer" }
+                        ownedTowerIDs = new System.Collections.Generic.List<string> { "Soldier", "Archer", "Knight" }
                     };
 
                     PlayFabManager.Instance.SavePlayerData(newPlayerData,

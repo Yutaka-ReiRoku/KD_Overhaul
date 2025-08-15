@@ -25,8 +25,9 @@ public class OrcRider : EnemyBase
     {
         for (int i = 0; i < enemyData.abilities.Count; i++)
         {
-            if (abilityCooldowns[i] <= 0)
+            if (abilityCooldowns[i] <= 0 && !isAttacking)
             {
+                isAttacking = true;
                 PerformAbility(enemyData.abilities[i], i);
                 return;
             }
