@@ -116,7 +116,7 @@ public class Priest : TowerBase
                 if (enemy.Health > 0)
                 {
                     float distance = Vector2.Distance(transform.position, hit.transform.position);
-                    if (distance < minDistance)
+                    if (distance < minDistance && transform.position.x < hit.transform.position.x)
                     {
                         minDistance = distance;
                         closestEnemy = enemy;

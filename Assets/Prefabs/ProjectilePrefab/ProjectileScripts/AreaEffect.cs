@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 public class AreaEffect : MonoBehaviour
 {
     private float effectValue;
 
-    public void Initialize(float damageAmount)
+    public void Initialize(float value)
     {
-        this.effectValue = damageAmount;
+        this.effectValue = value;
     }
 
     public void AnimationEvent_DealEffect()
@@ -16,14 +17,21 @@ public class AreaEffect : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (hit.CompareTag("Enemy") && hit.TryGetComponent<IDamageable>(out IDamageable enemyTarget))
+            if (effectValue > 0)
             {
-                enemyTarget.TakeDamage(effectValue);
+                if (hit.CompareTag("Enemy") && hit.TryGetComponent<IDamageable>(out IDamageable enemyTarget))
+                {
+                    enemyTarget.TakeDamage(effectValue);
+                }
             }
-            else if (hit.CompareTag("Tower") && hit.TryGetComponent<TowerBase>(out TowerBase allyTarget))
+            else if (effectValue < 0)
             {
-                float healAmount = allyTarget.Data.health * (effectValue / 100f);
-                allyTarget.Heal(healAmount);
+                if (hit.CompareTag("Tower") && hit.TryGetComponent<TowerBase>(out TowerBase allyTarget))
+                {
+                    float healPercentage = Mathf.Abs(effectValue);
+                    float healAmount = allyTarget.Data.health * (healPercentage / 100f);
+                    allyTarget.Heal(healAmount);
+                }
             }
         }
     }

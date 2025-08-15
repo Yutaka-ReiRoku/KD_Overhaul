@@ -70,8 +70,16 @@ public class MainMenuController : Singleton<MainMenuController>
     void Start()
     {
         SoundManager.Instance.PlayMusic("BGM");
+        root.RegisterCallback<ClickEvent>(OnAnyElementClicked);
     }
 
+    private void OnAnyElementClicked(ClickEvent evt)
+    {
+        if (evt.target is Button)
+        {
+            SoundManager.Instance.PlaySound("Click");
+        }
+    }
     private void InitializeElements()
     {
         foreach (var panelInfo in panels)
