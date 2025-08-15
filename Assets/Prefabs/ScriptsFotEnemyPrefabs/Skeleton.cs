@@ -39,6 +39,7 @@ public class Skeleton : EnemyBase
     {
         attackIndex = abilityIndex;
         currentAbility = ability;
+        SoundManager.Instance.PlaySound("Attack");
         RunAnimation(ability.animationName, 3);
     }
 

@@ -300,6 +300,18 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1
     source: {fileID: 0}
+  - type: 1
+    name: Attack
+    clip: {fileID: 8300000, guid: 56f03440c513b5d4ab900875f1a73708, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
+  - type: 1
+    name: Hurt
+    clip: {fileID: 8300000, guid: 96b799634b59287438fb5d8cf55b3c0b, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &453235983
 Transform:
   m_ObjectHideFlags: 0

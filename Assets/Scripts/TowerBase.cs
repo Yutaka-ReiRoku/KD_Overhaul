@@ -28,6 +28,7 @@ public abstract class TowerBase : MonoBehaviour, IDamageable
     public virtual void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;
+        SoundManager.Instance.PlaySound("Hurt");
         RunAnimation("Hurt", 5);
 
         if (currentHealth <= 0)
