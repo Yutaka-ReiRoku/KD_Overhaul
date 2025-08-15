@@ -54,7 +54,8 @@ public class MainMenuController : Singleton<MainMenuController>
 
     private Label ErrorLabel;
     private Label SignupErrorLabel;
-
+    private Slider musicSlider;
+    private Slider sfxSlider;
     void OnEnable()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
@@ -71,7 +72,24 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         SoundManager.Instance.PlayMusic("BGM");
         root.RegisterCallback<ClickEvent>(OnAnyElementClicked);
+        musicSlider = root.Q<Slider>("MusicSlider");
+        sfxSlider = root.Q<Slider>("SfxSlider");
+        musicSlider.RegisterValueChangedCallback(OnMusicVolumeChanged);
+        sfxSlider.RegisterValueChangedCallback(OnSFXVolumeChanged);
+        LoadAndApplyAudioSettings();
     }
+    private void OnMusicVolumeChanged(ChangeEvent<float> evt) { float volume = evt.newValue; SoundManager.Instance.SetMusicVolume(volume); PlayerPrefs.SetFloat("MusicVolume", volume); }
+    private void OnSFXVolumeChanged(ChangeEvent<float> evt) { float volume = evt.newValue; SoundManager.Instance.SetSFXVolume(volume); PlayerPrefs.SetFloat("SFXVolume", volume); }
+    private void LoadAndApplyAudioSettings()
+    {
+        float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        musicSlider.value = musicVolume;
+        sfxSlider.value = sfxVolume;
+        SoundManager.Instance.SetMusicVolume(musicVolume);
+        SoundManager.Instance.SetSFXVolume(sfxVolume);
+    }
+
 
     private void OnAnyElementClicked(ClickEvent evt)
     {

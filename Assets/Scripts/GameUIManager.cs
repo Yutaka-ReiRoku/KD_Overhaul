@@ -66,6 +66,7 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private int maxPreviewEnemies = 15;
     private List<GameObject> previewEnemies = new List<GameObject>();
 
+    [SerializeField] private LayerMask clickableLayers;
 
     private Coroutine currencyAnimationCoroutine;
     private int lastDisplayedCurrency = 0;
@@ -187,7 +188,7 @@ public class GameUIManager : MonoBehaviour
         if (currentPhase != GamePhase.Gameplay) return;
         pointerPosition = context.ReadValue<Vector2>();
         Ray ray = Camera.main.ScreenPointToRay(pointerPosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, clickableLayers);
         if (hit.collider != null)
         {
             Tile currentTile = hit.collider.GetComponent<Tile>();
@@ -218,7 +219,7 @@ public class GameUIManager : MonoBehaviour
         if (!context.performed || currentPhase != GamePhase.Gameplay) return;
 
         Ray ray = Camera.main.ScreenPointToRay(pointerPosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, clickableLayers);
 
         if (hit.collider == null) return;
 

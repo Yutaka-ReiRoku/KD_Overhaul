@@ -212,6 +212,9 @@ MonoBehaviour:
   targetPos: {fileID: 1158047769}
   enemyPreviewArea: {fileID: 833429521}
   maxPreviewEnemies: 20
+  clickableLayers:
+    serializedVersion: 2
+    m_Bits: 104
 --- !u!114 &52965745
 MonoBehaviour:
   m_ObjectHideFlags: 0
