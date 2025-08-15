@@ -18,7 +18,7 @@ MonoBehaviour:
   description: CCC
   cooldownTime: 10
   towerPrefab: {fileID: 2694771439019737265, guid: 62f3328274b9eb241a67a3789e3ad46f, type: 3}
-  health: 100
+  health: 150
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne

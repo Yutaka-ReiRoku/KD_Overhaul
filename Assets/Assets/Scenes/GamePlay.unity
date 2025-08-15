@@ -614,13 +614,13 @@ MonoBehaviour:
   genericCollectiblePrefab: {fileID: 2619216679156562694, guid: 6f290c520e3a76a4096d90230aa3887a, type: 3}
   lootTable:
   - collectibleData: {fileID: 11400000, guid: ea2d16058c9b1f54eb878a1f0e2e53e9, type: 2}
-    dropWeight: 75
+    dropWeight: 7
   - collectibleData: {fileID: 11400000, guid: 1b13aa5bdbe22bd42b3e20425f85dc08, type: 2}
-    dropWeight: 50
+    dropWeight: 5
   - collectibleData: {fileID: 11400000, guid: e69eb2321723a064fa72314a2ef31b22, type: 2}
-    dropWeight: 25
-  overallLootChance: 0.5
-  lowCurrencyThreshold: 250
+    dropWeight: 3
+  overallLootChance: 0.75
+  lowCurrencyThreshold: 200
   lowCurrencyDropBonus: 0.25
 --- !u!4 &973509274
 Transform:

@@ -18,7 +18,7 @@ MonoBehaviour:
   description: fff
   cooldownTime: 15
   towerPrefab: {fileID: 3762827375502365009, guid: 5ca863c94a46d1545bfb5bf76ed3e573, type: 3}
-  health: 250
+  health: 300
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: EliteOrc
   enemyPrefab: {fileID: 6341043756644599197, guid: ea40b61b118ddfa4cb6b9e75749a2cdb, type: 3}
-  health: 450
+  health: 400
   moveSpeed: 0.75
   abilities:
   - abilityName: AttackOne

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: ArmoredSkeleton
   enemyPrefab: {fileID: 8156396702261096464, guid: ba8bdf879fb078540b97ee5819d60003, type: 3}
-  health: 250
+  health: 200
   moveSpeed: 0.75
   abilities:
   - abilityName: AttackOne

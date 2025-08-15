@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: GreatswordSkeleton
   enemyPrefab: {fileID: 6483072177121887429, guid: 0e4c42e42d984ea4d90d95b959c16977, type: 3}
-  health: 250
+  health: 200
   moveSpeed: 0.5
   abilities:
   - abilityName: AttackOne

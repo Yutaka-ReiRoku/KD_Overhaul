@@ -308,7 +308,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - type: 1
     name: Hurt
-    clip: {fileID: 8300000, guid: 96b799634b59287438fb5d8cf55b3c0b, type: 3}
+    clip: {fileID: 8300000, guid: 037371c204353ce488aa1dd40f5c61a0, type: 3}
     volume: 0.2
     pitch: 1
     source: {fileID: 0}

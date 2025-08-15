@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Werewolf
   enemyPrefab: {fileID: 8237569998522830651, guid: 5012642855dc104499c1a9d24eda04fc, type: 3}
-  health: 150
+  health: 100
   moveSpeed: 2
   abilities:
   - abilityName: AttackOne

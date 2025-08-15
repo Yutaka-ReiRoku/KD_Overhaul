@@ -18,7 +18,7 @@ MonoBehaviour:
   description: DDD
   cooldownTime: 20
   towerPrefab: {fileID: 8362841876162327526, guid: 97ceb6fb21612ad42b199d744abda70f, type: 3}
-  health: 250
+  health: 350
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne

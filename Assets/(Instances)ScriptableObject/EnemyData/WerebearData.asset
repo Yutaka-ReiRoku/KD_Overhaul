@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Werebear
   enemyPrefab: {fileID: 7849376038136829215, guid: 15f5ef55bb838384b86b12389f6b4d53, type: 3}
-  health: 250
+  health: 200
   moveSpeed: 1
   abilities:
   - abilityName: AttackOne
