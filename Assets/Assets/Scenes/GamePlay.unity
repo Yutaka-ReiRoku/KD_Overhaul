@@ -196,6 +196,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiDocument: {fileID: 1682301265}
+  enemyDatabase: {fileID: 11400000, guid: 0870dfc87badbfe488a784bde86cdbba, type: 2}
+  selectedLevel: {fileID: 11400000, guid: e60eb71d05193564180eaa552bec2891, type: 2}
   towerDatabase: {fileID: 11400000, guid: aebeb2832398c1746ab910663e0b1fcb, type: 2}
   towerCardTemplate: {fileID: 9197481963319205126, guid: 69d364a9e2f56b54abea2f7fd14dfb36, type: 3}
   cooldownOverlayTemplate: {fileID: 9197481963319205126, guid: 19f39e5c094591b4cb0ce44b61a83292, type: 3}
@@ -208,6 +210,8 @@ MonoBehaviour:
   cameraTransform: {fileID: 978288604}
   initialPos: {fileID: 730491797}
   targetPos: {fileID: 1158047769}
+  enemyPreviewArea: {fileID: 833429521}
+  maxPreviewEnemies: 20
 --- !u!114 &52965745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,6 +498,84 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.09, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &833429520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 833429522}
+  - component: {fileID: 833429521}
+  m_Layer: 0
+  m_Name: PreviewViewEnemiesZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &833429521
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833429520}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 11.988303, y: -1.0100043}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 5.44668, y: 5.5869875}
+  m_EdgeRadius: 0
+--- !u!4 &833429522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833429520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.59958, y: -0.18946, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1459,3 +1541,4 @@ SceneRoots:
   - {fileID: 1996498398}
   - {fileID: 2090574813}
   - {fileID: 973509274}
+  - {fileID: 833429522}
