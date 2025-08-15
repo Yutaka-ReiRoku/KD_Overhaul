@@ -58,6 +58,8 @@ public class GameUIManager : MonoBehaviour
     private bool isShovelSelected = false;
     private VisualElement loadingPanel;
 
+    private int lastCurrencyCount;
+
 
 
     [SerializeField] private BoxCollider2D enemyPreviewArea;
@@ -120,6 +122,7 @@ public class GameUIManager : MonoBehaviour
 
         currentPhase = GamePhase.SquadSelection;
         currencyManager.UpdateInitalCurrency();
+        lastCurrencyCount = currencyManager.GetCurrentCurrency();
         lastDisplayedCurrency = currencyManager.GetCurrentCurrency();
         UpdateAllCardStates(currencyManager.GetCurrentCurrency());
         ShowEnemyPreview();
@@ -303,7 +306,11 @@ public class GameUIManager : MonoBehaviour
         {
             StopCoroutine(currencyAnimationCoroutine);
         }
-        currencyAnimationCoroutine = StartCoroutine(AnimateCurrencyText(newCurrency));
+        if (lastCurrencyCount != newCurrency)
+        {
+            lastCurrencyCount = newCurrency;
+            currencyAnimationCoroutine = StartCoroutine(AnimateCurrencyText(newCurrency));
+        }
 
 
         currencyLabel.text = newCurrency.ToString();
