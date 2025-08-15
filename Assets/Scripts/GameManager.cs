@@ -172,6 +172,7 @@ public class GameManager : Singleton<GameManager>
         rewardCard.style.position = Position.Absolute;
         rewardCard.style.left = panelPosition.x;
         rewardCard.style.top = panelPosition.y;
+        rewardCard.style.display = DisplayStyle.Flex;
         root.Add(rewardCard);
         rewardCard.RegisterCallback<ClickEvent>(evt => OnRewardCardClicked(rewardCard, rewardData));
     }
@@ -195,8 +196,14 @@ public class GameManager : Singleton<GameManager>
                 Debug.Log($"Max level reached is now: {currentPlayer.maxLevelReached}");
             }
         }
-        SaveSystem.Save(currentPlayer.GetSaveData(), currentPlayer.playerName);
-        Debug.Log("Player data saved!");
+        PlayFabManager.Instance.SavePlayerData(currentPlayer.GetSaveData(),
+                        () => {
+                            currentPlayer.LoadFrom(currentPlayer.GetSaveData());
+                            Debug.Log("Player data saved!");
+                        },
+                        (errorMsg) => { Debug.Log($"Failed to save data: {errorMsg}"); }
+                    );
+        
         card.RemoveFromHierarchy();
         ShowEndGamePanel(true);
     }
