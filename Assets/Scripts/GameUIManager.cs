@@ -14,6 +14,8 @@ public class GameUIManager : MonoBehaviour
     private const int ANIMATION_DURATION = 500;
 
     [SerializeField] private UIDocument uiDocument;
+    [SerializeField] private EnemyDatabase enemyDatabase;
+    [SerializeField] private SelectedLevelSO selectedLevel;
 
     [Header("Asset References")]
     public TowerDatabase towerDatabase;
@@ -55,6 +57,12 @@ public class GameUIManager : MonoBehaviour
     private Button shovelButton;
     private bool isShovelSelected = false;
     private VisualElement loadingPanel;
+
+
+
+    [SerializeField] private BoxCollider2D enemyPreviewArea;
+    [SerializeField] private int maxPreviewEnemies = 15;
+    private List<GameObject> previewEnemies = new List<GameObject>();
 
 
     private Coroutine currencyAnimationCoroutine;
@@ -114,6 +122,7 @@ public class GameUIManager : MonoBehaviour
         currencyManager.UpdateInitalCurrency();
         lastDisplayedCurrency = currencyManager.GetCurrentCurrency();
         UpdateAllCardStates(currencyManager.GetCurrentCurrency());
+        ShowEnemyPreview();
     }
 
 
@@ -276,7 +285,7 @@ public class GameUIManager : MonoBehaviour
         currentPhase = GamePhase.Gameplay;
         squadSelectionPanel.AddToClassList("squad-selection-panel--hidden");
         MoveIniScreen();
-
+        ClearEnemyPreview();
         UpdateAllCardStates(currencyManager.GetCurrentCurrency());
         if (waveSpawner != null)
         {
@@ -578,5 +587,97 @@ public class GameUIManager : MonoBehaviour
         {
             confirmButton.SetEnabled(false);
         }
+    }
+
+
+
+    private void ShowEnemyPreview()
+    {
+        if (selectedLevel.selectedLevel == null || enemyPreviewArea == null) return;
+
+        Dictionary<string, int> enemyComposition = new Dictionary<string, int>();
+        int grandTotalEnemies = 0;
+
+        foreach (var waveData in selectedLevel.selectedLevel.allItems)
+        {
+            string[] enemyGroups = waveData.EnemyGroups.Split(',');
+            foreach (string group in enemyGroups)
+            {
+                string[] pair = group.Split(':');
+                if (pair.Length == 2)
+                {
+                    string enemyID = pair[0].Trim();
+                    int quantity = int.Parse(pair[1].Trim());
+
+                    if (enemyComposition.ContainsKey(enemyID))
+                    {
+                        enemyComposition[enemyID] += quantity;
+                    }
+                    else
+                    {
+                        enemyComposition.Add(enemyID, quantity);
+                    }
+                    grandTotalEnemies += quantity;
+                }
+            }
+        }
+
+        if (grandTotalEnemies == 0) return;
+
+        foreach (var enemyEntry in enemyComposition)
+        {
+            string enemyID = enemyEntry.Key;
+            int totalCount = enemyEntry.Value;
+
+            float ratio = (float)totalCount / grandTotalEnemies;
+
+            int countToSpawn = Mathf.RoundToInt(ratio * maxPreviewEnemies);
+
+            if (countToSpawn == 0 && totalCount > 0)
+            {
+                countToSpawn = 1;
+            }
+
+            for (int i = 0; i < countToSpawn; i++)
+            {
+                SpawnSinglePreviewEnemy(enemyID);
+            }
+        }
+    }
+
+    private void SpawnSinglePreviewEnemy(string enemyID)
+    {
+        GameObject enemyPrefab = enemyDatabase.GetEnemyPrefabByID(enemyID);
+        if (enemyPrefab == null) return;
+
+        Bounds previewBounds = enemyPreviewArea.bounds;
+        float randomX = Random.Range(previewBounds.min.x, previewBounds.max.x);
+        float randomY = Random.Range(previewBounds.min.y, previewBounds.max.y);
+        Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
+
+        GameObject enemyGO = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        previewEnemies.Add(enemyGO);
+        if (enemyGO.TryGetComponent<EnemyBase>(out EnemyBase enemyScript))
+        {
+            enemyScript.enabled = false;
+        }
+
+        if (enemyGO.TryGetComponent<Collider2D>(out Collider2D enemyCollider))
+        {
+            enemyCollider.enabled = false;
+        }
+
+        if (enemyGO.TryGetComponent<Animator>(out Animator animator))
+        {
+            animator.Play("Idle");
+        }
+    }
+    private void ClearEnemyPreview()
+    {
+        foreach (GameObject enemy in previewEnemies)
+        {
+            Destroy(enemy);
+        }
+        previewEnemies.Clear();
     }
 }

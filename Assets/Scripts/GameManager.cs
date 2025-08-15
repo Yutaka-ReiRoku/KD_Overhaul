@@ -138,7 +138,6 @@ public class GameManager : Singleton<GameManager>
         endGamePanelInstance.pickingMode = PickingMode.Position;
     }
 
-    #region Unchanged Code
     public void OnPause(InputAction.CallbackContext context) { if (context.performed && currentState == GameState.Playing) { TogglePause(); } }
     private void TogglePause() { isPaused = !isPaused; if (isPaused) { PauseGame(); } else { ResumeGame(); } }
     public void TriggerWin(Vector3 lastEnemyWorldPosition)
@@ -222,9 +221,6 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    private void GoToNextLevel() { SceneManager.LoadScene(0); }
-    private void RestartLevel() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
-    private void GoToMainMenu() { SceneManager.LoadScene(0); }
     private void OnMusicVolumeChanged(ChangeEvent<float> evt) { float volume = evt.newValue; SoundManager.Instance.SetMusicVolume(volume); PlayerPrefs.SetFloat("MusicVolume", volume); }
     private void OnSFXVolumeChanged(ChangeEvent<float> evt) { float volume = evt.newValue; SoundManager.Instance.SetSFXVolume(volume); PlayerPrefs.SetFloat("SFXVolume", volume); }
     private void LoadAndApplyAudioSettings()
@@ -268,5 +264,43 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForEndOfFrame();
 
     }
-    #endregion
+    private void GoToNextLevel()
+    {
+        Debug.Log("Attempting to load next level...");
+
+        LevelData completedLevel = selectedLevel.selectedLevel;
+        if (completedLevel == null || levelDatabase == null)
+        {
+            GoToMainMenu();
+            return;
+        }
+
+        int completedLevelIndex = levelDatabase.allLevels.IndexOf(completedLevel);
+
+        int nextLevelIndex = completedLevelIndex + 1;
+
+        if (nextLevelIndex < levelDatabase.allLevels.Count)
+        {
+            selectedLevel.selectedLevel = levelDatabase.allLevels[nextLevelIndex];
+            Debug.Log($"Loading level {nextLevelIndex + 1}: {selectedLevel.selectedLevel.name}");
+
+            RestartLevel();
+        }
+        else
+        {
+            Debug.Log("Congratulations! You have completed all available levels!");
+            GoToMainMenu();
+        }
+    }
+
+    private void GoToMainMenu()
+    {
+        Debug.Log("Returning to level select screen...");
+        SceneManager.LoadScene(0);
+    }
+    private void RestartLevel()
+    {
+        Debug.Log("Restarting scene...");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
