@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArmoredAxeman
   m_EditorClassIdentifier: 
   towerName: ArmoredAxeman
-  towerIcon: {fileID: 4741263432576207059, guid: c358c26e3f4a3694fb993003ae976691, type: 3}
+  towerIcon: {fileID: -2178845191466743114, guid: 75ec8e9c4ace40146847e66390ed873b, type: 3}
   cost: 250
   description: fff
   cooldownTime: 15

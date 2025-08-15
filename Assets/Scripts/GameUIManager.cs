@@ -292,6 +292,7 @@ public class GameUIManager : MonoBehaviour
         UpdateAllCardStates(currencyManager.GetCurrentCurrency());
         if (waveSpawner != null)
         {
+            SoundManager.Instance.PlayMusic("GameplayMusic");
             waveSpawner.BeginSpawning();
         }
         else

@@ -16,21 +16,21 @@ MonoBehaviour:
   - WaveID: 1
     TimeAfterWave: 15
     TimeBetweenSpawns: 1.5
-    EnemyGroups: SkeletonData:5
+    EnemyGroups: OrcData:6
   - WaveID: 2
     TimeAfterWave: 20
     TimeBetweenSpawns: 1
-    EnemyGroups: SkeletonData:3
+    EnemyGroups: WerewolfData:5
   - WaveID: 3
     TimeAfterWave: 20
     TimeBetweenSpawns: 1.2
-    EnemyGroups: SkeletonData:6
+    EnemyGroups: WerebearData:4
   - WaveID: 4
     TimeAfterWave: 25
     TimeBetweenSpawns: 0.5
-    EnemyGroups: SlimeData:10
+    EnemyGroups: OrcData:7
   - WaveID: 5
     TimeAfterWave: 30
     TimeBetweenSpawns: 0.8
-    EnemyGroups: SkeletonData:8
+    EnemyGroups: ArmoredOrcData:3
   rewardTowerData: {fileID: 11400000, guid: 84a699139c250bc489adb739d4e0bbca, type: 2}

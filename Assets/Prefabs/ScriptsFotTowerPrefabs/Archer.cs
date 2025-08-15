@@ -38,7 +38,7 @@ public class Archer : TowerBase
         else
         {
             EnemyBase rangedTarget = FindClosestEnemyInCollider(rangedRangeCollider);
-            if (rangedTarget != null)
+            if (rangedTarget != null && !isAttacking)
             {
                 currentTarget = rangedTarget.transform;
 
@@ -76,6 +76,7 @@ public class Archer : TowerBase
 
     public void AnimationEvent_FireProjectile1()
     {
+        SoundManager.Instance.PlaySound("RangeAttack");
         if (currentTarget == null) return;
 
         abilityCooldowns[0] = towerData.abilities[0].cooldownDuration;
@@ -95,6 +96,7 @@ public class Archer : TowerBase
 
     public void AnimationEvent_FireProjectile2()
     {
+        SoundManager.Instance.PlaySound("RangeAttack");
         if (currentTarget == null) return;
 
         abilityCooldowns[1] = towerData.abilities[1].cooldownDuration;

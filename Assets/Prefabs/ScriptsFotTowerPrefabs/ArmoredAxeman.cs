@@ -31,7 +31,7 @@ public class ArmoredAxeman : TowerBase
     private void DecideAndAct()
     {
         EnemyBase meleeTarget = FindClosestEnemyInCollider(meleeRangeCollider);
-        if (meleeTarget != null)
+        if (meleeTarget != null && !isAttacking)
         {
             currentTarget = meleeTarget.transform;
 
@@ -69,6 +69,7 @@ public class ArmoredAxeman : TowerBase
 
     public void AnimationEvent_DealMeleeDamage1()
     {
+        SoundManager.Instance.PlaySound("MeleeAttack");
         int index = 0;
         float damage = towerData.abilities[index].damage;
         abilityCooldowns[index] = towerData.abilities[index].cooldownDuration;
@@ -84,6 +85,7 @@ public class ArmoredAxeman : TowerBase
     }
     public void AnimationEvent_DealMeleeDamage2()
     {
+        SoundManager.Instance.PlaySound("MeleeAttack");
         int index = 1;
         float damage = towerData.abilities[index].damage;
         abilityCooldowns[index] = towerData.abilities[index].cooldownDuration;
@@ -99,6 +101,7 @@ public class ArmoredAxeman : TowerBase
     }
     public void AnimationEvent_DealMeleeDamage3()
     {
+        SoundManager.Instance.PlaySound("MeleeAttack");
         int index = 2;
         float damage = towerData.abilities[index].damage;
         abilityCooldowns[index] = towerData.abilities[index].cooldownDuration;

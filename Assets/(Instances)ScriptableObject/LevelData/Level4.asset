@@ -14,23 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allItems:
   - WaveID: 1
-    TimeAfterWave: 15
+    TimeAfterWave: 10
     TimeBetweenSpawns: 1.5
-    EnemyGroups: OrcData:5
+    EnemyGroups: SlimeData:5
   - WaveID: 2
-    TimeAfterWave: 20
+    TimeAfterWave: 15
     TimeBetweenSpawns: 1
-    EnemyGroups: ArmoredSkeletonData:3
+    EnemyGroups: OrcData:8
   - WaveID: 3
-    TimeAfterWave: 20
+    TimeAfterWave: 15
     TimeBetweenSpawns: 1.2
-    EnemyGroups: Werewolf:6
+    EnemyGroups: ArmoredOrcData:6
   - WaveID: 4
-    TimeAfterWave: 25
+    TimeAfterWave: 20
     TimeBetweenSpawns: 0.5
-    EnemyGroups: GreatswordSkeletonData:5
+    EnemyGroups: OrcRiderData:2
   - WaveID: 5
-    TimeAfterWave: 30
+    TimeAfterWave: 25
     TimeBetweenSpawns: 0.8
-    EnemyGroups: OrcRiderData:1
+    EnemyGroups: EliteOrcData:1
   rewardTowerData: {fileID: 11400000, guid: 4a748a7d8612db7469b0d7f83344c970, type: 2}

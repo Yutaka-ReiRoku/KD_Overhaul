@@ -40,7 +40,7 @@ public class GreatswordSkeleton : EnemyBase
     {
         attackIndex = abilityIndex;
         currentAbility = ability;
-        SoundManager.Instance.PlaySound("Attack");
+        SoundManager.Instance.PlaySound("MeleeAttack");
         RunAnimation(ability.animationName, 3);
     }
 

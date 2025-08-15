@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Diamond
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 2335828927570728947, guid: 2538cecc618c6784bb347c4222a2f067, type: 3}
-  colliderSize: {x: 0.5, y: 0.5}
+  colliderSize: {x: 1, y: 1}
   currencyValue: 150
-  despawnTime: 15
+  despawnTime: 30

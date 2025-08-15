@@ -28,7 +28,7 @@ public class Collectible : MonoBehaviour, ICollectible
     public void Collect()
     {
         if (data == null) return;
-
+        SoundManager.Instance.PlaySound("Pickup");
         CurrencyManager.Instance.AddCurrency(data.currencyValue);
         Destroy(gameObject);
     }

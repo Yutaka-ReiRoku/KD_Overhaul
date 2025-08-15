@@ -80,6 +80,7 @@ public class Soldier : TowerBase
 
     public void AnimationEvent_DealMeleeDamage1()
     {
+        SoundManager.Instance.PlaySound("MeleeAttack");
         int index = 0;
         float damage = towerData.abilities[index].damage;
         abilityCooldowns[index] = towerData.abilities[index].cooldownDuration;
@@ -96,6 +97,7 @@ public class Soldier : TowerBase
 
     public void AnimationEvent_DealMeleeDamage2()
     {
+        SoundManager.Instance.PlaySound("MeleeAttack");
         int index = 1;
         float damage = towerData.abilities[index].damage;
         abilityCooldowns[index] = towerData.abilities[index].cooldownDuration;
@@ -112,6 +114,7 @@ public class Soldier : TowerBase
 
     public void AnimationEvent_FireProjectile()
     {
+        SoundManager.Instance.PlaySound("RangeAttack");
         if (currentTarget == null) return;
 
         abilityCooldowns[2] = towerData.abilities[2].cooldownDuration;
