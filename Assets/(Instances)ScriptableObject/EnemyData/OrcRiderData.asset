@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: OrcRider
   enemyPrefab: {fileID: 6590416539169634011, guid: cf71d36bd6f332c4f83cb8416305a238, type: 3}
   health: 400
-  moveSpeed: 1.5
+  moveSpeed: 1.25
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne

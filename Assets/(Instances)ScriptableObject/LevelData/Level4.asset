@@ -18,7 +18,7 @@ MonoBehaviour:
     TimeBetweenSpawns: 1.5
     EnemyGroups: SlimeData:5
   - WaveID: 2
-    TimeAfterWave: 15
+    TimeAfterWave: 25
     TimeBetweenSpawns: 1
     EnemyGroups: OrcData:8
   - WaveID: 3
@@ -26,11 +26,11 @@ MonoBehaviour:
     TimeBetweenSpawns: 1.2
     EnemyGroups: ArmoredOrcData:6
   - WaveID: 4
-    TimeAfterWave: 20
+    TimeAfterWave: 30
     TimeBetweenSpawns: 0.5
     EnemyGroups: OrcRiderData:2
   - WaveID: 5
-    TimeAfterWave: 25
+    TimeAfterWave: 35
     TimeBetweenSpawns: 0.8
     EnemyGroups: EliteOrcData:1
   rewardTowerData: {fileID: 11400000, guid: 4a748a7d8612db7469b0d7f83344c970, type: 2}

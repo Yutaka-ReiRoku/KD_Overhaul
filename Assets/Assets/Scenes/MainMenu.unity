@@ -296,68 +296,80 @@ MonoBehaviour:
     source: {fileID: 0}
   - type: 0
     name: GameplayMusic
-    clip: {fileID: 8300000, guid: 7772e4199cde8ae41831d14f277e01c7, type: 3}
+    clip: {fileID: 8300000, guid: 0bf9af10816d7164b854c7c2ba3721ce, type: 3}
     volume: 0.2
     pitch: 1
     source: {fileID: 0}
   - type: 1
     name: Click
     clip: {fileID: 8300000, guid: 0175bf129db1e6740ab50fe136770d81, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - type: 1
     name: MeleeAttack
     clip: {fileID: 8300000, guid: 56f03440c513b5d4ab900875f1a73708, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - type: 1
     name: RangeAttack
     clip: {fileID: 8300000, guid: c2ef52a406055514c820b2a311af38ad, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - type: 1
     name: Hurt
     clip: {fileID: 8300000, guid: 037371c204353ce488aa1dd40f5c61a0, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - type: 1
     name: Pickup
     clip: {fileID: 8300000, guid: 08bf006775869ea43a4e50fe2360d761, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - type: 1
     name: DeleteTower
     clip: {fileID: 8300000, guid: 32e6f0f87b51ccc43be9a6ea84a33104, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - type: 1
     name: Fire
     clip: {fileID: 8300000, guid: 777bae26bf9703246a7db12b62da7c01, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - type: 1
     name: Ice
     clip: {fileID: 8300000, guid: 42a935dd6dc78a949b95745e9ab66463, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - type: 1
     name: Light
     clip: {fileID: 8300000, guid: cdb135655cbbb0841b52a52adeae942e, type: 3}
-    volume: 0.2
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - type: 1
-    name: Fire
-    clip: {fileID: 8300000, guid: 777bae26bf9703246a7db12b62da7c01, type: 3}
-    volume: 0.2
+    name: Heal
+    clip: {fileID: 8300000, guid: 705a63f44ae123c4da9e96e0f979e77c, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+  - type: 1
+    name: Victory
+    clip: {fileID: 8300000, guid: aafe2c939d720fc47af21f5c248c9215, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+  - type: 1
+    name: Defeat
+    clip: {fileID: 8300000, guid: 45eceb3724d126645a549e9f8f1b9e12, type: 3}
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
 --- !u!4 &453235983

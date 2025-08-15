@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Skeleton
   enemyPrefab: {fileID: 7318982786531182478, guid: b88acfc43ba4d2c44a8e408639b2fd6d, type: 3}
   health: 75
-  moveSpeed: 1
+  moveSpeed: 0.75
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne

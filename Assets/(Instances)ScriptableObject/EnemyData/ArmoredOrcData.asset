@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: ArmoredOrc
   enemyPrefab: {fileID: 8156396702261096464, guid: ba8bdf879fb078540b97ee5819d60003, type: 3}
   health: 250
-  moveSpeed: 0.75
+  moveSpeed: 0.5
   abilities:
   - abilityName: AttackOne
     animationName: AttackOne
